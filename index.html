@@ -27,6 +27,7 @@
     <div style="display: flex; gap: 22px; font-size: 15px; font-weight: 500;">
       <a href="#services">Services</a>
       <a href="#method">Method</a>
+      <a href="#validation">Validation</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </div>
@@ -156,6 +157,51 @@
       <div style="position: absolute; bottom: 10px; right: 10px; width: 16px; height: 16px; border-bottom: 2px solid #14241F; border-right: 2px solid #14241F;"></div>
       <img src="images/earth-engine-workspace.png" alt="Both AOI boxes shown together in the live Earth Engine workspace, with the layer list open" style="width: 100%; height: auto; display: block;">
       <p style="font-size: 13px; color: #5B5440; margin: 12px 0 0;">Both belts in the actual working session: rice (top) and shrimp/aquaculture (bottom), every layer individually toggleable. Not a mockup.</p>
+    </div>
+  </div>
+
+  <!-- Validation -->
+  <div id="validation" style="background: #E1E8D4; border-top: 1px solid #C9BD98; border-bottom: 1px solid #C9BD98;">
+    <div style="max-width: 1180px; margin: 0 auto; padding: 56px 24px;">
+      <h2 style="font-size: 30px; font-weight: 700; color: #14241F;">Does the method hold up?</h2>
+      <p style="font-size: 16px; line-height: 1.6; color: #2E3A2F; max-width: 68ch; margin-top: 12px;">
+        Rather than just claim it works, I benchmarked it. Three reconstruction
+        approaches, including the one this project uses, were tested by hiding real
+        satellite observations and checking whether each method could recover them,
+        repeated across three different cloud-detection settings rather than trusting
+        a single run.
+      </p>
+
+      <div style="border-top: 2px solid #14241F; margin-top: 32px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px;">
+        <div style="padding-top: 16px; position: relative;">
+          <div style="position: absolute; top: -2px; left: 0; width: 8px; height: 8px; background: #14241F;"></div>
+          <div style="font-size: 17px; font-weight: 600;">A cloud-detection bug, found and fixed</div>
+          <div style="font-size: 14px; color: #3C4A3D; line-height: 1.5; margin-top: 6px;">An early version silently treated missing satellite data as "clear sky." Traced, confirmed against official documentation, and corrected before any results were trusted.</div>
+        </div>
+        <div style="padding-top: 16px; position: relative;">
+          <div style="position: absolute; top: -2px; left: 0; width: 8px; height: 8px; background: #14241F;"></div>
+          <div style="font-size: 17px; font-weight: 600;">A test-scoring bug, found and fixed</div>
+          <div style="font-size: 14px; color: #3C4A3D; line-height: 1.5; margin-top: 6px;">A single oversized test case was quietly skewing one result. Caught by checking the "why," not just accepting the number, and corrected.</div>
+        </div>
+        <div style="padding-top: 16px; position: relative;">
+          <div style="position: absolute; top: -2px; left: 0; width: 8px; height: 8px; background: #14241F;"></div>
+          <div style="font-size: 17px; font-weight: 600;">Checked three times, not once</div>
+          <div style="font-size: 14px; color: #3C4A3D; line-height: 1.5; margin-top: 6px;">The comparison was re-run under three different cloud-detection thresholds. The result held up at all three, not just the one that happened to look best.</div>
+        </div>
+      </div>
+
+      <p style="font-size: 16px; line-height: 1.6; color: #2E3A2F; max-width: 68ch; margin-top: 32px;">
+        The result: the smoothing approach used in this project consistently
+        recovered hidden data better than plain interpolation and a more complex
+        published 2025 alternative. It's a bounded, three-location study, not a
+        peer-reviewed paper, and it says so plainly in the full writeup.
+      </p>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 14px; padding-top: 20px;">
+        <a href="research.html" style="background: #C98A2E; color: #14241F; padding: 13px 26px; border-radius: 3px; font-weight: 600; font-size: 15px;">
+          Read the full methodology
+        </a>
+      </div>
     </div>
   </div>
 

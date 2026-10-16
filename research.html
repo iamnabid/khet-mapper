@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Khet Mapper — does the method hold up?</title>
+<meta name="description" content="An independent benchmark of the NDVI reconstruction method behind Khet Mapper, checked against two simpler/alternative methods across three cloud-detection settings.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Big+Shoulders+Display:wght@600;700;800&display=swap">
+<style>
+  body { margin: 0; font-family: 'Archivo', sans-serif; background: #F1E9D2; color: #14241F; }
+  h1, h2, h3 { font-family: 'Big Shoulders Display', sans-serif; margin: 0; letter-spacing: 0.01em; }
+  a { color: #1F5258; text-decoration: none; }
+  a:hover { color: #14241F; }
+  .btn { transition: background 0.15s ease, color 0.15s ease; }
+  table { border-collapse: collapse; width: 100%; }
+  th, td { text-align: left; padding: 10px 14px; font-size: 14px; border-bottom: 1px solid #D8CFAE; }
+  th { font-weight: 600; color: #14241F; }
+  td { color: #3C4A3D; }
+  tr.win td { font-weight: 700; color: #14241F; }
+</style>
+</head>
+<body>
+
+<div style="width: 100%; box-sizing: border-box;">
+
+  <!-- Nav -->
+  <div style="max-width: 900px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 16px; padding: 28px 24px 0;">
+    <a href="index.html" style="display: flex; align-items: baseline; gap: 12px;">
+      <span style="font-family: 'Big Shoulders Display', sans-serif; font-weight: 800; font-size: 22px; color: #14241F;">Khet Mapper</span>
+      <span style="font-size: 13px; color: #5B5440;">— back to the site</span>
+    </a>
+  </div>
+
+  <!-- Hero -->
+  <div style="max-width: 900px; margin: 0 auto; padding: 40px 24px 48px;">
+    <h1 style="font-size: 40px; line-height: 1.08; font-weight: 700; color: #14241F;">
+      Does the method hold up?
+    </h1>
+    <p style="font-size: 17px; line-height: 1.6; color: #2E3A2F; max-width: 66ch; margin-top: 18px;">
+      This page is the honest version, not the pitch version. It covers what was
+      tested, two real bugs that were found and fixed along the way, and exactly
+      what the result does and doesn't support.
+    </p>
+  </div>
+
+  <!-- The question -->
+  <div style="max-width: 900px; margin: 0 auto; padding: 8px 24px 40px;">
+    <h2 style="font-size: 24px; font-weight: 700;">What was being tested</h2>
+    <p style="font-size: 15px; line-height: 1.65; color: #2E3A2F; max-width: 68ch; margin-top: 10px;">
+      Khulna's rice fields go weeks at a time without a usable cloud-free satellite
+      image during the monsoon. A reconstruction method tries to fill those gaps —
+      but a method that looks convincing on a smooth chart isn't the same as one
+      that's actually reliable. This study tested three reconstruction approaches
+      against each other by hiding real, already-observed satellite data points and
+      checking whether each method could recover the hidden values: plain linear
+      interpolation, Whittaker smoothing (the approach used in this project), and
+      STMS, a published 2025 method built specifically for this exact problem.
+    </p>
+    <p style="font-size: 15px; line-height: 1.65; color: #2E3A2F; max-width: 68ch; margin-top: 12px;">
+      Three sites in the Khulna rice belt, each a single fixed point (not a blended
+      area average), selected by scoring a grid of candidate points on seasonal
+      signal strength and then manually checking true-color imagery to rule out
+      villages and sandbars masquerading as farmland. 2022-2024, Sentinel-2 and
+      Landsat 8/9, all free data.
+    </p>
+  </div>
+
+  <!-- Two bugs -->
+  <div style="background: #E1E8D4; border-top: 1px solid #C9BD98; border-bottom: 1px solid #C9BD98;">
+    <div style="max-width: 900px; margin: 0 auto; padding: 48px 24px;">
+      <h2 style="font-size: 24px; font-weight: 700;">Two bugs, found and fixed before trusting any result</h2>
+
+      <div style="margin-top: 24px;">
+        <h3 style="font-size: 18px; font-weight: 600;">1. Missing data was silently read as "clear sky"</h3>
+        <p style="font-size: 15px; line-height: 1.6; color: #3C4A3D; max-width: 66ch; margin-top: 8px;">
+          The first pass used Sentinel-2's own cloud flag, which showed almost 100%
+          "clear" skies even in peak monsoon months for 2022 and 2023 — not
+          plausible. Checked against Earth Engine's own documentation: that cloud
+          flag was discontinued for over two years and silently defaulted to "no
+          cloud detected" while it was missing, rather than "unknown." Fixed by
+          switching to a probability-based cloud mask plus explicit cloud-shadow
+          detection, and verified the fix by confirming monsoon cloud dropout now
+          shows up consistently across all three years, not just the one year the
+          old method happened to get right.
+        </p>
+      </div>
+
+      <div style="margin-top: 28px;">
+        <h3 style="font-size: 18px; font-weight: 600;">2. One oversized test case was quietly skewing a result</h3>
+        <p style="font-size: 15px; line-height: 1.6; color: #3C4A3D; max-width: 66ch; margin-top: 8px;">
+          Re-running the comparison under a looser cloud-detection setting appeared
+          to reverse the entire finding — plain interpolation suddenly looked
+          better. Investigating why found the real cause: one single test window
+          happened to contain a quarter of one site's entire sample, and it was
+          being weighted by how many data points it contained rather than counted
+          as one test case among many. Fixed by weighting every independent test
+          case equally. The original result came back — and came back more
+          confirmed, not less, because the bug had been caught and corrected
+          rather than quietly reported as a finding.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Results -->
+  <div style="max-width: 900px; margin: 0 auto; padding: 48px 24px;">
+    <h2 style="font-size: 24px; font-weight: 700;">The result, checked three ways</h2>
+    <p style="font-size: 15px; line-height: 1.6; color: #2E3A2F; max-width: 66ch; margin-top: 10px;">
+      The full comparison was re-run under three different cloud-detection
+      strictness settings, not just the one that happened to look best. Lower
+      numbers are better (they measure how far off the reconstructed values were
+      from the real hidden ones).
+    </p>
+
+    <div style="position: relative; background: #FFFFFF; padding: 24px; margin-top: 24px;">
+      <div style="position: absolute; top: 10px; left: 10px; width: 16px; height: 16px; border-top: 2px solid #14241F; border-left: 2px solid #14241F;"></div>
+      <div style="position: absolute; top: 10px; right: 10px; width: 16px; height: 16px; border-top: 2px solid #14241F; border-right: 2px solid #14241F;"></div>
+      <div style="position: absolute; bottom: 10px; left: 10px; width: 16px; height: 16px; border-bottom: 2px solid #14241F; border-left: 2px solid #14241F;"></div>
+      <div style="position: absolute; bottom: 10px; right: 10px; width: 16px; height: 16px; border-bottom: 2px solid #14241F; border-right: 2px solid #14241F;"></div>
+      <table>
+        <tr><th>Cloud-detection setting</th><th>Linear interpolation</th><th>Whittaker smoothing</th><th>STMS (2025)</th></tr>
+        <tr><td>Strict</td><td>0.154</td><td class="win" style="font-weight:700; color:#14241F;">0.137</td><td>0.157</td></tr>
+        <tr><td>Baseline</td><td>0.154</td><td class="win" style="font-weight:700; color:#14241F;">0.144</td><td>0.178</td></tr>
+        <tr><td>Loose</td><td>0.142</td><td class="win" style="font-weight:700; color:#14241F;">0.138</td><td>0.170</td></tr>
+      </table>
+      <p style="font-size: 13px; color: #5B5440; margin: 14px 0 0;">Whittaker smoothing wins at every setting tested. STMS, the more sophisticated published method, is weakest at every setting — likely because it's designed around a much larger reference network (the original study used 2,460 sites; this one had 3) rather than being a weaker method in general.</p>
+    </div>
+  </div>
+
+  <!-- Honest limits -->
+  <div style="background: #14241F;">
+    <div style="max-width: 900px; margin: 0 auto; padding: 48px 24px;">
+      <h2 style="font-size: 24px; font-weight: 700; color: #F1E9D2;">What this doesn't claim</h2>
+      <ul style="font-size: 15px; color: #C9D2C3; padding-left: 20px; margin: 16px 0 0; line-height: 1.9; max-width: 66ch;">
+        <li>Not field-validated planting or harvest dates — the comparison is against other satellite observations, not ground visits.</li>
+        <li>Not a representative sample of "typical" Khulna rice fields — three locations were deliberately picked for strong seasonal signal.</li>
+        <li>Two of the nine monsoon-season site-years didn't have enough surrounding data to support a reliable growth-peak estimate even after adding a second satellite — rather than patch that gap, it's documented and dropped as a claim.</li>
+        <li>Not a peer-reviewed paper. It's a bounded independent study, built and checked solo.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div style="max-width: 900px; margin: 0 auto; padding: 32px 24px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 13px; color: #5B5440;">
+    <a href="index.html">&larr; Back to Khet Mapper</a>
+    <span>Khet Mapper, started by Nabid Sheikh.</span>
+  </div>
+
+</div>
+</body>
+</html>
