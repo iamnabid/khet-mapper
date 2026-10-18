@@ -1,0 +1,5 @@
+earthengine-api
+typer
+rich
+reportlab
+matplotlib
