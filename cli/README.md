@@ -20,26 +20,76 @@ Codex fact-check found in that spec fixed before any code was written:
 
 ## Setup
 
+This lives under `cli/` in the `khet-mapper` repo (alongside the
+khetmapper.tech site). Clone the repo and run everything from inside `cli/`,
+since paths like `data/aois/...` are relative to the current directory.
+
 ```
+git clone https://github.com/iamnabid/khet-mapper.git
+cd khet-mapper/cli
 python -m venv .venv
 .venv\Scripts\activate
 pip install -r requirements.txt
-set EE_PROJECT_ID=your-gcp-project-id
 ```
 
-Earth Engine is already authenticated on this machine (`earthengine
-authenticate` was run previously); only `EE_PROJECT_ID` needs setting.
+### Authenticate Earth Engine (one-time per machine)
+
+```
+earthengine authenticate
+```
+
+This opens a browser OAuth flow and stores a refresh token locally —
+it does not set a Cloud project.
+
+### Set EE_PROJECT_ID
+
+Earth Engine's Python client requires an explicit Google Cloud project with
+the Earth Engine API enabled; there's no usable default. Find yours at
+either:
+
+- **Earth Engine Code Editor** ([code.earthengine.google.com](https://code.earthengine.google.com)) — the project
+  dropdown next to the logo, top-left. Use the **Project ID** (e.g.
+  `my-project-123`), not the display name.
+- **Google Cloud Console** ([console.cloud.google.com](https://console.cloud.google.com)) — the project picker's
+  **ID** column, not **Name**.
+
+Then set it for your shell:
+
+```
+# PowerShell
+$env:EE_PROJECT_ID = "your-gcp-project-id"
+
+# cmd.exe
+set EE_PROJECT_ID=your-gcp-project-id
+
+# bash
+export EE_PROJECT_ID=your-gcp-project-id
+```
 
 ## Usage
 
+All three commands take their required arguments positionally (Typer CLI);
+`--trigger-days`/`--out` are the only real flags, each with a default.
+
 ```
-python cli.py composite --aoi data/aois/your_aoi.geojson --start 2024-06-01 --end 2024-09-30 --out data/outputs/composite.tif
-python cli.py analyze --aoi data/aois/your_aoi.geojson --year 2024 --trigger-days 14 --out data/outputs/metrics.json
-python cli.py report --metrics data/outputs/metrics.json --client "Sample" --out data/outputs/KhetMapper_Sample_Audit.pdf
+python cli.py composite data/aois/your_aoi.geojson 2024-06-01 2024-09-30 data/outputs/composite.tif
+python cli.py analyze data/aois/your_aoi.geojson 2024 --trigger-days 14 --out data/outputs/metrics.json
+python cli.py report data/outputs/metrics.json "Sample" --out data/outputs/KhetMapper_Sample_Audit.pdf
 ```
 
-`data/aois/` needs a real GeoJSON polygon — none is bundled, since fabricating
-GPS coordinates for a specific parcel would misrepresent real land.
+Run `python cli.py COMMAND --help` for the exact signature of any command.
+
+`data/aois/` needs a real GeoJSON polygon for a parcel you're actually
+mapping — fabricating GPS coordinates for a specific parcel would misrepresent
+real land. `data/aois/satkhira_smoketest.geojson` is included as a working
+example: a small (~310ha) crop of the real FAO GAUL Satkhira district
+boundary, used only to smoke-test the pipeline end-to-end, not a claim about
+any specific rice/aquaculture parcel.
+
+`composite` starts an async Earth Engine export task and writes to your
+Google Drive (`khetmapper_exports/` folder) once it completes server-side —
+check task status with `ee.data.getTaskList()` if you need to confirm
+completion from Python.
 
 ## Deliberately not implemented here
 
