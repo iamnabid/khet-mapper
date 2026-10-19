@@ -77,15 +77,15 @@ def sar_passes(event, aoi, orbit, scale):
         water = indices.sar_water(img)
         new = water.And(baseline_water.Not()).rename("new")
         covered = img.select("VV").mask().gt(0).unmask(0).rename("covered")
-        r = ee.Image.cat(water, new).reduceRegion(
+        # One reduction for all three bands; mean() honours each band's own mask.
+        r = ee.Image.cat(water, new, covered).reduceRegion(
             ee.Reducer.mean(), aoi, scale, maxPixels=1e10, tileScale=4
         )
-        c = covered.reduceRegion(ee.Reducer.mean(), aoi, scale, maxPixels=1e10, tileScale=4)
         return ee.Feature(None, {
             "date": img.date().format("YYYY-MM-dd"),
             "water": r.get("is_water"),
             "new": r.get("new"),
-            "coverage": c.get("covered"),
+            "coverage": r.get("covered"),
         })
 
     feats = ee.FeatureCollection(s1.map(per_pass)).getInfo()["features"]

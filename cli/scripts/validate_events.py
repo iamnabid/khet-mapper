@@ -4,6 +4,7 @@
 """
 import json
 import sys
+import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
@@ -32,7 +33,15 @@ def main():
         if only and event["id"] not in only:
             continue
         print(f"… {event['id']}", flush=True)
-        r = validate_event(event)
+        for attempt in range(4):
+            try:
+                r = validate_event(event)
+                break
+            except ee.EEException as e:
+                # Earth Engine throttles bursts ("Too many concurrent aggregations").
+                if attempt == 3 or "concurrent" not in str(e).lower():
+                    raise
+                time.sleep(30 * (attempt + 1))
         r.update({k: event[k] for k in ("name", "type", "setting", "confidence")})
         results.append(r)
 
