@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Khet Mapper — satellite monitoring for Khulna</title>
-<meta name="description" content="Satellite-based rice growth and shrimp pond monitoring for Khulna district, Bangladesh.">
+<meta name="description" content="Satellite-based rice growth monitoring and flood detection through monsoon cloud for Khulna and Satkhira, Bangladesh.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Big+Shoulders+Display:wght@600;700;800&family=Instrument+Serif:ital@1&display=swap">
 <style>
   body { margin: 0; font-family: 'Archivo', sans-serif; background: #F1E9D2; color: #14241F; }
@@ -43,11 +43,11 @@
   <div style="max-width: 1180px; margin: 0 auto; padding: 56px 24px 64px;">
     <div style="max-width: 760px;">
       <h1 style="font-size: 54px; line-height: 1.04; font-weight: 700; color: #14241F;">
-        Watching Khulna's rice fields and shrimp ponds from orbit.
+        Watching Khulna's rice fields from orbit, through the monsoon.
       </h1>
       <p style="font-size: 18px; line-height: 1.6; color: #2E3A2F; max-width: 60ch; margin-top: 24px;">
         Free satellite imagery, read into growth-stage tracking for rice paddies and
-        extent-and-change mapping for aquaculture ponds across Khulna district.
+        flood detection through monsoon cloud across Khulna and Satkhira.
       </p>
       <p style="font-size: 15px; line-height: 1.6; color: #5B5440; max-width: 58ch; margin-top: 14px;">
         Built on the cloud-masking method proven in snow-cover research in the Czech
@@ -304,19 +304,19 @@
     </div>
   </div>
 
-  <!-- Service band 2: aquaculture -->
+  <!-- Service band 2: flood detection -->
   <div style="background: #DCE6E6; border-bottom: 1px solid #B9C7C7;">
     <div style="max-width: 1180px; margin: 0 auto; padding: 56px 24px; display: flex; flex-wrap: wrap-reverse; gap: 48px; align-items: flex-start; justify-content: flex-end;">
       <div style="flex: 999 1 420px; min-width: 0;">
-        <h2 style="font-size: 32px; font-weight: 700; color: #1C3538;">Aquaculture and pond mapping</h2>
+        <h2 style="font-size: 32px; font-weight: 700; color: #1C3538;">Flood detection through cloud</h2>
         <p style="font-size: 16px; line-height: 1.6; color: #233F42; max-width: 62ch; margin-top: 14px;">
-          Shrimp (bagda) pond extent, mapped and tracked year over year across the
-          Paikgacha, Koyra and Dacope belt.
+          Sentinel-1 radar sees the ground through monsoon cloud. Each pass is compared with
+          the same weeks of past years, to show where a field is unusually wet for the season.
         </p>
         <ul style="font-size: 14px; color: #233F42; padding-left: 18px; margin: 16px 0 0; line-height: 1.8;">
-          <li>Pond area estimates, in square kilometres</li>
-          <li>Expansion and contraction change maps</li>
-          <li>Dry-season composite accuracy checks</li>
+          <li>Unusually wet share of the area, per radar pass</li>
+          <li>Compared with the same weeks over the past five years</li>
+          <li>Tested against 10 documented Satkhira and Khulna floods</li>
         </ul>
       </div>
       <svg width="88" height="88" viewBox="0 0 24 24" fill="none" stroke="#1F5258" stroke-width="1.6" aria-hidden="true" style="flex: 0 0 auto;">
@@ -351,7 +351,7 @@
       <div style="padding-top: 16px; position: relative;">
         <div style="position: absolute; top: -2px; left: 0; width: 8px; height: 8px; background: #14241F;"></div>
         <div style="font-size: 17px; font-weight: 600;">Field-ready report</div>
-        <div style="font-size: 14px; color: #5B5440; line-height: 1.5; margin-top: 6px;">NDVI curves, pond-area numbers and change maps, readable without a GIS background.</div>
+        <div style="font-size: 14px; color: #5B5440; line-height: 1.5; margin-top: 6px;">NDVI curves, water-area numbers and flood checks, readable without a GIS background.</div>
       </div>
     </div>
 
@@ -457,7 +457,7 @@
       </div>
     </div>
 
-    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: 48px;">
+    <div style="display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; margin-top: 48px;">
       <div style="position: relative; background: #FFFFFF; padding: 24px;">
         <div style="position: absolute; top: 10px; left: 10px; width: 16px; height: 16px; border-top: 2px solid #14241F; border-left: 2px solid #14241F;"></div>
         <div style="position: absolute; top: 10px; right: 10px; width: 16px; height: 16px; border-top: 2px solid #14241F; border-right: 2px solid #14241F;"></div>
@@ -466,14 +466,6 @@
         <img src="images/ndvi-chart.svg" alt="NDVI time series chart for the Khulna rice belt, 2024" style="width: 100%; height: auto; display: block;">
         <p style="font-size: 13px; color: #5B5440; margin: 12px 0 0;">Rice belt NDVI, 2024. Early-season points are cleanest; monsoon-season gaps are exactly what the Terra/Aqua-style multi-sensor compositing from the thesis method is built to fill in.</p>
       </div>
-      <div style="position: relative; background: #FFFFFF; padding: 24px;">
-        <div style="position: absolute; top: 10px; left: 10px; width: 16px; height: 16px; border-top: 2px solid #14241F; border-left: 2px solid #14241F;"></div>
-        <div style="position: absolute; top: 10px; right: 10px; width: 16px; height: 16px; border-top: 2px solid #14241F; border-right: 2px solid #14241F;"></div>
-        <div style="position: absolute; bottom: 10px; left: 10px; width: 16px; height: 16px; border-bottom: 2px solid #14241F; border-left: 2px solid #14241F;"></div>
-        <div style="position: absolute; bottom: 10px; right: 10px; width: 16px; height: 16px; border-bottom: 2px solid #14241F; border-right: 2px solid #14241F;"></div>
-        <img src="images/pond-ndwi-change.png" alt="NDWI change map over the Paikgachha, Dacope and Koyra aquaculture belt" style="width: 100%; height: auto; display: block;">
-        <p style="font-size: 13px; color: #5B5440; margin: 12px 0 0;">Shrimp belt, Paikgachha-Dacope-Koyra: 2019 to 2024 NDWI change. About 138.2 sq km of water/pond surface detected in this AOI.</p>
-      </div>
     </div>
 
     <div style="position: relative; background: #FFFFFF; padding: 24px; margin-top: 24px;">
@@ -481,8 +473,8 @@
       <div style="position: absolute; top: 10px; right: 10px; width: 16px; height: 16px; border-top: 2px solid #14241F; border-right: 2px solid #14241F;"></div>
       <div style="position: absolute; bottom: 10px; left: 10px; width: 16px; height: 16px; border-bottom: 2px solid #14241F; border-left: 2px solid #14241F;"></div>
       <div style="position: absolute; bottom: 10px; right: 10px; width: 16px; height: 16px; border-bottom: 2px solid #14241F; border-right: 2px solid #14241F;"></div>
-      <img src="images/earth-engine-workspace.png" alt="Both AOI boxes shown together in the live Earth Engine workspace, with the layer list open" style="width: 100%; height: auto; display: block;">
-      <p style="font-size: 13px; color: #5B5440; margin: 12px 0 0;">Both belts in the actual working session: rice (top) and shrimp/aquaculture (bottom), every layer individually toggleable. Not a mockup.</p>
+      <img src="images/earth-engine-workspace.png" alt="The live Earth Engine workspace, with the layer list open" style="width: 100%; height: auto; display: block;">
+      <p style="font-size: 13px; color: #5B5440; margin: 12px 0 0;">The actual working session in Earth Engine, every layer individually toggleable. Not a mockup.</p>
     </div>
   </div>
 
@@ -548,7 +540,7 @@
       <div style="flex: 1 1 320px;">
         <h2 style="font-size: 26px; font-weight: 700;">Why this exists</h2>
         <p style="font-size: 16px; line-height: 1.6; color: #2E3A2F; max-width: 48ch; margin-top: 14px;">
-          I grew up in Khulna. I'm now doing a master's thesis on satellite-based
+          I grew up in Khulna. I'm now doing a bachelor's thesis on satellite-based
           snow-cover and cloud-masking methods in the Czech Republic. Khet Mapper points
           that same method back home, as a genuine cross-application rather than a copy
           of someone else's published study.
@@ -559,7 +551,7 @@
         <p style="font-size: 16px; line-height: 1.6; color: #2E3A2F; max-width: 44ch; margin-top: 14px;">
           This is a free, independent demo, not a funded product. Before building
           anything further, I'm looking for people who actually work with rice or
-          aquaculture data in Khulna to tell me what it's missing.
+          flood data in Khulna and Satkhira to tell me what it's missing.
         </p>
       </div>
     </div>
@@ -571,7 +563,7 @@
       <div style="flex: 999 1 320px; min-width: 0;">
         <h2 style="font-size: 28px; font-weight: 700; color: #F1E9D2;">Fifteen minutes of your feedback, not a sales pitch</h2>
         <p style="font-size: 15px; line-height: 1.6; color: #B9AF8E; max-width: 46ch; margin-top: 12px;">
-          If you work with rice or aquaculture data in Khulna, at an NGO, agribusiness,
+          If you work with rice or flood-risk data in Khulna, at an NGO, agribusiness,
           insurer, or as a researcher, I'd like to show you this and ask what you'd
           actually need from it.
         </p>
@@ -590,7 +582,7 @@
   <!-- Footer -->
   <div style="max-width: 1180px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 13px; color: #5B5440;">
     <span>Khet Mapper, started by Nabid Sheikh.</span>
-    <span>Satellite monitoring for Khulna's rice and aquaculture belts.</span>
+    <span>Rice and flood monitoring for Khulna and Satkhira.</span>
   </div>
 
 </div>
