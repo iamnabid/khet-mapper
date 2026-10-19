@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Khet Mapper — satellite monitoring for Khulna</title>
-<meta name="description" content="Satellite-based rice growth and shrimp pond monitoring for Khulna district, Bangladesh.">
+<meta name="description" content="Satellite-based rice growth monitoring and flood detection through monsoon cloud for Khulna and Satkhira, Bangladesh.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Big+Shoulders+Display:wght@600;700;800&family=Instrument+Serif:ital@1&display=swap">
 <style>
   body { margin: 0; font-family: 'Archivo', sans-serif; background: #F1E9D2; color: #14241F; }
@@ -14,6 +14,8 @@
   .btn { transition: background 0.15s ease, color 0.15s ease; }
   .diagram-container { width: 100%; overflow-x: auto; }
   .diagram-container svg { width: 100%; min-width: 960px; display: block; }
+  .kmc-narrow { display: none; }
+  @media (max-width: 640px) { .kmc-wide { display: none; } .kmc-narrow { display: block; } }
 </style>
 </head>
 <body>
@@ -27,6 +29,7 @@
       <span style="font-size: 14px; color: #5B5440;">— satellite eyes on the field</span>
     </div>
     <div style="display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: 15px; font-weight: 500;">
+      <a href="#findings">Findings</a>
       <a href="#services">Services</a>
       <a href="#method">Method</a>
       <a href="#validation">Validation</a>
@@ -40,11 +43,11 @@
   <div style="max-width: 1180px; margin: 0 auto; padding: 56px 24px 64px;">
     <div style="max-width: 760px;">
       <h1 style="font-size: 54px; line-height: 1.04; font-weight: 700; color: #14241F;">
-        Watching Khulna's rice fields and shrimp ponds from orbit.
+        Watching Khulna's rice fields from orbit, through the monsoon.
       </h1>
       <p style="font-size: 18px; line-height: 1.6; color: #2E3A2F; max-width: 60ch; margin-top: 24px;">
         Free satellite imagery, read into growth-stage tracking for rice paddies and
-        extent-and-change mapping for aquaculture ponds across Khulna district.
+        flood detection through monsoon cloud across Khulna and Satkhira.
       </p>
       <p style="font-size: 15px; line-height: 1.6; color: #5B5440; max-width: 58ch; margin-top: 14px;">
         Built on the cloud-masking method proven in snow-cover research in the Czech
@@ -63,6 +66,224 @@
   </div>
 
   <!-- Service band 1: rice -->
+  <!-- Latest findings -->
+  <div id="findings" style="background: #14241F;">
+    <div style="max-width: 1180px; margin: 0 auto; padding: 56px 24px;">
+      <div style="font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #E1C88E;">Latest findings · October 2026</div>
+      <h2 style="font-size: 38px; font-weight: 700; color: #F1E9D2; margin-top: 8px; line-height: 1.1; max-width: 22ch;">Radar picks out a real flood through monsoon cloud</h2>
+      <p style="font-size: 17px; line-height: 1.6; color: #C9D2C3; max-width: 64ch; margin-top: 16px;">
+        Optical satellites go blind for weeks in the monsoon. Sentinel-1 radar doesn't. Compared against
+        the same weeks of the previous five years, the radar check flagged the September 2024 Satkhira
+        flood in both of its orbit directions, while the year before stayed quiet.
+      </p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-top: 36px; border-top: 1px solid #3C4A3D; padding-top: 24px;">
+        <div>
+          <div style="font-size: 44px; font-weight: 600; color: #F1E9D2; line-height: 1;">10</div>
+          <div style="font-size: 14px; color: #C9D2C3; line-height: 1.5; margin-top: 8px;">documented Satkhira and Khulna floods tested, 2024–2026, each with a published source</div>
+        </div>
+        <div>
+          <div style="font-size: 44px; font-weight: 600; color: #F1E9D2; line-height: 1;">2 of 2</div>
+          <div style="font-size: 14px; color: #C9D2C3; line-height: 1.5; margin-top: 8px;">radar orbit directions flagged the largest flood in the set, with a quiet control year</div>
+        </div>
+        <div>
+          <div style="font-size: 44px; font-weight: 600; color: #F1E9D2; line-height: 1;">−14 dB</div>
+          <div style="font-size: 14px; color: #C9D2C3; line-height: 1.5; margin-top: 8px;">radar water threshold, calibrated on real Satkhira imagery rather than copied from the literature</div>
+        </div>
+      </div>
+
+      <div style="position: relative; background: #F1E9D2; padding: 28px 24px 20px; margin-top: 36px;">
+        <div style="position: absolute; top: 10px; left: 10px; width: 16px; height: 16px; border-top: 2px solid #14241F; border-left: 2px solid #14241F;"></div>
+        <div style="position: absolute; top: 10px; right: 10px; width: 16px; height: 16px; border-top: 2px solid #14241F; border-right: 2px solid #14241F;"></div>
+        <div style="position: absolute; bottom: 10px; left: 10px; width: 16px; height: 16px; border-bottom: 2px solid #14241F; border-left: 2px solid #14241F;"></div>
+        <div style="position: absolute; bottom: 10px; right: 10px; width: 16px; height: 16px; border-bottom: 2px solid #14241F; border-right: 2px solid #14241F;"></div>
+        <div style="font-size: 16px; font-weight: 600; color: #14241F;">Satkhira Sadar and Tala, September 2024</div>
+        <div style="font-size: 14px; color: #5B5440; margin: 4px 0 14px;">Each dot is one radar pass. Every flood pass sits above every pass from the same weeks in the five years before.</div>
+        <div class="kmc-wide" style="overflow-x: auto;">
+<svg viewBox="0 0 760 318" role="img" aria-labelledby="km-flood-t km-flood-d" style="width:100%;min-width:640px;display:block;font-family:'Archivo',sans-serif">
+<title id="km-flood-t">Satkhira flood, September 2024: unusually wet area by radar pass</title>
+<desc id="km-flood-d">In both Sentinel-1 orbit directions, every radar pass during the September 2024 Satkhira flood showed more unusually wet area than any pass from the same weeks in 2019 to 2023, and crossed the detection threshold.</desc>
+<rect width="760" height="318" fill="#F1E9D2"/>
+<circle cx="12" cy="14" r="5" fill="#007F9E"/><text x="24" y="18" font-size="13" fill="#14241F">Same weeks, 2019–2023</text>
+<circle cx="200" cy="14" r="5" fill="#94561A"/><text x="212" y="18" font-size="13" fill="#14241F">September 2024 flood</text>
+<line x1="378" y1="14" x2="398" y2="14" stroke="#14241F" stroke-width="1.5"/><text x="404" y="18" font-size="13" fill="#14241F">detection threshold</text>
+<text x="0" y="60" font-size="12" font-weight="600" letter-spacing="0.08em" fill="#5B5440">DESCENDING ORBIT</text>
+<line x1="236.0" y1="68" x2="236.0" y2="144" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="334.4" y1="68" x2="334.4" y2="144" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="432.8" y1="68" x2="432.8" y2="144" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="531.2" y1="68" x2="531.2" y2="144" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="629.6" y1="68" x2="629.6" y2="144" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="728.0" y1="68" x2="728.0" y2="144" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="531.4" y1="66" x2="531.4" y2="146" stroke="#14241F" stroke-width="1.5"/>
+<text x="537.4" y="76" font-size="12" fill="#14241F">6.0%</text>
+<text x="0" y="90" font-size="13" fill="#14241F">Same weeks, 2019–23</text>
+<text x="0" y="130" font-size="13" fill="#14241F">Sep 2024 flood</text>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: a pass from the same weeks in 2019–23, 0.9% unusually wet" cx="278.5" cy="86" r="5" fill="#007F9E" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: a pass from the same weeks in 2019–23, 0.9% unusually wet" cx="279.6" cy="77" r="5" fill="#007F9E" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: a pass from the same weeks in 2019–23, 1.0% unusually wet" cx="283.8" cy="95" r="5" fill="#007F9E" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: a pass from the same weeks in 2019–23, 1.0% unusually wet" cx="287.4" cy="86" r="5" fill="#007F9E" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: a pass from the same weeks in 2019–23, 1.8% unusually wet" cx="322.6" cy="86" r="5" fill="#007F9E" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: a pass from the same weeks in 2019–23, 2.0% unusually wet" cx="332.1" cy="77" r="5" fill="#007F9E" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: a pass from the same weeks in 2019–23, 2.0% unusually wet" cx="333.0" cy="95" r="5" fill="#007F9E" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: a pass from the same weeks in 2019–23, 2.8% unusually wet" cx="373.0" cy="86" r="5" fill="#007F9E" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: a pass from the same weeks in 2019–23, 2.9% unusually wet" cx="376.2" cy="77" r="5" fill="#007F9E" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: a pass from the same weeks in 2019–23, 4.1% unusually wet" cx="438.6" cy="86" r="5" fill="#007F9E" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: a pass from the same weeks in 2019–23, 4.5% unusually wet" cx="458.3" cy="86" r="5" fill="#007F9E" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: 16 Sep 2024 pass, 8.3% unusually wet" cx="646.4" cy="126" r="6" fill="#94561A" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: 28 Sep 2024 pass, 6.4% unusually wet" cx="551.0" cy="126" r="6" fill="#94561A" stroke="#F1E9D2" stroke-width="2"/>
+<text x="657.4" y="130" font-size="13" font-weight="600" fill="#14241F">8.3%</text>
+<text x="0" y="170" font-size="12" font-weight="600" letter-spacing="0.08em" fill="#5B5440">ASCENDING ORBIT</text>
+<line x1="236.0" y1="178" x2="236.0" y2="254" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="334.4" y1="178" x2="334.4" y2="254" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="432.8" y1="178" x2="432.8" y2="254" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="531.2" y1="178" x2="531.2" y2="254" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="629.6" y1="178" x2="629.6" y2="254" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="728.0" y1="178" x2="728.0" y2="254" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="501.7" y1="176" x2="501.7" y2="256" stroke="#14241F" stroke-width="1.5"/>
+<text x="507.7" y="186" font-size="12" fill="#14241F">5.4%</text>
+<text x="0" y="200" font-size="13" fill="#14241F">Same weeks, 2019–23</text>
+<text x="0" y="240" font-size="13" fill="#14241F">Sep 2024 flood</text>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: a pass from the same weeks in 2019–23, 0.8% unusually wet" cx="277.1" cy="196" r="5" fill="#007F9E" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: a pass from the same weeks in 2019–23, 1.0% unusually wet" cx="286.0" cy="187" r="5" fill="#007F9E" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: a pass from the same weeks in 2019–23, 1.1% unusually wet" cx="289.9" cy="205" r="5" fill="#007F9E" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: a pass from the same weeks in 2019–23, 1.1% unusually wet" cx="292.3" cy="196" r="5" fill="#007F9E" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: a pass from the same weeks in 2019–23, 1.7% unusually wet" cx="320.8" cy="196" r="5" fill="#007F9E" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: a pass from the same weeks in 2019–23, 2.0% unusually wet" cx="335.6" cy="196" r="5" fill="#007F9E" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: a pass from the same weeks in 2019–23, 2.4% unusually wet" cx="355.9" cy="196" r="5" fill="#007F9E" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: a pass from the same weeks in 2019–23, 2.6% unusually wet" cx="362.9" cy="187" r="5" fill="#007F9E" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: a pass from the same weeks in 2019–23, 2.7% unusually wet" cx="370.2" cy="205" r="5" fill="#007F9E" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: a pass from the same weeks in 2019–23, 3.2% unusually wet" cx="393.9" cy="196" r="5" fill="#007F9E" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: a pass from the same weeks in 2019–23, 4.4% unusually wet" cx="451.9" cy="196" r="5" fill="#007F9E" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: 19 Sep 2024 pass, 6.9% unusually wet" cx="573.2" cy="236" r="6" fill="#94561A" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: 1 Oct 2024 pass, 5.5% unusually wet" cx="504.4" cy="236" r="6" fill="#94561A" stroke="#F1E9D2" stroke-width="2"/>
+<text x="584.2" y="240" font-size="13" font-weight="600" fill="#14241F">6.9%</text>
+<text x="236.0" y="276" font-size="12" text-anchor="middle" fill="#5B5440">0%</text>
+<text x="334.4" y="276" font-size="12" text-anchor="middle" fill="#5B5440">2%</text>
+<text x="432.8" y="276" font-size="12" text-anchor="middle" fill="#5B5440">4%</text>
+<text x="531.2" y="276" font-size="12" text-anchor="middle" fill="#5B5440">6%</text>
+<text x="629.6" y="276" font-size="12" text-anchor="middle" fill="#5B5440">8%</text>
+<text x="728.0" y="276" font-size="12" text-anchor="middle" fill="#5B5440">10%</text>
+<text x="482" y="300" font-size="13" text-anchor="middle" fill="#5B5440">Share of the area unusually wet for the time of year (Sentinel-1 radar)</text>
+</svg>
+        </div>
+        <div class="kmc-narrow">
+<svg viewBox="0 0 400 520" role="img" aria-labelledby="km-flood-n-t km-flood-n-d" style="width:100%;display:block;font-family:'Archivo',sans-serif">
+<title id="km-flood-n-t">Satkhira flood, September 2024: unusually wet area by radar pass</title>
+<desc id="km-flood-n-d">In both Sentinel-1 orbit directions, every radar pass during the September 2024 Satkhira flood showed more unusually wet area than any pass from the same weeks in 2019 to 2023, and crossed the detection threshold.</desc>
+<rect width="400" height="520" fill="#F1E9D2"/>
+<circle cx="10" cy="16" r="7" fill="#007F9E"/><text x="24" y="22" font-size="17" fill="#14241F">Same weeks, 2019–23</text>
+<circle cx="10" cy="44" r="7" fill="#94561A"/><text x="24" y="50" font-size="17" fill="#14241F">September 2024 flood</text>
+<line x1="230" y1="44" x2="252" y2="44" stroke="#14241F" stroke-width="2"/><text x="258" y="50" font-size="17" fill="#14241F">threshold</text>
+<text x="14" y="92" font-size="15" font-weight="600" letter-spacing="0.08em" fill="#5B5440">DESCENDING ORBIT</text>
+<line x1="14.0" y1="106" x2="14.0" y2="238" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="85.2" y1="106" x2="85.2" y2="238" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="156.4" y1="106" x2="156.4" y2="238" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="227.6" y1="106" x2="227.6" y2="238" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="298.8" y1="106" x2="298.8" y2="238" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="370.0" y1="106" x2="370.0" y2="238" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="227.8" y1="104" x2="227.8" y2="240" stroke="#14241F" stroke-width="2"/>
+<text x="14" y="124" font-size="16" fill="#14241F">Same weeks, 2019–23</text>
+<text x="14" y="200" font-size="16" fill="#14241F">Sep 2024 flood</text>
+<text x="233.8" y="124" font-size="15" fill="#14241F">6.0%</text>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: a pass from the same weeks in 2019–23, 0.9% unusually wet" cx="44.7" cy="144" r="6" fill="#007F9E" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: a pass from the same weeks in 2019–23, 0.9% unusually wet" cx="45.6" cy="133" r="6" fill="#007F9E" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: a pass from the same weeks in 2019–23, 1.0% unusually wet" cx="48.6" cy="155" r="6" fill="#007F9E" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: a pass from the same weeks in 2019–23, 1.0% unusually wet" cx="51.2" cy="144" r="6" fill="#007F9E" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: a pass from the same weeks in 2019–23, 1.8% unusually wet" cx="76.6" cy="144" r="6" fill="#007F9E" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: a pass from the same weeks in 2019–23, 2.0% unusually wet" cx="83.5" cy="133" r="6" fill="#007F9E" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: a pass from the same weeks in 2019–23, 2.0% unusually wet" cx="84.2" cy="155" r="6" fill="#007F9E" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: a pass from the same weeks in 2019–23, 2.8% unusually wet" cx="113.1" cy="144" r="6" fill="#007F9E" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: a pass from the same weeks in 2019–23, 2.9% unusually wet" cx="115.5" cy="133" r="6" fill="#007F9E" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: a pass from the same weeks in 2019–23, 4.1% unusually wet" cx="160.6" cy="144" r="6" fill="#007F9E" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: a pass from the same weeks in 2019–23, 4.5% unusually wet" cx="174.8" cy="144" r="6" fill="#007F9E" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: 16 Sep 2024 pass, 8.3% unusually wet" cx="311.0" cy="220" r="8" fill="#94561A" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: 28 Sep 2024 pass, 6.4% unusually wet" cx="242.0" cy="220" r="8" fill="#94561A" stroke="#F1E9D2" stroke-width="2"/>
+<text x="311.0" y="250" font-size="16" font-weight="600" text-anchor="middle" fill="#14241F">8.3%</text>
+<text x="14" y="270" font-size="15" font-weight="600" letter-spacing="0.08em" fill="#5B5440">ASCENDING ORBIT</text>
+<line x1="14.0" y1="284" x2="14.0" y2="416" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="85.2" y1="284" x2="85.2" y2="416" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="156.4" y1="284" x2="156.4" y2="416" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="227.6" y1="284" x2="227.6" y2="416" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="298.8" y1="284" x2="298.8" y2="416" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="370.0" y1="284" x2="370.0" y2="416" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="206.2" y1="282" x2="206.2" y2="418" stroke="#14241F" stroke-width="2"/>
+<text x="14" y="302" font-size="16" fill="#14241F">Same weeks, 2019–23</text>
+<text x="14" y="378" font-size="16" fill="#14241F">Sep 2024 flood</text>
+<text x="212.2" y="302" font-size="15" fill="#14241F">5.4%</text>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: a pass from the same weeks in 2019–23, 0.8% unusually wet" cx="43.7" cy="322" r="6" fill="#007F9E" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: a pass from the same weeks in 2019–23, 1.0% unusually wet" cx="50.2" cy="311" r="6" fill="#007F9E" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: a pass from the same weeks in 2019–23, 1.1% unusually wet" cx="53.0" cy="333" r="6" fill="#007F9E" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: a pass from the same weeks in 2019–23, 1.1% unusually wet" cx="54.8" cy="322" r="6" fill="#007F9E" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: a pass from the same weeks in 2019–23, 1.7% unusually wet" cx="75.4" cy="322" r="6" fill="#007F9E" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: a pass from the same weeks in 2019–23, 2.0% unusually wet" cx="86.1" cy="311" r="6" fill="#007F9E" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: a pass from the same weeks in 2019–23, 2.4% unusually wet" cx="100.7" cy="322" r="6" fill="#007F9E" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: a pass from the same weeks in 2019–23, 2.6% unusually wet" cx="105.8" cy="311" r="6" fill="#007F9E" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: a pass from the same weeks in 2019–23, 2.7% unusually wet" cx="111.1" cy="333" r="6" fill="#007F9E" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: a pass from the same weeks in 2019–23, 3.2% unusually wet" cx="128.3" cy="322" r="6" fill="#007F9E" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: a pass from the same weeks in 2019–23, 4.4% unusually wet" cx="170.2" cy="322" r="6" fill="#007F9E" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: 19 Sep 2024 pass, 6.9% unusually wet" cx="258.0" cy="398" r="8" fill="#94561A" stroke="#F1E9D2" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: 1 Oct 2024 pass, 5.5% unusually wet" cx="208.2" cy="398" r="8" fill="#94561A" stroke="#F1E9D2" stroke-width="2"/>
+<text x="258.0" y="428" font-size="16" font-weight="600" text-anchor="middle" fill="#14241F">6.9%</text>
+<text x="14.0" y="470" font-size="15" text-anchor="middle" fill="#5B5440">0%</text>
+<text x="85.2" y="470" font-size="15" text-anchor="middle" fill="#5B5440">2%</text>
+<text x="156.4" y="470" font-size="15" text-anchor="middle" fill="#5B5440">4%</text>
+<text x="227.6" y="470" font-size="15" text-anchor="middle" fill="#5B5440">6%</text>
+<text x="298.8" y="470" font-size="15" text-anchor="middle" fill="#5B5440">8%</text>
+<text x="370.0" y="470" font-size="15" text-anchor="middle" fill="#5B5440">10%</text>
+<text x="192" y="500" font-size="15" text-anchor="middle" fill="#5B5440">Share of area unusually wet (radar)</text>
+</svg>
+        </div>
+        <details style="margin-top: 10px; font-size: 13px; color: #3C4A3D;">
+          <summary style="cursor: pointer; color: #1F5258;">Show the numbers as a table</summary>
+<table style="width:100%;border-collapse:collapse;font-size:13px;margin-top:8px"><tr><th style="text-align:left">Orbit</th><th style="text-align:left">Group</th><th style="text-align:left">Pass</th><th style="text-align:right">Unusually wet</th></tr>
+<tr><td>Descending orbit</td><td>Same weeks, 2019–23</td><td>–</td><td style="text-align:right">0.9%</td></tr>
+<tr><td>Descending orbit</td><td>Same weeks, 2019–23</td><td>–</td><td style="text-align:right">0.9%</td></tr>
+<tr><td>Descending orbit</td><td>Same weeks, 2019–23</td><td>–</td><td style="text-align:right">1.0%</td></tr>
+<tr><td>Descending orbit</td><td>Same weeks, 2019–23</td><td>–</td><td style="text-align:right">1.0%</td></tr>
+<tr><td>Descending orbit</td><td>Same weeks, 2019–23</td><td>–</td><td style="text-align:right">1.8%</td></tr>
+<tr><td>Descending orbit</td><td>Same weeks, 2019–23</td><td>–</td><td style="text-align:right">2.0%</td></tr>
+<tr><td>Descending orbit</td><td>Same weeks, 2019–23</td><td>–</td><td style="text-align:right">2.0%</td></tr>
+<tr><td>Descending orbit</td><td>Same weeks, 2019–23</td><td>–</td><td style="text-align:right">2.8%</td></tr>
+<tr><td>Descending orbit</td><td>Same weeks, 2019–23</td><td>–</td><td style="text-align:right">2.9%</td></tr>
+<tr><td>Descending orbit</td><td>Same weeks, 2019–23</td><td>–</td><td style="text-align:right">4.1%</td></tr>
+<tr><td>Descending orbit</td><td>Same weeks, 2019–23</td><td>–</td><td style="text-align:right">4.5%</td></tr>
+<tr><td>Descending orbit</td><td>Sep 2024 flood</td><td>16 Sep 2024</td><td style="text-align:right">8.3%</td></tr>
+<tr><td>Descending orbit</td><td>Sep 2024 flood</td><td>28 Sep 2024</td><td style="text-align:right">6.4%</td></tr>
+<tr><td>Ascending orbit</td><td>Same weeks, 2019–23</td><td>–</td><td style="text-align:right">0.8%</td></tr>
+<tr><td>Ascending orbit</td><td>Same weeks, 2019–23</td><td>–</td><td style="text-align:right">1.0%</td></tr>
+<tr><td>Ascending orbit</td><td>Same weeks, 2019–23</td><td>–</td><td style="text-align:right">1.1%</td></tr>
+<tr><td>Ascending orbit</td><td>Same weeks, 2019–23</td><td>–</td><td style="text-align:right">1.1%</td></tr>
+<tr><td>Ascending orbit</td><td>Same weeks, 2019–23</td><td>–</td><td style="text-align:right">1.7%</td></tr>
+<tr><td>Ascending orbit</td><td>Same weeks, 2019–23</td><td>–</td><td style="text-align:right">2.0%</td></tr>
+<tr><td>Ascending orbit</td><td>Same weeks, 2019–23</td><td>–</td><td style="text-align:right">2.4%</td></tr>
+<tr><td>Ascending orbit</td><td>Same weeks, 2019–23</td><td>–</td><td style="text-align:right">2.6%</td></tr>
+<tr><td>Ascending orbit</td><td>Same weeks, 2019–23</td><td>–</td><td style="text-align:right">2.7%</td></tr>
+<tr><td>Ascending orbit</td><td>Same weeks, 2019–23</td><td>–</td><td style="text-align:right">3.2%</td></tr>
+<tr><td>Ascending orbit</td><td>Same weeks, 2019–23</td><td>–</td><td style="text-align:right">4.4%</td></tr>
+<tr><td>Ascending orbit</td><td>Sep 2024 flood</td><td>19 Sep 2024</td><td style="text-align:right">6.9%</td></tr>
+<tr><td>Ascending orbit</td><td>Sep 2024 flood</td><td>1 Oct 2024</td><td style="text-align:right">5.5%</td></tr>
+<tr><td>Descending orbit</td><td>Detection threshold</td><td>–</td><td style="text-align:right">6.0%</td></tr>
+<tr><td>Ascending orbit</td><td>Detection threshold</td><td>–</td><td style="text-align:right">5.4%</td></tr>
+</table>
+        </details>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; margin-top: 32px;">
+        <div>
+          <div style="font-size: 16px; font-weight: 600; color: #F1E9D2;">Where it stands</div>
+          <div style="font-size: 14px; color: #C9D2C3; line-height: 1.6; margin-top: 6px;">Across all 10 events it flagged 4, strongest on large rural floods. The original fixed-threshold flag flagged none, so it's being replaced.</div>
+        </div>
+        <div>
+          <div style="font-size: 16px; font-weight: 600; color: #F1E9D2;">What's next</div>
+          <div style="font-size: 14px; color: #C9D2C3; line-height: 1.6; margin-top: 6px;">Put the seasonal check into the parcel report, then go after the harder cases: small embankment breaches and street-level urban waterlogging.</div>
+        </div>
+        <div style="align-self: end;">
+          <a href="research.html#floods" style="display: inline-block; background: #C98A2E; color: #14241F; padding: 13px 26px; border-radius: 3px; font-weight: 600; font-size: 15px;">See the full flood test</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div id="services" style="background: #E1E8D4; border-top: 1px solid #C9BD98; border-bottom: 1px solid #C9BD98;">
     <div style="max-width: 1180px; margin: 0 auto; padding: 56px 24px; display: flex; flex-wrap: wrap; gap: 48px; align-items: flex-start;">
       <svg width="88" height="88" viewBox="0 0 24 24" fill="none" stroke="#3F6B4A" stroke-width="1.6" aria-hidden="true" style="flex: 0 0 auto;">
@@ -83,19 +304,19 @@
     </div>
   </div>
 
-  <!-- Service band 2: aquaculture -->
+  <!-- Service band 2: flood detection -->
   <div style="background: #DCE6E6; border-bottom: 1px solid #B9C7C7;">
     <div style="max-width: 1180px; margin: 0 auto; padding: 56px 24px; display: flex; flex-wrap: wrap-reverse; gap: 48px; align-items: flex-start; justify-content: flex-end;">
       <div style="flex: 999 1 420px; min-width: 0;">
-        <h2 style="font-size: 32px; font-weight: 700; color: #1C3538;">Aquaculture and pond mapping</h2>
+        <h2 style="font-size: 32px; font-weight: 700; color: #1C3538;">Flood detection through cloud</h2>
         <p style="font-size: 16px; line-height: 1.6; color: #233F42; max-width: 62ch; margin-top: 14px;">
-          Shrimp (bagda) pond extent, mapped and tracked year over year across the
-          Paikgacha, Koyra and Dacope belt.
+          Sentinel-1 radar sees the ground through monsoon cloud. Each pass is compared with
+          the same weeks of past years, to show where a field is unusually wet for the season.
         </p>
         <ul style="font-size: 14px; color: #233F42; padding-left: 18px; margin: 16px 0 0; line-height: 1.8;">
-          <li>Pond area estimates, in square kilometres</li>
-          <li>Expansion and contraction change maps</li>
-          <li>Dry-season composite accuracy checks</li>
+          <li>Unusually wet share of the area, per radar pass</li>
+          <li>Compared with the same weeks over the past five years</li>
+          <li>Tested against 10 documented Satkhira and Khulna floods</li>
         </ul>
       </div>
       <svg width="88" height="88" viewBox="0 0 24 24" fill="none" stroke="#1F5258" stroke-width="1.6" aria-hidden="true" style="flex: 0 0 auto;">
@@ -130,7 +351,7 @@
       <div style="padding-top: 16px; position: relative;">
         <div style="position: absolute; top: -2px; left: 0; width: 8px; height: 8px; background: #14241F;"></div>
         <div style="font-size: 17px; font-weight: 600;">Field-ready report</div>
-        <div style="font-size: 14px; color: #5B5440; line-height: 1.5; margin-top: 6px;">NDVI curves, pond-area numbers and change maps, readable without a GIS background.</div>
+        <div style="font-size: 14px; color: #5B5440; line-height: 1.5; margin-top: 6px;">NDVI curves, water-area numbers and flood checks, readable without a GIS background.</div>
       </div>
     </div>
 
@@ -223,7 +444,7 @@
 <text x="858" y="468" fill="#14241F" font-size="13" font-weight="600" font-family="'Archivo', system-ui, sans-serif" text-anchor="middle">2-page PDF</text>
 <text x="858" y="485" fill="#5B5440" font-size="10" font-family="ui-monospace, Menlo, Consolas, monospace" text-anchor="middle">area · trend · flag</text>
 <text x="240" y="456" fill="#14241F" font-size="15" font-style="italic" font-family="'Instrument Serif', Georgia, serif">radar finds water through cloud (VV &lt; −14 dB) —</text>
-<text x="240" y="474" fill="#14241F" font-size="15" font-style="italic" font-family="'Instrument Serif', Georgia, serif">flood flag failed a 10-flood test — being rebuilt</text>
+<text x="240" y="474" fill="#14241F" font-size="15" font-style="italic" font-family="'Instrument Serif', Georgia, serif">seasonal check caught the largest test flood</text>
 <path d="M 400,444 Q 452,436 468,404" fill="none" stroke="rgba(20,36,31,0.40)" stroke-width="1" stroke-dasharray="4,3"/>
 <circle cx="468" cy="400" r="2.5" fill="#14241F"/>
 <line x1="24" y1="524" x2="936" y2="524" stroke="rgba(20,36,31,0.12)" stroke-width="0.8"/>
@@ -236,7 +457,7 @@
       </div>
     </div>
 
-    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: 48px;">
+    <div style="display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; margin-top: 48px;">
       <div style="position: relative; background: #FFFFFF; padding: 24px;">
         <div style="position: absolute; top: 10px; left: 10px; width: 16px; height: 16px; border-top: 2px solid #14241F; border-left: 2px solid #14241F;"></div>
         <div style="position: absolute; top: 10px; right: 10px; width: 16px; height: 16px; border-top: 2px solid #14241F; border-right: 2px solid #14241F;"></div>
@@ -245,14 +466,6 @@
         <img src="images/ndvi-chart.svg" alt="NDVI time series chart for the Khulna rice belt, 2024" style="width: 100%; height: auto; display: block;">
         <p style="font-size: 13px; color: #5B5440; margin: 12px 0 0;">Rice belt NDVI, 2024. Early-season points are cleanest; monsoon-season gaps are exactly what the Terra/Aqua-style multi-sensor compositing from the thesis method is built to fill in.</p>
       </div>
-      <div style="position: relative; background: #FFFFFF; padding: 24px;">
-        <div style="position: absolute; top: 10px; left: 10px; width: 16px; height: 16px; border-top: 2px solid #14241F; border-left: 2px solid #14241F;"></div>
-        <div style="position: absolute; top: 10px; right: 10px; width: 16px; height: 16px; border-top: 2px solid #14241F; border-right: 2px solid #14241F;"></div>
-        <div style="position: absolute; bottom: 10px; left: 10px; width: 16px; height: 16px; border-bottom: 2px solid #14241F; border-left: 2px solid #14241F;"></div>
-        <div style="position: absolute; bottom: 10px; right: 10px; width: 16px; height: 16px; border-bottom: 2px solid #14241F; border-right: 2px solid #14241F;"></div>
-        <img src="images/pond-ndwi-change.png" alt="NDWI change map over the Paikgachha, Dacope and Koyra aquaculture belt" style="width: 100%; height: auto; display: block;">
-        <p style="font-size: 13px; color: #5B5440; margin: 12px 0 0;">Shrimp belt, Paikgachha-Dacope-Koyra: 2019 to 2024 NDWI change. About 138.2 sq km of water/pond surface detected in this AOI.</p>
-      </div>
     </div>
 
     <div style="position: relative; background: #FFFFFF; padding: 24px; margin-top: 24px;">
@@ -260,8 +473,8 @@
       <div style="position: absolute; top: 10px; right: 10px; width: 16px; height: 16px; border-top: 2px solid #14241F; border-right: 2px solid #14241F;"></div>
       <div style="position: absolute; bottom: 10px; left: 10px; width: 16px; height: 16px; border-bottom: 2px solid #14241F; border-left: 2px solid #14241F;"></div>
       <div style="position: absolute; bottom: 10px; right: 10px; width: 16px; height: 16px; border-bottom: 2px solid #14241F; border-right: 2px solid #14241F;"></div>
-      <img src="images/earth-engine-workspace.png" alt="Both AOI boxes shown together in the live Earth Engine workspace, with the layer list open" style="width: 100%; height: auto; display: block;">
-      <p style="font-size: 13px; color: #5B5440; margin: 12px 0 0;">Both belts in the actual working session: rice (top) and shrimp/aquaculture (bottom), every layer individually toggleable. Not a mockup.</p>
+      <img src="images/earth-engine-workspace.png" alt="The live Earth Engine workspace, with the layer list open" style="width: 100%; height: auto; display: block;">
+      <p style="font-size: 13px; color: #5B5440; margin: 12px 0 0;">The actual working session in Earth Engine, every layer individually toggleable. Not a mockup.</p>
     </div>
   </div>
 
@@ -327,7 +540,7 @@
       <div style="flex: 1 1 320px;">
         <h2 style="font-size: 26px; font-weight: 700;">Why this exists</h2>
         <p style="font-size: 16px; line-height: 1.6; color: #2E3A2F; max-width: 48ch; margin-top: 14px;">
-          I grew up in Khulna. I'm now doing a master's thesis on satellite-based
+          I grew up in Khulna. I'm now doing a bachelor's thesis on satellite-based
           snow-cover and cloud-masking methods in the Czech Republic. Khet Mapper points
           that same method back home, as a genuine cross-application rather than a copy
           of someone else's published study.
@@ -338,7 +551,7 @@
         <p style="font-size: 16px; line-height: 1.6; color: #2E3A2F; max-width: 44ch; margin-top: 14px;">
           This is a free, independent demo, not a funded product. Before building
           anything further, I'm looking for people who actually work with rice or
-          aquaculture data in Khulna to tell me what it's missing.
+          flood data in Khulna and Satkhira to tell me what it's missing.
         </p>
       </div>
     </div>
@@ -350,7 +563,7 @@
       <div style="flex: 999 1 320px; min-width: 0;">
         <h2 style="font-size: 28px; font-weight: 700; color: #F1E9D2;">Fifteen minutes of your feedback, not a sales pitch</h2>
         <p style="font-size: 15px; line-height: 1.6; color: #B9AF8E; max-width: 46ch; margin-top: 12px;">
-          If you work with rice or aquaculture data in Khulna, at an NGO, agribusiness,
+          If you work with rice or flood-risk data in Khulna, at an NGO, agribusiness,
           insurer, or as a researcher, I'd like to show you this and ask what you'd
           actually need from it.
         </p>
@@ -369,9 +582,25 @@
   <!-- Footer -->
   <div style="max-width: 1180px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 13px; color: #5B5440;">
     <span>Khet Mapper, started by Nabid Sheikh.</span>
-    <span>Satellite monitoring for Khulna's rice and aquaculture belts.</span>
+    <span>Rice and flood monitoring for Khulna and Satkhira.</span>
   </div>
 
 </div>
+<script>
+(function(){
+  var tip = document.createElement('div');
+  tip.setAttribute('role','status');
+  tip.style.cssText = 'position:fixed;pointer-events:none;background:#14241F;color:#F1E9D2;font:13px Archivo,sans-serif;padding:6px 9px;border-radius:4px;max-width:260px;display:none;z-index:10';
+  document.body.appendChild(tip);
+  function show(e){ var d=e.currentTarget, r=d.getBoundingClientRect(); tip.textContent=d.getAttribute('data-tip'); tip.style.display='block';
+    tip.style.left=Math.min(window.innerWidth-270, r.left+r.width/2-20)+'px'; tip.style.top=(r.top-40)+'px'; d.setAttribute('r', +d.getAttribute('r')+2); }
+  function hide(e){ tip.style.display='none'; var d=e.currentTarget; d.setAttribute('r', +d.getAttribute('r')-2); }
+  document.querySelectorAll('.kmc-dot').forEach(function(d){
+    d.style.cursor='pointer'; d.style.outline='none';
+    d.addEventListener('mouseenter',show); d.addEventListener('mouseleave',hide);
+    d.addEventListener('focus',show); d.addEventListener('blur',hide);
+  });
+})();
+</script>
 </body>
 </html>
