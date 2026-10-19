@@ -116,28 +116,42 @@ def product_flag(start, end, aoi, scale):
     }
 
 
+def year_earlier(event):
+    return dict(event, **{k: [_shift(d, years=-1) for d in event[k]] for k in ("pre", "during", "post")})
+
+
+def _orbit_summary(event, aoi, orbit, scale):
+    rows, n_pre = sar_passes(event, aoi, orbit, scale)
+    pre_new = [r["new"] for r in rows if r["phase"] == "pre"]
+    during = [r for r in rows if r["phase"] == "during"]
+    detected, threshold, peak = detection(pre_new, [r["new"] for r in during])
+    return {
+        "passes": rows,
+        "n_pre": n_pre,
+        "n_during": len(during),
+        "pre_water_mean": sum(r["water"] for r in rows if r["phase"] == "pre") / len(pre_new) if pre_new else None,
+        "during_water_max": max((r["water"] for r in during), default=None),
+        "new_water_threshold": threshold,
+        "new_water_peak": peak,
+        "peak_date": max(during, key=lambda r: r["new"])["date"] if during else None,
+        "detected": detected,
+    }
+
+
 def validate_event(event):
+    """Detection over the event windows, and the same rule over the same
+    calendar windows a year earlier: if the control also 'detects', the
+    signal is seasonal wetting, not this flood."""
     event = with_baseline(event)
     w, s, e, n = event["bbox"]
     aoi = ee.Geometry.Rectangle([w, s, e, n])
     scale = _scale_for(aoi)
-    result = {"id": event["id"], "scale_m": scale, "pre_window": event["pre"], "orbits": {}}
+    control = year_earlier(event)
+    result = {"id": event["id"], "scale_m": scale, "pre_window": event["pre"], "orbits": {}, "control_orbits": {}}
     for orbit in ("DESCENDING", "ASCENDING"):
-        rows, n_pre = sar_passes(event, aoi, orbit, scale)
-        pre_new = [r["new"] for r in rows if r["phase"] == "pre"]
-        during = [r for r in rows if r["phase"] == "during"]
-        detected, threshold, peak = detection(pre_new, [r["new"] for r in during])
-        result["orbits"][orbit] = {
-            "passes": rows,
-            "n_pre": n_pre,
-            "n_during": len(during),
-            "pre_water_mean": sum(r["water"] for r in rows if r["phase"] == "pre") / len(pre_new) if pre_new else None,
-            "during_water_max": max((r["water"] for r in during), default=None),
-            "new_water_threshold": threshold,
-            "new_water_peak": peak,
-            "peak_date": max(during, key=lambda r: r["new"])["date"] if during else None,
-            "detected": detected,
-        }
+        result["orbits"][orbit] = _orbit_summary(event, aoi, orbit, scale)
+        c = _orbit_summary(control, aoi, orbit, scale)
+        result["control_orbits"][orbit] = {k: v for k, v in c.items() if k != "passes"}
     result["product"] = product_flag(event["pre"][0], event["post"][1], aoi, scale)
     result["product_control"] = dict(product_flag(*control_window(event), aoi, scale), window=control_window(event))
     return result

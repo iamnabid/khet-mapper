@@ -48,13 +48,14 @@ def main():
     out = Path(events_path).with_name("results.json")
     json.dump({"sar_water_vv_db_max": config.SAR_WATER_VV_DB_MAX, "results": results}, open(out, "w"), indent=2)
 
-    print(f"\n{'event':26} {'setting':12} {'orbit':5} {'pre':>3}/{'dur':<3} {'pre wet':>7} {'dur wet':>7} {'new peak':>8} {'need':>6}  detected  | product flag: event / year before")
+    print(f"\n{'event':26} {'setting':12} {'orbit':5} {'pre':>3}/{'dur':<3} {'pre wet':>7} {'dur wet':>7} {'new peak':>8} {'need':>6}  detected control | product flag: event / year before")
     for r in results:
         for orbit, o in r["orbits"].items():
             det = {True: "YES", False: "no", None: "no data"}[o["detected"]]
+            ctl = {True: "YES", False: "no", None: "–"}[r["control_orbits"][orbit]["detected"]]
             p, c = r["product"], r["product_control"]
             print(f"{r['id']:26} {r['setting']:12} {orbit[:4]:5} {o['n_pre']:>3}/{o['n_during']:<3} "
-                  f"{_pct(o['pre_water_mean'])}   {_pct(o['during_water_max'])}  {_pct(o['new_water_peak'])}  {_pct(o['new_water_threshold'])}  {det:8}  | "
+                  f"{_pct(o['pre_water_mean'])}   {_pct(o['during_water_max'])}  {_pct(o['new_water_peak'])}  {_pct(o['new_water_threshold'])}  {det:8} {ctl:7} | "
                   f"{'FLAG' if p['flagged'] else 'none'} ({p['longest_run_days']} d) / control yr {'FLAG' if c['flagged'] else 'none'} ({c['longest_run_days']} d)")
     print(f"\nWrote {out}")
 
