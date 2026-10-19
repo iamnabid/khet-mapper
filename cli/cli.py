@@ -7,6 +7,7 @@ from rich import print as rprint
 
 import config
 from core import indices
+from core.series import series_getinfo, water_fraction_series
 from core.flood_runs import longest_flagged_run, merge_observations
 from core.pdf_generator import build_audit_pdf
 from core.s1_sar_fusion import get_s1_composite
@@ -52,20 +53,6 @@ def composite(aoi: str, start: str, end: str, out: str):
     rprint(f"[green]Export task started:[/green] {task.id} — check Google Drive folder 'khetmapper_exports'.")
 
 
-def _series_getinfo(image_collection, band, aoi_geom):
-    def to_feature(img):
-        value = img.select(band).reduceRegion(ee.Reducer.mean(), aoi_geom, 10).get(band)
-        return ee.Feature(None, {"date": img.date().format("YYYY-MM-dd"), "value": value})
-
-    features = ee.FeatureCollection(image_collection.map(to_feature)).getInfo()
-    out = []
-    for f in features["features"]:
-        props = f["properties"]
-        if props.get("value") is not None:
-            out.append((props["date"], props["value"]))
-    return sorted(out, key=lambda t: t[0])
-
-
 @app.command()
 def analyze(aoi: str, year: int, trigger_days: int = config.TRIGGER_CONSECUTIVE_DAYS, out: str = "data/outputs/metrics.json"):
     _init_ee()
@@ -76,13 +63,9 @@ def analyze(aoi: str, year: int, trigger_days: int = config.TRIGGER_CONSECUTIVE_
     s2_collection = mostly_clear(s2_all, aoi_geom)
     s1_collection, _ = get_s1_composite(aoi_geom, start, end)
 
-    ndvi_series = _series_getinfo(s2_collection.map(lambda img: indices.ndvi(img).copyProperties(img, ["system:time_start"])), "NDVI", aoi_geom)
-    vv_series = _series_getinfo(s1_collection, "VV", aoi_geom)
+    ndvi_series = series_getinfo(s2_collection.map(lambda img: indices.ndvi(img).copyProperties(img, ["system:time_start"])), "NDVI", aoi_geom)
+    vv_series = series_getinfo(s1_collection, "VV", aoi_geom)
     sar_series = [(d, vv, None) for d, vv in vv_series]
-
-    def water_fraction_series(collection, classify):
-        flags = collection.map(lambda img: classify(img).copyProperties(img, ["system:time_start"]))
-        return _series_getinfo(flags, "is_water", aoi_geom)
 
     def water_area_ha(collection, classify):
         mask = indices.water_occurrence_mask(collection, classify=classify)
@@ -94,8 +77,8 @@ def analyze(aoi: str, year: int, trigger_days: int = config.TRIGGER_CONSECUTIVE_
     area_ha = aoi_geom.area().divide(10000).getInfo()
     perimeter_m = aoi_geom.perimeter().getInfo()
 
-    optical_water = water_fraction_series(s2_collection, indices.optical_water)
-    sar_water = water_fraction_series(s1_collection, indices.sar_water)
+    optical_water = water_fraction_series(s2_collection, indices.optical_water, aoi_geom)
+    sar_water = water_fraction_series(s1_collection, indices.sar_water, aoi_geom)
     combined_water = merge_observations(optical_water, sar_water)
 
     def run(series, fraction):

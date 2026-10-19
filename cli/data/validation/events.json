@@ -1,0 +1,95 @@
+{
+  "_note": "Documented flood/waterlogging events in Satkhira and Khulna, from a desk review of BSS, BWDB/district statements and national/Bangla press. bbox = [west, south, east, north], a conservative satellite SEARCH area that includes all named localities, not a mapped flood extent. Windows are reporting windows, not hydrological start/end. 'setting' tells which validation result to expect: radar water thresholds are unreliable in dense urban areas (buildings, double-bounce) and in gher landscapes the informative signal is NEW water vs. the pre-event baseline.",
+  "events": [
+    {
+      "id": "satkhira_sep2024",
+      "name": "Satkhira Sadar/Tala: Betna breach + waterlogging",
+      "type": "breach+pluvial", "setting": "rural", "confidence": "medium-low",
+      "bbox": [89.02, 22.66, 89.30, 22.85],
+      "pre": ["2024-08-20", "2024-09-12"], "during": ["2024-09-13", "2024-09-30"], "post": ["2024-10-01", "2024-10-20"],
+      "reported": ">70 villages, >30,000 families, 5,452 ha farmland affected; water still present 28 Sep",
+      "sources": ["https://www.risingbd.com/english/country/news/107368", "https://www.dhakatribune.com/bangladesh/nation/359793/satkhira-faces-700c-loss-in-fisheries-agriculture"]
+    },
+    {
+      "id": "khulna_city_sep2024",
+      "name": "Khulna City urban waterlogging",
+      "type": "pluvial", "setting": "urban", "confidence": "high",
+      "bbox": [89.50, 22.78, 89.59, 22.89],
+      "pre": ["2024-08-25", "2024-09-12"], "during": ["2024-09-14", "2024-09-18"], "post": ["2024-09-19", "2024-10-05"],
+      "reported": "about two-thirds of city waterlogged on 15 Sep",
+      "sources": ["https://www.bssnews.net/district/209892"]
+    },
+    {
+      "id": "remal_satkhira_may2024",
+      "name": "Cyclone Remal, coastal Satkhira",
+      "type": "surge", "setting": "rural+forest", "confidence": "medium",
+      "bbox": [88.95, 22.15, 89.38, 22.65],
+      "pre": ["2024-05-05", "2024-05-25"], "during": ["2024-05-26", "2024-06-06"], "post": ["2024-06-07", "2024-06-25"],
+      "reported": ">200,000 affected; 200 ha fisheries, 204 ha crops damaged",
+      "sources": ["https://www.dhakatribune.com/bangladesh/nation/347769/cyclone-remal-1-468-houses-destroyed-2l-people"]
+    },
+    {
+      "id": "remal_khulna_may2024",
+      "name": "Cyclone Remal, Koyra/Dacope/Paikgacha",
+      "type": "surge", "setting": "rural+forest", "confidence": "medium",
+      "bbox": [89.20, 22.15, 89.62, 22.68],
+      "pre": ["2024-05-05", "2024-05-25"], "during": ["2024-05-26", "2024-06-06"], "post": ["2024-06-07", "2024-06-25"],
+      "reported": "about 30 villages inundated, ~50,000 people stranded",
+      "sources": ["https://www.bssnews.net/news-flash/191454", "https://www.thedailystar.net/news/bangladesh/news/cyclone-remal-fish-farmers-khulna-incur-loss-tk-168cr-3620166"]
+    },
+    {
+      "id": "bichhat_mar2025",
+      "name": "Bichhat, Ashashuni: Kholpetua embankment collapse",
+      "type": "breach", "setting": "rural", "confidence": "high",
+      "bbox": [89.175, 22.395, 89.245, 22.465],
+      "pre": ["2025-03-10", "2025-03-30"], "during": ["2025-03-31", "2025-04-10"], "post": ["2025-04-11", "2025-04-30"],
+      "reported": "8-10 villages, ~500 shrimp enclosures / 4,500 bigha inundated",
+      "sources": ["https://www.observerbd.com/news/519167", "https://www.observerbd.com/news/519709"]
+    },
+    {
+      "id": "dargahpur_may2025",
+      "name": "Dargahpur/Subedkhali ring-embankment failure",
+      "type": "breach", "setting": "rural", "confidence": "medium-low",
+      "bbox": [89.22, 22.56, 89.29, 22.63],
+      "pre": ["2025-05-08", "2025-05-27"], "during": ["2025-05-28", "2025-06-06"], "post": ["2025-06-07", "2025-06-25"],
+      "reported": "about 400 bigha (~54 ha) of fish enclosures inundated",
+      "sources": ["https://www.dailycountrytodaybd.com/story/ring-embankment-collapses%3A-400-bighas-fish-farms-flooded-in-ashashuni"]
+    },
+    {
+      "id": "satkhira_town_jul2025",
+      "name": "Satkhira Municipality waterlogging",
+      "type": "pluvial", "setting": "urban", "confidence": "high",
+      "bbox": [89.035, 22.675, 89.095, 22.735],
+      "pre": ["2025-06-15", "2025-07-02"], "during": ["2025-07-03", "2025-07-12"], "post": ["2025-07-13", "2025-07-31"],
+      "reported": "wards 2, 3, 6, 7, 9 worst; homes and tube wells flooded",
+      "sources": ["https://www.observerbd.com/news/533345"]
+    },
+    {
+      "id": "ashashuni_jul2025",
+      "name": "Ashashuni all-union waterlogging",
+      "type": "pluvial", "setting": "rural", "confidence": "medium-low",
+      "bbox": [89.02, 22.36, 89.31, 22.66],
+      "pre": ["2025-05-20", "2025-06-25"], "during": ["2025-07-17", "2025-07-28"], "post": ["2025-07-29", "2025-08-20"],
+      "reported": "most of all 11 unions inundated after 7 days of rain; parts already wet earlier in July",
+      "sources": ["https://dailycountrytodaybd.com/story/ashashuni-devastated-by-severe-waterlogging%3A-shrimp-farms%2C-homes%2C-roads-submerged-amid-prolonged-rainfal%2C-agriculture-hit-hard"]
+    },
+    {
+      "id": "satkhira_town_jul2026",
+      "name": "Satkhira prolonged waterlogging (302 mm/48 h core 9-12 Jul)",
+      "type": "pluvial", "setting": "urban", "confidence": "high",
+      "bbox": [89.035, 22.675, 89.095, 22.735],
+      "pre": ["2026-06-10", "2026-06-30"], "during": ["2026-07-01", "2026-07-20"], "post": ["2026-07-21", "2026-08-10"],
+      "reported": "about one-third of town submerged; 6,000 ha Aus/vegetables inundated district-wide",
+      "sources": ["https://www.bssnews.net/district/407411", "https://dailyasianage.com/news/354942/low-lying-areas-inundated-in-satkhira"]
+    },
+    {
+      "id": "khulna_city_jul2026",
+      "name": "Khulna City recurrent waterlogging (1, 9-10, 13 Jul)",
+      "type": "pluvial", "setting": "urban", "confidence": "high",
+      "bbox": [89.50, 22.78, 89.59, 22.89],
+      "pre": ["2026-06-10", "2026-06-30"], "during": ["2026-07-01", "2026-07-14"], "post": ["2026-07-15", "2026-08-01"],
+      "reported": "three floods in ten days by 10 Jul, another on 13 Jul",
+      "sources": ["https://online.thedailystar.net/news/news/third-flood-10-days-exposes-khulnas-drainage-crisis-4220616"]
+    }
+  ]
+}
