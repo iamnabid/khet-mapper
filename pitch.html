@@ -125,24 +125,6 @@
   .chip.active{background:var(--accent-orange);border-color:var(--accent-orange);color:#1D2430;font-weight:600}
   .chip:focus-visible{outline:2px solid var(--accent-orange);outline-offset:2px}
 
-  .note{
-    background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;
-    padding:18px 22px;font-size:14.5px;line-height:1.6;color:var(--ink-soft);
-  }
-  .note b{color:var(--ink)}
-
-  .transcript h2{font-family:'Kalam',cursive;font-size:24px;margin:0 0 14px;color:var(--ink)}
-  .t-list{display:flex;flex-direction:column;gap:10px}
-  .t-item{
-    background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;
-    padding:16px 20px;display:flex;flex-direction:column;gap:4px;
-  }
-  .t-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
-  .t-time{font-variant-numeric:tabular-nums;font-size:12.5px;font-weight:600;color:var(--accent-teal);letter-spacing:.3px}
-  .t-title{font-size:15.5px;font-weight:600;color:var(--ink)}
-  .t-sketch{font-size:13.5px;color:var(--ink-soft);font-style:italic}
-  .t-caption{font-size:14.5px;color:var(--ink)}
-
   @media (max-width:600px){
     .controls{flex-wrap:wrap}
     .readout{min-width:unset}
@@ -570,25 +552,6 @@
           <button class="chip" data-jump="58">0:58 Market</button>
           <button class="chip" data-jump="70">1:10 Honest take</button>
           <button class="chip" data-jump="82">1:22 Ask</button>
-        </div>
-      </div>
-
-      <div class="note">
-        <p style="margin:0 0 10px"><b>How to use this.</b> It's silent by design — the captions carry the narration, so there's no voiceover to record or sync. To turn it into a video file: play it full-screen (or just at this size) and screen-record with OBS, QuickTime, or your OS's built-in recorder, then trim to the 90-second mark. Because everything is vector, it stays crisp at any recording resolution.</p>
-        <p style="margin:0">Every line and number here is pulled straight from the incubator deck — nothing here claims more than what's built and tested today.</p>
-      </div>
-
-      <div class="transcript">
-        <h2>Full transcript</h2>
-        <div class="t-list">
-          <div class="t-item"><div class="t-head"><span class="t-time">0:00–0:10</span><span class="t-title">Hook — the blind spot</span></div><p class="t-sketch">Sketch: sun drawn, then a cloud rolls in to cover it; rain falls over rice-parcel outlines; "~0%" lands center stage.</p><p class="t-caption">"From June to September, cloud-free satellite images of coastal Bangladesh are basically zero. That's a real measured gap in the Sentinel-2 record — not a guess."</p></div>
-          <div class="t-item"><div class="t-head"><span class="t-time">0:10–0:20</span><span class="t-title">Stakes</span></div><p class="t-sketch">Sketch: a calendar highlights the peak window; a bank, an insurer, and an MFI coin-stack each get a question mark.</p><p class="t-caption">"That's exactly when flood, loan, and insurance decisions get made. Banks, insurers, and MFIs are flying blind in their highest-stakes season."</p></div>
-          <div class="t-item"><div class="t-head"><span class="t-time">0:20–0:35</span><span class="t-title">Fusion</span></div><p class="t-sketch">Sketch: an optical node and a radar node each send an arrow into a center box that fills in as "fused composite."</p><p class="t-caption">"Khet Mapper fuses two Sentinel satellites — optical for clear days, radar that sees straight through cloud and rain. One cloud-proof composite, every revisit, all year."</p></div>
-          <div class="t-item"><div class="t-head"><span class="t-time">0:35–0:45</span><span class="t-title">Pipeline, built &amp; tested</span></div><p class="t-sketch">Sketch: a terminal window lists composite / analyze / report; a gear turns; a checkmark lands; a pin drops on Satkhira.</p><p class="t-caption">"Built on the real Copernicus pipeline — composite, analyze, report. Tested end-to-end on a live parcel in Satkhira, Bangladesh."</p></div>
-          <div class="t-item"><div class="t-head"><span class="t-time">0:45–0:58</span><span class="t-title">Product</span></div><p class="t-sketch">Sketch: two overlapping pages — one with a ruler for area, one with NDVI and radar trend lines — plus a caution mark.</p><p class="t-caption">"The output: a 2-page audit — parcel area, water surface, NDVI and radar trend. Direct satellite measurements — not a loss finding or a payout call."</p></div>
-          <div class="t-item"><div class="t-head"><span class="t-time">0:58–1:10</span><span class="t-title">Market</span></div><p class="t-sketch">Sketch: a center "Khet Mapper" node connects to a distribution app, an MFI/bank, an insurer, and an agro-input company.</p><p class="t-caption">"Insurers, MFIs, and agro-input firms already run this B2B pattern here — we license the pipeline to them, not farmers."</p></div>
-          <div class="t-item"><div class="t-head"><span class="t-time">1:10–1:22</span><span class="t-title">Honest take</span></div><p class="t-sketch">Sketch: a checklist — four items check off, one stays open with a pencil next to it.</p><p class="t-caption">"What's done: a working pipeline, a live demo, and a real test run. What's not: ground-truthing against flood records. This is a pre-pilot demo."</p></div>
-          <div class="t-item"><div class="t-head"><span class="t-time">1:22–1:30</span><span class="t-title">The ask</span></div><p class="t-sketch">Sketch: two overlapping circles and an arrow point toward the URL.</p><p class="t-caption">"We're looking for test cases and a retrospective pilot partner — khetmapper.tech."</p></div>
         </div>
       </div>
 
