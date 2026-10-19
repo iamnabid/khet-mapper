@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Khet Mapper — does the method hold up?</title>
-<meta name="description" content="An independent benchmark of the NDVI reconstruction method behind Khet Mapper, checked against two simpler/alternative methods across three cloud-detection settings.">
+<meta name="description" content="Two independent checks of Khet Mapper: an NDVI reconstruction benchmark across three cloud-detection settings, and a flood-detection test against 10 documented floods in Satkhira and Khulna.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Big+Shoulders+Display:wght@600;700;800&display=swap">
 <style>
   body { margin: 0; font-family: 'Archivo', sans-serif; background: #F1E9D2; color: #14241F; }
@@ -117,12 +117,14 @@
       <div style="position: absolute; top: 10px; right: 10px; width: 16px; height: 16px; border-top: 2px solid #14241F; border-right: 2px solid #14241F;"></div>
       <div style="position: absolute; bottom: 10px; left: 10px; width: 16px; height: 16px; border-bottom: 2px solid #14241F; border-left: 2px solid #14241F;"></div>
       <div style="position: absolute; bottom: 10px; right: 10px; width: 16px; height: 16px; border-bottom: 2px solid #14241F; border-right: 2px solid #14241F;"></div>
+      <div style="overflow-x: auto;">
       <table>
         <tr><th>Cloud-detection setting</th><th>Linear interpolation</th><th>Whittaker smoothing</th><th>STMS (2025)</th></tr>
         <tr><td>Strict</td><td>0.154</td><td class="win" style="font-weight:700; color:#14241F;">0.137</td><td>0.157</td></tr>
         <tr><td>Baseline</td><td>0.154</td><td class="win" style="font-weight:700; color:#14241F;">0.144</td><td>0.178</td></tr>
         <tr><td>Loose</td><td>0.142</td><td class="win" style="font-weight:700; color:#14241F;">0.138</td><td>0.170</td></tr>
       </table>
+      </div>
       <p style="font-size: 13px; color: #5B5440; margin: 14px 0 0;">Whittaker smoothing wins at every setting tested. STMS, the more sophisticated published method, is weakest at every setting — likely because it's designed around a much larger reference network (the original study used 2,460 sites; this one had 3) rather than being a weaker method in general.</p>
     </div>
   </div>
@@ -137,6 +139,99 @@
         <li>Two of the nine monsoon-season site-years didn't have enough surrounding data to support a reliable growth-peak estimate even after adding a second satellite — rather than patch that gap, it's documented and dropped as a claim.</li>
         <li>Not a peer-reviewed paper. It's a bounded independent study, built and checked solo.</li>
       </ul>
+    </div>
+  </div>
+
+
+  <!-- Flood detection -->
+  <div id="floods" style="max-width: 900px; margin: 0 auto; padding: 56px 24px 16px; border-top: 1px solid #C9BD98;">
+    <div style="font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #5B5440;">Second study · October 2026</div>
+    <h2 style="font-size: 30px; font-weight: 700; margin-top: 8px;">Flood detection, tested against 10 documented floods</h2>
+    <p style="font-size: 15px; line-height: 1.6; color: #2E3A2F; max-width: 66ch; margin-top: 10px;">
+      Monsoon cloud hides the ground exactly when floods happen, so flood detection
+      leans on Sentinel-1 radar, which sees through cloud. To find out whether it
+      works, the pipeline was run against 10 dated floods and waterlogging events in
+      Satkhira and Khulna from 2024 to 2026, each taken from press and official
+      reports with its source (Cyclone Remal, the Betna embankment breach, the
+      Bichhat and Dargahpur breaches, and urban waterlogging in Khulna City and
+      Satkhira town). Each test was also run on the same dates a year earlier, to
+      catch a method that just fires every monsoon. The detection rule was fixed
+      before the first run and not adjusted afterwards.
+    </p>
+  </div>
+
+  <div style="max-width: 900px; margin: 0 auto; padding: 16px 24px;">
+    <h2 style="font-size: 24px; font-weight: 700;">Three bugs, found by running it on real data</h2>
+    <p style="font-size: 15px; line-height: 1.6; color: #2E3A2F; max-width: 66ch; margin-top: 10px;">
+      Running the pipeline on real imagery for the first time exposed three problems,
+      each fixed before any flood result was counted:
+    </p>
+    <ul style="font-size: 15px; color: #2E3A2F; padding-left: 20px; margin: 12px 0 0; line-height: 1.8; max-width: 66ch;">
+      <li><strong>Cloud remnants read as floods.</strong> Optical scenes with almost everything masked out as cloud left a few edge pixels that read as 60–100% water. Scenes less than half clear are now skipped.</li>
+      <li><strong>The radar threshold was too strict.</strong> The common published value (−16 dB) found a quarter to half of the water seen on clear days. Calibrated against 9 same-week clear optical scenes, −14 dB fits best, with moderate agreement.</li>
+      <li><strong>Large areas were double-counted.</strong> One satellite pass covering several image tiles was being counted as several separate passes. Same-day images are now merged first.</li>
+    </ul>
+  </div>
+
+  <div style="max-width: 900px; margin: 0 auto; padding: 32px 24px 48px;">
+    <h2 style="font-size: 24px; font-weight: 700;">The result: the original flood flag failed</h2>
+    <p style="font-size: 15px; line-height: 1.6; color: #2E3A2F; max-width: 66ch; margin-top: 10px;">
+      Three ways of flagging a flood were compared. The original flag (40% of the area
+      wet for 14 days) caught none of the 10 floods and fired just as often in years
+      with no flood, wherever shrimp ponds already cover half the land. Comparing
+      against water before the event, and against the same weeks in the five
+      previous years, both caught 4 of 10. The seasonal comparison is the more
+      trustworthy of the two: it catches the largest flood in the set with a quiet
+      control year, and it rarely fires when there was no flood.
+    </p>
+
+    <div style="position: relative; background: #FFFFFF; padding: 24px; margin-top: 24px;">
+      <div style="position: absolute; top: 10px; left: 10px; width: 16px; height: 16px; border-top: 2px solid #14241F; border-left: 2px solid #14241F;"></div>
+      <div style="position: absolute; top: 10px; right: 10px; width: 16px; height: 16px; border-top: 2px solid #14241F; border-right: 2px solid #14241F;"></div>
+      <div style="position: absolute; bottom: 10px; left: 10px; width: 16px; height: 16px; border-bottom: 2px solid #14241F; border-left: 2px solid #14241F;"></div>
+      <div style="position: absolute; bottom: 10px; right: 10px; width: 16px; height: 16px; border-bottom: 2px solid #14241F; border-right: 2px solid #14241F;"></div>
+      <div style="overflow-x: auto;">
+      <table>
+        <tr><th>Event</th><th>Kind</th><th>Original flag</th><th>vs. water before the event</th><th>vs. same weeks, past 5 years</th></tr>
+        <tr><td>Satkhira Sadar/Tala, Sep 2024</td><td>breach + rain</td><td>missed</td><td>missed (just under)</td><td style="font-weight:700; color:#14241F;">caught, both orbits</td></tr>
+        <tr><td>Cyclone Remal, Satkhira, May 2024</td><td>cyclone surge</td><td>missed</td><td>caught ¹</td><td style="font-weight:700; color:#14241F;">caught</td></tr>
+        <tr><td>Cyclone Remal, Khulna, May 2024</td><td>cyclone surge</td><td>missed</td><td>caught ¹</td><td>missed (just under)</td></tr>
+        <tr><td>Ashashuni, Jul 2025</td><td>prolonged rain</td><td>fires every year ²</td><td>caught</td><td>caught, not specific ²</td></tr>
+        <tr><td>Satkhira town, Jul 2025</td><td>urban</td><td>missed</td><td>missed</td><td style="font-weight:700; color:#14241F;">caught</td></tr>
+        <tr><td>Satkhira town, Jul 2026</td><td>urban</td><td>missed</td><td>caught</td><td>missed</td></tr>
+        <tr><td>Bichhat breach, Mar 2025</td><td>breach</td><td>fires every year ²</td><td>missed</td><td>missed</td></tr>
+        <tr><td>Dargahpur breach, May 2025</td><td>breach</td><td>fires every year ²</td><td>missed</td><td>missed</td></tr>
+        <tr><td>Khulna City, Sep 2024</td><td>urban</td><td>missed</td><td>missed</td><td>missed</td></tr>
+        <tr><td>Khulna City, Jul 2026</td><td>urban</td><td>missed</td><td>missed</td><td>missed</td></tr>
+        <tr><th>Caught</th><th></th><th>0 of 10</th><th>4 of 10</th><th>4 of 10</th></tr>
+      </table>
+      </div>
+      <p style="font-size: 13px; color: #5B5440; margin: 14px 0 0;">¹ Rests on a single radar pass before the event, so weak evidence. ² Also fires on the same dates a year earlier, so it can't tell this flood from a normal year. "Caught" means detected in at least one of the two radar orbit directions.</p>
+    </div>
+
+    <p style="font-size: 15px; line-height: 1.6; color: #2E3A2F; max-width: 66ch; margin-top: 10px;">
+      What it can see: large rural floods that leave water standing across a wide area,
+      like the September 2024 Satkhira flood. What it can't, yet: embankment breaches
+      that flood a few hundred hectares inside a much larger search area, and urban
+      waterlogging, where shallow street water between buildings doesn't look like
+      water to radar and often drains before the next satellite pass.
+    </p>
+  </div>
+
+  <!-- Flood limits -->
+  <div style="background: #14241F;">
+    <div style="max-width: 900px; margin: 0 auto; padding: 48px 24px;">
+      <h2 style="font-size: 24px; font-weight: 700; color: #F1E9D2;">What the flood test doesn't claim</h2>
+      <ul style="font-size: 15px; color: #C9D2C3; padding-left: 20px; margin: 16px 0 0; line-height: 1.9; max-width: 66ch;">
+        <li>Not checked against mapped flood extents, only against reports that a flood happened somewhere in a broad search area.</li>
+        <li>4 of 10 is not good enough for a payout trigger, and isn't presented as one. The plan is to report unusual water as a measurement, not a yes/no flag.</li>
+        <li>Ten events is a small test. Two of the control years turned out to contain floods of their own, which muddies those comparisons.</li>
+        <li>The radar threshold was calibrated on one small area in one year.</li>
+      </ul>
+      <p style="font-size: 15px; color: #C9D2C3; margin: 20px 0 0; max-width: 66ch; line-height: 1.6;">
+        The event list, code and every number are in the
+        <a href="https://github.com/iamnabid/khet-mapper/tree/main/cli/data/validation" style="color: #E1C88E;">open repository</a>.
+      </p>
     </div>
   </div>
 

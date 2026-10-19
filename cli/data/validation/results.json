@@ -1,0 +1,1591 @@
+{
+  "sar_water_vv_db_max": -14,
+  "results": [
+    {
+      "id": "satkhira_sep2024",
+      "scale_m": 30,
+      "pre_window": [
+        "2024-08-07",
+        "2024-09-12"
+      ],
+      "orbits": {
+        "DESCENDING": {
+          "passes": [
+            {
+              "coverage": 1,
+              "date": "2024-08-11",
+              "new": 0.04207353791592109,
+              "water": 0.2353453685486272,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2024-08-23",
+              "new": 0.03179673807217569,
+              "water": 0.23047139133856215,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2024-09-04",
+              "new": 0.04865511742872381,
+              "water": 0.25155936695030723,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2024-09-16",
+              "new": 0.1283148371280677,
+              "water": 0.33250712043926467,
+              "phase": "during"
+            },
+            {
+              "coverage": 1,
+              "date": "2024-09-28",
+              "new": 0.1237721170971132,
+              "water": 0.32662936539400395,
+              "phase": "during"
+            },
+            {
+              "coverage": 1,
+              "date": "2024-10-10",
+              "new": 0.11627645236983196,
+              "water": 0.3149133879430917,
+              "phase": "post"
+            }
+          ],
+          "n_pre": 3,
+          "n_during": 2,
+          "pre_water_mean": 0.23912537561249883,
+          "during_water_max": 0.33250712043926467,
+          "new_water_threshold": 0.14596535228617144,
+          "new_water_peak": 0.1283148371280677,
+          "peak_date": "2024-09-16",
+          "detected": false
+        },
+        "ASCENDING": {
+          "passes": [
+            {
+              "coverage": 1,
+              "date": "2024-08-14",
+              "new": 0.040624155919386076,
+              "water": 0.25902613173330197,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2024-08-26",
+              "new": 0.03492636432859848,
+              "water": 0.2739560046372041,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2024-09-07",
+              "new": 0.04271456737669455,
+              "water": 0.2655706627810319,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2024-09-19",
+              "new": 0.11032082594820083,
+              "water": 0.341235995793971,
+              "phase": "during"
+            },
+            {
+              "coverage": 1,
+              "date": "2024-10-01",
+              "new": 0.10582443791388496,
+              "water": 0.3266737539523736,
+              "phase": "post"
+            },
+            {
+              "coverage": 1,
+              "date": "2024-10-13",
+              "new": 0.10041398608038829,
+              "water": 0.31818882025410855,
+              "phase": "post"
+            }
+          ],
+          "n_pre": 3,
+          "n_during": 1,
+          "pre_water_mean": 0.266184266383846,
+          "during_water_max": 0.341235995793971,
+          "new_water_threshold": 0.12814370213008366,
+          "new_water_peak": 0.11032082594820083,
+          "peak_date": "2024-09-19",
+          "detected": false
+        }
+      },
+      "control_orbits": {
+        "DESCENDING": {
+          "n_pre": 3,
+          "n_during": 1,
+          "pre_water_mean": 0.18351318105596812,
+          "during_water_max": 0.18920305255581188,
+          "new_water_threshold": 0.11034195213941139,
+          "new_water_peak": 0.050580689985580865,
+          "peak_date": "2023-09-22",
+          "detected": false
+        },
+        "ASCENDING": {
+          "n_pre": 3,
+          "n_during": 2,
+          "pre_water_mean": 0.20153796958788908,
+          "during_water_max": 0.20270126997587484,
+          "new_water_threshold": 0.15140845709488177,
+          "new_water_peak": 0.05984810653994971,
+          "peak_date": "2023-09-25",
+          "detected": false
+        }
+      },
+      "product": {
+        "longest_run_days": 1,
+        "flagged": false,
+        "optical_scenes_used": 2,
+        "max_water_fraction": 0.5126143310893991
+      },
+      "product_control": {
+        "longest_run_days": 0,
+        "flagged": false,
+        "optical_scenes_used": 5,
+        "max_water_fraction": 0.3738539915362685,
+        "window": [
+          "2023-08-07",
+          "2023-10-20"
+        ]
+      },
+      "name": "Satkhira Sadar/Tala: Betna breach + waterlogging",
+      "type": "breach+pluvial",
+      "setting": "rural",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "khulna_city_sep2024",
+      "scale_m": 30,
+      "pre_window": [
+        "2024-08-07",
+        "2024-09-12"
+      ],
+      "orbits": {
+        "DESCENDING": {
+          "passes": [
+            {
+              "coverage": 1,
+              "date": "2024-08-11",
+              "new": 0.017913249015076186,
+              "water": 0.09407842993391655,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2024-08-23",
+              "new": 0.012674209417432941,
+              "water": 0.09193665125171839,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2024-09-04",
+              "new": 0.014475521306508617,
+              "water": 0.08876259612763279,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2024-09-16",
+              "new": 0.02795939315599313,
+              "water": 0.09499345781821311,
+              "phase": "during"
+            },
+            {
+              "coverage": 1,
+              "date": "2024-09-28",
+              "new": 0.020600585955061465,
+              "water": 0.08789230971745991,
+              "phase": "post"
+            }
+          ],
+          "n_pre": 3,
+          "n_during": 1,
+          "pre_water_mean": 0.09159255910442259,
+          "during_water_max": 0.09499345781821311,
+          "new_water_threshold": 0.05373974704522856,
+          "new_water_peak": 0.02795939315599313,
+          "peak_date": "2024-09-16",
+          "detected": false
+        },
+        "ASCENDING": {
+          "passes": [
+            {
+              "coverage": 1,
+              "date": "2024-08-09",
+              "new": 0.024058339429539055,
+              "water": 0.09890705642101312,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2024-08-14",
+              "new": 0.02172145339297908,
+              "water": 0.09928720070147742,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2024-08-21",
+              "new": 0.019951446149463897,
+              "water": 0.09563175033394276,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2024-08-26",
+              "new": 0.027224712255495442,
+              "water": 0.1056119187834349,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2024-09-02",
+              "new": 0.0153288606245536,
+              "water": 0.0850247121116323,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2024-09-07",
+              "new": 0.02355683210222352,
+              "water": 0.09867359512130927,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2024-09-14",
+              "new": 0.01806853501883533,
+              "water": 0.0730639493773959,
+              "phase": "during"
+            },
+            {
+              "coverage": 1,
+              "date": "2024-09-19",
+              "new": 0.025372674180644823,
+              "water": 0.09653380175211082,
+              "phase": "post"
+            },
+            {
+              "coverage": 1,
+              "date": "2024-09-26",
+              "new": 0.020266535463372808,
+              "water": 0.07841123169250103,
+              "phase": "post"
+            },
+            {
+              "coverage": 1,
+              "date": "2024-10-01",
+              "new": 0.025606826024000752,
+              "water": 0.09615095284234258,
+              "phase": "post"
+            }
+          ],
+          "n_pre": 6,
+          "n_during": 1,
+          "pre_water_mean": 0.0971893722454683,
+          "during_water_max": 0.0730639493773959,
+          "new_water_threshold": 0.08167413676648633,
+          "new_water_peak": 0.01806853501883533,
+          "peak_date": "2024-09-14",
+          "detected": false
+        }
+      },
+      "control_orbits": {
+        "DESCENDING": {
+          "n_pre": 3,
+          "n_during": 0,
+          "pre_water_mean": 0.07728002528157048,
+          "during_water_max": null,
+          "new_water_threshold": null,
+          "new_water_peak": null,
+          "peak_date": null,
+          "detected": null
+        },
+        "ASCENDING": {
+          "n_pre": 6,
+          "n_during": 0,
+          "pre_water_mean": 0.08818108644095972,
+          "during_water_max": null,
+          "new_water_threshold": null,
+          "new_water_peak": null,
+          "peak_date": null,
+          "detected": null
+        }
+      },
+      "product": {
+        "longest_run_days": 0,
+        "flagged": false,
+        "optical_scenes_used": 0,
+        "max_water_fraction": 0.09499345781821311
+      },
+      "product_control": {
+        "longest_run_days": 0,
+        "flagged": false,
+        "optical_scenes_used": 0,
+        "max_water_fraction": 0.08058595506143333,
+        "window": [
+          "2023-08-07",
+          "2023-10-05"
+        ]
+      },
+      "name": "Khulna City urban waterlogging",
+      "type": "pluvial",
+      "setting": "urban",
+      "confidence": "high"
+    },
+    {
+      "id": "remal_satkhira_may2024",
+      "scale_m": 30,
+      "pre_window": [
+        "2024-04-19",
+        "2024-05-25"
+      ],
+      "orbits": {
+        "DESCENDING": {
+          "passes": [
+            {
+              "coverage": 0.9999128474936613,
+              "date": "2024-05-19",
+              "new": 0,
+              "water": 0.3760156483636668,
+              "phase": "pre"
+            },
+            {
+              "coverage": 0.9999101450903639,
+              "date": "2024-05-31",
+              "new": 0.11527612362457462,
+              "water": 0.4465463465208138,
+              "phase": "during"
+            },
+            {
+              "coverage": 0.9999054158845936,
+              "date": "2024-06-12",
+              "new": 0.07399263311245174,
+              "water": 0.39831303023965575,
+              "phase": "post"
+            },
+            {
+              "coverage": 0.9999003488784111,
+              "date": "2024-06-24",
+              "new": 0.08310674976439529,
+              "water": 0.4121268398548201,
+              "phase": "post"
+            }
+          ],
+          "n_pre": 1,
+          "n_during": 1,
+          "pre_water_mean": 0.3760156483636668,
+          "during_water_max": 0.4465463465208138,
+          "new_water_threshold": 0.02,
+          "new_water_peak": 0.11527612362457462,
+          "peak_date": "2024-05-31",
+          "detected": true
+        },
+        "ASCENDING": {
+          "passes": [
+            {
+              "coverage": 0.9999716684807255,
+              "date": "2024-04-28",
+              "new": 0.08550086315815829,
+              "water": 0.4497111545143799,
+              "phase": "pre"
+            },
+            {
+              "coverage": 0.9999665577591956,
+              "date": "2024-05-10",
+              "new": 0.019435170052116035,
+              "water": 0.37796850267732524,
+              "phase": "pre"
+            },
+            {
+              "coverage": 0.9999674877038598,
+              "date": "2024-05-22",
+              "new": 0.026876531602919047,
+              "water": 0.39131309227420386,
+              "phase": "pre"
+            },
+            {
+              "coverage": 0.9999658821583712,
+              "date": "2024-06-03",
+              "new": 0.08387705875825727,
+              "water": 0.4302837891452548,
+              "phase": "during"
+            },
+            {
+              "coverage": 0.9999662199587834,
+              "date": "2024-06-15",
+              "new": 0.07139989508439097,
+              "water": 0.40836891249151086,
+              "phase": "post"
+            }
+          ],
+          "n_pre": 6,
+          "n_during": 1,
+          "pre_water_mean": 0.40633091648863634,
+          "during_water_max": 0.4302837891452548,
+          "new_water_threshold": 0.25650258947447485,
+          "new_water_peak": 0.08387705875825727,
+          "peak_date": "2024-06-03",
+          "detected": false
+        }
+      },
+      "control_orbits": {
+        "DESCENDING": {
+          "n_pre": 4,
+          "n_during": 1,
+          "pre_water_mean": 0.3682470253788629,
+          "during_water_max": 0.40535564415463055,
+          "new_water_threshold": 0.1697623251707046,
+          "new_water_peak": 0.08378403597140922,
+          "peak_date": "2023-06-06",
+          "detected": false
+        },
+        "ASCENDING": {
+          "n_pre": 6,
+          "n_during": 1,
+          "pre_water_mean": 0.4004607375283113,
+          "during_water_max": 0.41086429920174466,
+          "new_water_threshold": 0.2049047048364151,
+          "new_water_peak": 0.06745054878273363,
+          "peak_date": "2023-05-28",
+          "detected": false
+        }
+      },
+      "product": {
+        "longest_run_days": 6,
+        "flagged": false,
+        "optical_scenes_used": 12,
+        "max_water_fraction": 0.5235961044082995
+      },
+      "product_control": {
+        "longest_run_days": 2,
+        "flagged": false,
+        "optical_scenes_used": 7,
+        "max_water_fraction": 0.46046688623675447,
+        "window": [
+          "2023-04-19",
+          "2023-06-25"
+        ]
+      },
+      "name": "Cyclone Remal, coastal Satkhira",
+      "type": "surge",
+      "setting": "rural+forest",
+      "confidence": "medium"
+    },
+    {
+      "id": "remal_khulna_may2024",
+      "scale_m": 30,
+      "pre_window": [
+        "2024-04-19",
+        "2024-05-25"
+      ],
+      "orbits": {
+        "DESCENDING": {
+          "passes": [
+            {
+              "coverage": 0.9999200750634024,
+              "date": "2024-05-19",
+              "new": 0,
+              "water": 0.30270366405360577,
+              "phase": "pre"
+            },
+            {
+              "coverage": 0.9999135505787822,
+              "date": "2024-05-31",
+              "new": 0.08354973523148868,
+              "water": 0.35831957355157773,
+              "phase": "during"
+            },
+            {
+              "coverage": 0.9999089680878195,
+              "date": "2024-06-12",
+              "new": 0.05299579020478844,
+              "water": 0.32404859725529656,
+              "phase": "post"
+            },
+            {
+              "coverage": 0.9999063736456999,
+              "date": "2024-06-24",
+              "new": 0.05988214352909204,
+              "water": 0.33352642669003757,
+              "phase": "post"
+            }
+          ],
+          "n_pre": 1,
+          "n_during": 1,
+          "pre_water_mean": 0.30270366405360577,
+          "during_water_max": 0.35831957355157773,
+          "new_water_threshold": 0.02,
+          "new_water_peak": 0.08354973523148868,
+          "peak_date": "2024-05-31",
+          "detected": true
+        },
+        "ASCENDING": {
+          "passes": [
+            {
+              "coverage": 0.9999337764811048,
+              "date": "2024-04-28",
+              "new": 0.05951421833792247,
+              "water": 0.35143444428130577,
+              "phase": "pre"
+            },
+            {
+              "coverage": 0.9999173424557262,
+              "date": "2024-05-10",
+              "new": 0.021172811005591572,
+              "water": 0.3058781657121311,
+              "phase": "pre"
+            },
+            {
+              "coverage": 0.9999171390453233,
+              "date": "2024-05-22",
+              "new": 0.027725861108419122,
+              "water": 0.32045505127194684,
+              "phase": "pre"
+            },
+            {
+              "coverage": 0.9999150998240517,
+              "date": "2024-06-03",
+              "new": 0.06556090999938517,
+              "water": 0.35019590699118874,
+              "phase": "during"
+            },
+            {
+              "coverage": 0.9999151816999372,
+              "date": "2024-06-15",
+              "new": 0.05563176956386422,
+              "water": 0.33524005863240536,
+              "phase": "post"
+            }
+          ],
+          "n_pre": 6,
+          "n_during": 1,
+          "pre_water_mean": 0.3259225537551279,
+          "during_water_max": 0.35019590699118874,
+          "new_water_threshold": 0.1785426550137674,
+          "new_water_peak": 0.06556090999938517,
+          "peak_date": "2024-06-03",
+          "detected": false
+        }
+      },
+      "control_orbits": {
+        "DESCENDING": {
+          "n_pre": 4,
+          "n_during": 1,
+          "pre_water_mean": 0.3053127681730249,
+          "during_water_max": 0.32403649866035716,
+          "new_water_threshold": 0.10874369789068225,
+          "new_water_peak": 0.04615811849714297,
+          "peak_date": "2023-06-06",
+          "detected": false
+        },
+        "ASCENDING": {
+          "n_pre": 6,
+          "n_during": 1,
+          "pre_water_mean": 0.3264793214167218,
+          "during_water_max": 0.33053598624077296,
+          "new_water_threshold": 0.17056598229501088,
+          "new_water_peak": 0.04609089989311338,
+          "peak_date": "2023-05-28",
+          "detected": false
+        }
+      },
+      "product": {
+        "longest_run_days": 1,
+        "flagged": false,
+        "optical_scenes_used": 7,
+        "max_water_fraction": 0.575519354645585
+      },
+      "product_control": {
+        "longest_run_days": 1,
+        "flagged": false,
+        "optical_scenes_used": 5,
+        "max_water_fraction": 0.45178232012589836,
+        "window": [
+          "2023-04-19",
+          "2023-06-25"
+        ]
+      },
+      "name": "Cyclone Remal, Koyra/Dacope/Paikgacha",
+      "type": "surge",
+      "setting": "rural+forest",
+      "confidence": "medium"
+    },
+    {
+      "id": "bichhat_mar2025",
+      "scale_m": 10,
+      "pre_window": [
+        "2025-02-22",
+        "2025-03-30"
+      ],
+      "orbits": {
+        "DESCENDING": {
+          "passes": [
+            {
+              "coverage": 1,
+              "date": "2025-03-03",
+              "new": 0.01920893518002518,
+              "water": 0.547148138336893,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2025-03-27",
+              "new": 0.02034640474510813,
+              "water": 0.5524320402185812,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2025-04-08",
+              "new": 0.04569905893052945,
+              "water": 0.5644825901676497,
+              "phase": "during"
+            },
+            {
+              "coverage": 1,
+              "date": "2025-04-20",
+              "new": 0.03958518342931067,
+              "water": 0.5646963642061208,
+              "phase": "post"
+            }
+          ],
+          "n_pre": 2,
+          "n_during": 1,
+          "pre_water_mean": 0.5497900892777371,
+          "during_water_max": 0.5644825901676497,
+          "new_water_threshold": 0.06103921423532439,
+          "new_water_peak": 0.04569905893052945,
+          "peak_date": "2025-04-08",
+          "detected": false
+        },
+        "ASCENDING": {
+          "passes": [
+            {
+              "coverage": 1,
+              "date": "2025-02-22",
+              "new": 0.009526471485284144,
+              "water": 0.5304795563729843,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2025-03-06",
+              "new": 0.023784446175280145,
+              "water": 0.5906373700630553,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2025-03-18",
+              "new": 0.02588955955650681,
+              "water": 0.6014522400665983,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2025-03-30",
+              "new": 0.02551277966531179,
+              "water": 0.5966659129045261,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2025-04-11",
+              "new": 0.02743819265620401,
+              "water": 0.5701724308717946,
+              "phase": "post"
+            },
+            {
+              "coverage": 1,
+              "date": "2025-04-23",
+              "new": 0.026766988287202833,
+              "water": 0.5685280350627396,
+              "phase": "post"
+            }
+          ],
+          "n_pre": 4,
+          "n_during": 0,
+          "pre_water_mean": 0.579808769851791,
+          "during_water_max": null,
+          "new_water_threshold": null,
+          "new_water_peak": null,
+          "peak_date": null,
+          "detected": null
+        }
+      },
+      "control_orbits": {
+        "DESCENDING": {
+          "n_pre": 3,
+          "n_during": 1,
+          "pre_water_mean": 0.49491383851189275,
+          "during_water_max": 0.5795691757895802,
+          "new_water_threshold": 0.14239974297257812,
+          "new_water_peak": 0.10144563329213965,
+          "peak_date": "2024-04-01",
+          "detected": false
+        },
+        "ASCENDING": {
+          "n_pre": 3,
+          "n_during": 1,
+          "pre_water_mean": 0.5419759596161223,
+          "during_water_max": 0.5980841865296896,
+          "new_water_threshold": 0.11699289773683165,
+          "new_water_peak": 0.07608208406418486,
+          "peak_date": "2024-04-04",
+          "detected": false
+        }
+      },
+      "product": {
+        "longest_run_days": 58,
+        "flagged": true,
+        "optical_scenes_used": 19,
+        "max_water_fraction": 0.9714825951052332
+      },
+      "product_control": {
+        "longest_run_days": 56,
+        "flagged": true,
+        "optical_scenes_used": 21,
+        "max_water_fraction": 0.9168162990789299,
+        "window": [
+          "2024-02-22",
+          "2024-04-30"
+        ]
+      },
+      "name": "Bichhat, Ashashuni: Kholpetua embankment collapse",
+      "type": "breach",
+      "setting": "rural",
+      "confidence": "high"
+    },
+    {
+      "id": "dargahpur_may2025",
+      "scale_m": 10,
+      "pre_window": [
+        "2025-04-21",
+        "2025-05-27"
+      ],
+      "orbits": {
+        "DESCENDING": {
+          "passes": [
+            {
+              "coverage": 1,
+              "date": "2025-05-02",
+              "new": 0.018668251741434033,
+              "water": 0.48157303437836063,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2025-05-14",
+              "new": 0.01552359501322473,
+              "water": 0.47951396175482286,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2025-05-26",
+              "new": 0.020567392632132885,
+              "water": 0.47811183371729055,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2025-06-07",
+              "new": 0.05407177964016347,
+              "water": 0.5098340772208323,
+              "phase": "post"
+            }
+          ],
+          "n_pre": 3,
+          "n_during": 0,
+          "pre_water_mean": 0.47973294328349136,
+          "during_water_max": null,
+          "new_water_threshold": null,
+          "new_water_peak": null,
+          "peak_date": null,
+          "detected": null
+        },
+        "ASCENDING": {
+          "passes": [
+            {
+              "coverage": 1,
+              "date": "2025-04-23",
+              "new": 0.011259022202805042,
+              "water": 0.4477055912286214,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2025-05-05",
+              "new": 0.016155649561337956,
+              "water": 0.4960241942534805,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2025-05-17",
+              "new": 0.03625337996575149,
+              "water": 0.5099280832902557,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2025-05-29",
+              "new": 0.0507313156833989,
+              "water": 0.5131578595564564,
+              "phase": "during"
+            },
+            {
+              "coverage": 1,
+              "date": "2025-06-10",
+              "new": 0.057985825284876336,
+              "water": 0.5173167691831828,
+              "phase": "post"
+            },
+            {
+              "coverage": 1,
+              "date": "2025-06-22",
+              "new": 0.1230442575227428,
+              "water": 0.5856427002381914,
+              "phase": "post"
+            }
+          ],
+          "n_pre": 3,
+          "n_during": 1,
+          "pre_water_mean": 0.4845526229241192,
+          "during_water_max": 0.5131578595564564,
+          "new_water_threshold": 0.10876013989725447,
+          "new_water_peak": 0.0507313156833989,
+          "peak_date": "2025-05-29",
+          "detected": false
+        }
+      },
+      "control_orbits": {
+        "DESCENDING": {
+          "n_pre": 1,
+          "n_during": 1,
+          "pre_water_mean": 0.4170657672945756,
+          "during_water_max": 0.5571494321797038,
+          "new_water_threshold": 0.02,
+          "new_water_peak": 0.15691613747996289,
+          "peak_date": "2024-05-31",
+          "detected": true
+        },
+        "ASCENDING": {
+          "n_pre": 3,
+          "n_during": 1,
+          "pre_water_mean": 0.43240555878546255,
+          "during_water_max": 0.5406777230531338,
+          "new_water_threshold": 0.1214577597909331,
+          "new_water_peak": 0.12556551373780914,
+          "peak_date": "2024-06-03",
+          "detected": true
+        }
+      },
+      "product": {
+        "longest_run_days": 34,
+        "flagged": true,
+        "optical_scenes_used": 8,
+        "max_water_fraction": 0.882162711911958
+      },
+      "product_control": {
+        "longest_run_days": 31,
+        "flagged": true,
+        "optical_scenes_used": 13,
+        "max_water_fraction": 0.6132074100902494,
+        "window": [
+          "2024-04-21",
+          "2024-06-25"
+        ]
+      },
+      "name": "Dargahpur/Subedkhali ring-embankment failure",
+      "type": "breach",
+      "setting": "rural",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "satkhira_town_jul2025",
+      "scale_m": 10,
+      "pre_window": [
+        "2025-05-27",
+        "2025-07-02"
+      ],
+      "orbits": {
+        "DESCENDING": {
+          "passes": [
+            {
+              "coverage": 1,
+              "date": "2025-06-07",
+              "new": 0,
+              "water": 0.16150071543094666,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2025-07-13",
+              "new": 0.11158460822908556,
+              "water": 0.24928745911962893,
+              "phase": "post"
+            },
+            {
+              "coverage": 1,
+              "date": "2025-07-25",
+              "new": 0.06149556298133845,
+              "water": 0.1625702025654664,
+              "phase": "post"
+            }
+          ],
+          "n_pre": 1,
+          "n_during": 0,
+          "pre_water_mean": 0.16150071543094666,
+          "during_water_max": null,
+          "new_water_threshold": null,
+          "new_water_peak": null,
+          "peak_date": null,
+          "detected": null
+        },
+        "ASCENDING": {
+          "passes": [
+            {
+              "coverage": 1,
+              "date": "2025-05-29",
+              "new": 0.015443502880163098,
+              "water": 0.15331984565437656,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2025-06-10",
+              "new": 0.022044853669420206,
+              "water": 0.18046674969369025,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2025-06-22",
+              "new": 0.04120374655612905,
+              "water": 0.19779090107640487,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2025-07-04",
+              "new": 0.0771535329501264,
+              "water": 0.2188415983410327,
+              "phase": "during"
+            },
+            {
+              "coverage": 1,
+              "date": "2025-07-16",
+              "new": 0.1418278434983478,
+              "water": 0.29887291637324637,
+              "phase": "post"
+            },
+            {
+              "coverage": 1,
+              "date": "2025-07-28",
+              "new": 0.1154986150143369,
+              "water": 0.2706946784689909,
+              "phase": "post"
+            }
+          ],
+          "n_pre": 3,
+          "n_during": 1,
+          "pre_water_mean": 0.17719249880815724,
+          "during_water_max": 0.2188415983410327,
+          "new_water_threshold": 0.12361123966838716,
+          "new_water_peak": 0.0771535329501264,
+          "peak_date": "2025-07-04",
+          "detected": false
+        }
+      },
+      "control_orbits": {
+        "DESCENDING": {
+          "n_pre": 3,
+          "n_during": 0,
+          "pre_water_mean": 0.17271455329245033,
+          "during_water_max": null,
+          "new_water_threshold": null,
+          "new_water_peak": null,
+          "peak_date": null,
+          "detected": null
+        },
+        "ASCENDING": {
+          "n_pre": 3,
+          "n_during": 1,
+          "pre_water_mean": 0.1769050276945705,
+          "during_water_max": 0.17764832195634778,
+          "new_water_threshold": 0.07738582834075694,
+          "new_water_peak": 0.03129559738785141,
+          "peak_date": "2024-07-09",
+          "detected": false
+        }
+      },
+      "product": {
+        "longest_run_days": 0,
+        "flagged": false,
+        "optical_scenes_used": 2,
+        "max_water_fraction": 0.3288036121197359
+      },
+      "product_control": {
+        "longest_run_days": 0,
+        "flagged": false,
+        "optical_scenes_used": 1,
+        "max_water_fraction": 0.35762729608510774,
+        "window": [
+          "2024-05-27",
+          "2024-07-31"
+        ]
+      },
+      "name": "Satkhira Municipality waterlogging",
+      "type": "pluvial",
+      "setting": "urban",
+      "confidence": "high"
+    },
+    {
+      "id": "ashashuni_jul2025",
+      "scale_m": 30,
+      "pre_window": [
+        "2025-05-20",
+        "2025-06-25"
+      ],
+      "orbits": {
+        "DESCENDING": {
+          "passes": [
+            {
+              "coverage": 1,
+              "date": "2025-05-26",
+              "new": 0.02256119094377798,
+              "water": 0.4119090240026939,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2025-06-07",
+              "new": 0.0422285203448455,
+              "water": 0.45381937448244447,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2025-07-13",
+              "new": 0.1777937291545975,
+              "water": 0.5677456083276452,
+              "phase": null
+            },
+            {
+              "coverage": 1,
+              "date": "2025-07-25",
+              "new": 0.16892815766413116,
+              "water": 0.5674495775122618,
+              "phase": "during"
+            },
+            {
+              "coverage": 1,
+              "date": "2025-08-06",
+              "new": 0.1629326587951492,
+              "water": 0.566450239860383,
+              "phase": "post"
+            },
+            {
+              "coverage": 1,
+              "date": "2025-08-18",
+              "new": 0.1296367981685954,
+              "water": 0.5147522557680055,
+              "phase": "post"
+            }
+          ],
+          "n_pre": 2,
+          "n_during": 1,
+          "pre_water_mean": 0.4328641992425692,
+          "during_water_max": 0.5674495775122618,
+          "new_water_threshold": 0.1266855610345365,
+          "new_water_peak": 0.16892815766413116,
+          "peak_date": "2025-07-25",
+          "detected": true
+        },
+        "ASCENDING": {
+          "passes": [
+            {
+              "coverage": 1,
+              "date": "2025-05-29",
+              "new": 0.020844859723651805,
+              "water": 0.44654173230675537,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2025-06-10",
+              "new": 0.024335722691009944,
+              "water": 0.4650887105633114,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2025-06-22",
+              "new": 0.09783981962478487,
+              "water": 0.5445440577286373,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2025-07-04",
+              "new": 0.10666773214321548,
+              "water": 0.5295950924283717,
+              "phase": null
+            },
+            {
+              "coverage": 1,
+              "date": "2025-07-16",
+              "new": 0.1809538125245693,
+              "water": 0.6295336631943711,
+              "phase": null
+            },
+            {
+              "coverage": 1,
+              "date": "2025-07-28",
+              "new": 0.13000379964755132,
+              "water": 0.5632517380537099,
+              "phase": "during"
+            },
+            {
+              "coverage": 1,
+              "date": "2025-08-09",
+              "new": 0.12766003276572802,
+              "water": 0.5567547404417711,
+              "phase": "post"
+            }
+          ],
+          "n_pre": 3,
+          "n_during": 1,
+          "pre_water_mean": 0.48539150019956806,
+          "during_water_max": 0.5632517380537099,
+          "new_water_threshold": 0.2935194588743546,
+          "new_water_peak": 0.13000379964755132,
+          "peak_date": "2025-07-28",
+          "detected": false
+        }
+      },
+      "control_orbits": {
+        "DESCENDING": {
+          "n_pre": 3,
+          "n_during": 0,
+          "pre_water_mean": 0.4854044623845708,
+          "during_water_max": null,
+          "new_water_threshold": null,
+          "new_water_peak": null,
+          "peak_date": null,
+          "detected": null
+        },
+        "ASCENDING": {
+          "n_pre": 3,
+          "n_during": 1,
+          "pre_water_mean": 0.47252466293029444,
+          "during_water_max": 0.4977674930548999,
+          "new_water_threshold": 0.16416204876959295,
+          "new_water_peak": 0.08616795745052064,
+          "peak_date": "2024-07-21",
+          "detected": false
+        }
+      },
+      "product": {
+        "longest_run_days": 39,
+        "flagged": true,
+        "optical_scenes_used": 4,
+        "max_water_fraction": 0.7648718027436827
+      },
+      "product_control": {
+        "longest_run_days": 25,
+        "flagged": true,
+        "optical_scenes_used": 3,
+        "max_water_fraction": 0.6502806144067748,
+        "window": [
+          "2024-05-20",
+          "2024-08-20"
+        ]
+      },
+      "name": "Ashashuni all-union waterlogging",
+      "type": "pluvial",
+      "setting": "rural",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "satkhira_town_jul2026",
+      "scale_m": 10,
+      "pre_window": [
+        "2026-05-25",
+        "2026-06-30"
+      ],
+      "orbits": {
+        "DESCENDING": {
+          "passes": [
+            {
+              "coverage": 1,
+              "date": "2026-06-02",
+              "new": 0.01588122813335246,
+              "water": 0.12447581561382837,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2026-06-14",
+              "new": 0.01231064472968539,
+              "water": 0.12805216596331184,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2026-06-26",
+              "new": 0.019944692000654556,
+              "water": 0.13236330081306305,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2026-07-03",
+              "new": 0.02952174287581542,
+              "water": 0.13408697586363527,
+              "phase": "during"
+            },
+            {
+              "coverage": 1,
+              "date": "2026-07-15",
+              "new": 0.06879444169103079,
+              "water": 0.17584805905218903,
+              "phase": "during"
+            },
+            {
+              "coverage": 1,
+              "date": "2026-07-27",
+              "new": 0.09424107252392402,
+              "water": 0.2016933563878714,
+              "phase": "post"
+            },
+            {
+              "coverage": 1,
+              "date": "2026-08-08",
+              "new": 0.09756250804438417,
+              "water": 0.20847568905749897,
+              "phase": "post"
+            }
+          ],
+          "n_pre": 3,
+          "n_during": 2,
+          "pre_water_mean": 0.12829709413006776,
+          "during_water_max": 0.17584805905218903,
+          "new_water_threshold": 0.059834076001963665,
+          "new_water_peak": 0.06879444169103079,
+          "peak_date": "2026-07-15",
+          "detected": true
+        },
+        "ASCENDING": {
+          "passes": [
+            {
+              "coverage": 1,
+              "date": "2026-06-05",
+              "new": 0.009351383955788856,
+              "water": 0.114496625760882,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2026-06-17",
+              "new": 0.01844278942281307,
+              "water": 0.14129543835728775,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2026-06-29",
+              "new": 0.023712547148408418,
+              "water": 0.1436235614162456,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2026-07-06",
+              "new": 0.03349812234485889,
+              "water": 0.1435534525856266,
+              "phase": "during"
+            },
+            {
+              "coverage": 1,
+              "date": "2026-07-18",
+              "new": 0.10290770199261802,
+              "water": 0.22323242429417706,
+              "phase": "during"
+            },
+            {
+              "coverage": 1,
+              "date": "2026-07-30",
+              "new": 0.12690380529546139,
+              "water": 0.2460210205702475,
+              "phase": "post"
+            }
+          ],
+          "n_pre": 3,
+          "n_during": 2,
+          "pre_water_mean": 0.13313854184480511,
+          "during_water_max": 0.22323242429417706,
+          "new_water_threshold": 0.07113764144522525,
+          "new_water_peak": 0.10290770199261802,
+          "peak_date": "2026-07-18",
+          "detected": true
+        }
+      },
+      "control_orbits": {
+        "DESCENDING": {
+          "n_pre": 2,
+          "n_during": 1,
+          "pre_water_mean": 0.1485098480138134,
+          "during_water_max": 0.24928745911962893,
+          "new_water_threshold": 0.09152828714614873,
+          "new_water_peak": 0.12394698844067603,
+          "peak_date": "2025-07-13",
+          "detected": true
+        },
+        "ASCENDING": {
+          "n_pre": 3,
+          "n_during": 2,
+          "pre_water_mean": 0.17719249880815724,
+          "during_water_max": 0.2988729163732464,
+          "new_water_threshold": 0.12361123966838718,
+          "new_water_peak": 0.14182784349834782,
+          "peak_date": "2025-07-16",
+          "detected": true
+        }
+      },
+      "product": {
+        "longest_run_days": 0,
+        "flagged": false,
+        "optical_scenes_used": 2,
+        "max_water_fraction": 0.208475689057499
+      },
+      "product_control": {
+        "longest_run_days": 0,
+        "flagged": false,
+        "optical_scenes_used": 2,
+        "max_water_fraction": 0.3288036121197359,
+        "window": [
+          "2025-05-25",
+          "2025-08-10"
+        ]
+      },
+      "name": "Satkhira prolonged waterlogging (302 mm/48 h core 9-12 Jul)",
+      "type": "pluvial",
+      "setting": "urban",
+      "confidence": "high"
+    },
+    {
+      "id": "khulna_city_jul2026",
+      "scale_m": 30,
+      "pre_window": [
+        "2026-05-25",
+        "2026-06-30"
+      ],
+      "orbits": {
+        "DESCENDING": {
+          "passes": [
+            {
+              "coverage": 0.9991481280872156,
+              "date": "2026-06-02",
+              "new": 0.014472888574654046,
+              "water": 0.06550495372033416,
+              "phase": "pre"
+            },
+            {
+              "coverage": 0.9991932436058175,
+              "date": "2026-06-14",
+              "new": 0.010250297850220304,
+              "water": 0.0635263968695881,
+              "phase": "pre"
+            },
+            {
+              "coverage": 0.9993554350460974,
+              "date": "2026-06-26",
+              "new": 0.009386855770404857,
+              "water": 0.06130394295908523,
+              "phase": "pre"
+            },
+            {
+              "coverage": 0.9990755346857918,
+              "date": "2026-07-03",
+              "new": 0.017435628938031047,
+              "water": 0.06642210321401372,
+              "phase": "during"
+            },
+            {
+              "coverage": 0.9990388495542757,
+              "date": "2026-07-15",
+              "new": 0.038216314697789515,
+              "water": 0.08778442489477811,
+              "phase": "post"
+            },
+            {
+              "coverage": 1,
+              "date": "2026-07-27",
+              "new": 0.0359067161844011,
+              "water": 0.08378947338134064,
+              "phase": "post"
+            }
+          ],
+          "n_pre": 3,
+          "n_during": 1,
+          "pre_water_mean": 0.06344509784966916,
+          "during_water_max": 0.06642210321401372,
+          "new_water_threshold": 0.043418665723962135,
+          "new_water_peak": 0.017435628938031047,
+          "peak_date": "2026-07-03",
+          "detected": false
+        },
+        "ASCENDING": {
+          "passes": [
+            {
+              "coverage": 1,
+              "date": "2026-05-31",
+              "new": 0.008436343024681915,
+              "water": 0.05727840921760692,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2026-06-05",
+              "new": 0.014742071156207475,
+              "water": 0.06597031093885893,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2026-06-12",
+              "new": 0.01562680143776946,
+              "water": 0.06558723184787332,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2026-06-17",
+              "new": 0.020249617143897104,
+              "water": 0.07258350363146847,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2026-06-24",
+              "new": 0.01244365415559821,
+              "water": 0.060145949278130204,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2026-06-29",
+              "new": 0.021833781827049068,
+              "water": 0.07429271426094937,
+              "phase": "pre"
+            },
+            {
+              "coverage": 1,
+              "date": "2026-07-01",
+              "new": 0.020368016607574868,
+              "water": 0.06767094731799328,
+              "phase": "during"
+            },
+            {
+              "coverage": 1,
+              "date": "2026-07-06",
+              "new": 0.02086774003045589,
+              "water": 0.07115617867529281,
+              "phase": "during"
+            },
+            {
+              "coverage": 1,
+              "date": "2026-07-13",
+              "new": 0.05930550010825718,
+              "water": 0.10388846569113,
+              "phase": "during"
+            },
+            {
+              "coverage": 1,
+              "date": "2026-07-18",
+              "new": 0.045597834570197796,
+              "water": 0.09667731974113256,
+              "phase": "post"
+            },
+            {
+              "coverage": 1,
+              "date": "2026-07-25",
+              "new": 0.04843881747276859,
+              "water": 0.0929437803956097,
+              "phase": "post"
+            },
+            {
+              "coverage": 1,
+              "date": "2026-07-30",
+              "new": 0.0472223385116915,
+              "water": 0.09796239270498193,
+              "phase": "post"
+            }
+          ],
+          "n_pre": 6,
+          "n_during": 3,
+          "pre_water_mean": 0.06597635319581453,
+          "during_water_max": 0.10388846569113,
+          "new_water_threshold": 0.06550134548114721,
+          "new_water_peak": 0.05930550010825718,
+          "peak_date": "2026-07-13",
+          "detected": false
+        }
+      },
+      "control_orbits": {
+        "DESCENDING": {
+          "n_pre": 2,
+          "n_during": 1,
+          "pre_water_mean": 0.05873230571806118,
+          "during_water_max": 0.06146885827958252,
+          "new_water_threshold": 0.031534625369279055,
+          "new_water_peak": 0.02246965743999647,
+          "peak_date": "2025-07-13",
+          "detected": false
+        },
+        "ASCENDING": {
+          "n_pre": 6,
+          "n_during": 2,
+          "pre_water_mean": 0.07362091599176823,
+          "during_water_max": 0.08646590548615361,
+          "new_water_threshold": 0.08520540436725715,
+          "new_water_peak": 0.036001982435734534,
+          "peak_date": "2025-07-11",
+          "detected": false
+        }
+      },
+      "product": {
+        "longest_run_days": 0,
+        "flagged": false,
+        "optical_scenes_used": 2,
+        "max_water_fraction": 0.09895411147736224
+      },
+      "product_control": {
+        "longest_run_days": 0,
+        "flagged": false,
+        "optical_scenes_used": 0,
+        "max_water_fraction": 0.08498483321572523,
+        "window": [
+          "2025-05-25",
+          "2025-08-01"
+        ]
+      },
+      "name": "Khulna City recurrent waterlogging (1, 9-10, 13 Jul)",
+      "type": "pluvial",
+      "setting": "urban",
+      "confidence": "high"
+    }
+  ]
+}

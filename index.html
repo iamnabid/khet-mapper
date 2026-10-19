@@ -5,13 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Khet Mapper — satellite monitoring for Khulna</title>
 <meta name="description" content="Satellite-based rice growth and shrimp pond monitoring for Khulna district, Bangladesh.">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Big+Shoulders+Display:wght@600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Big+Shoulders+Display:wght@600;700;800&family=Instrument+Serif:ital@1&display=swap">
 <style>
   body { margin: 0; font-family: 'Archivo', sans-serif; background: #F1E9D2; color: #14241F; }
   h1, h2, h3 { font-family: 'Big Shoulders Display', sans-serif; margin: 0; letter-spacing: 0.01em; }
   a { color: #1F5258; text-decoration: none; }
   a:hover { color: #14241F; }
   .btn { transition: background 0.15s ease, color 0.15s ease; }
+  .diagram-container { width: 100%; overflow-x: auto; }
+  .diagram-container svg { width: 100%; min-width: 960px; display: block; }
 </style>
 </head>
 <body>
@@ -24,7 +26,7 @@
       <span style="font-family: 'Big Shoulders Display', sans-serif; font-weight: 800; font-size: 26px; color: #14241F;">Khet Mapper</span>
       <span style="font-size: 14px; color: #5B5440;">— satellite eyes on the field</span>
     </div>
-    <div style="display: flex; gap: 22px; font-size: 15px; font-weight: 500;">
+    <div style="display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: 15px; font-weight: 500;">
       <a href="#services">Services</a>
       <a href="#method">Method</a>
       <a href="#validation">Validation</a>
@@ -132,6 +134,108 @@
       </div>
     </div>
 
+    <div style="margin-top: 48px;">
+      <h3 style="font-size: 22px; font-weight: 700; color: #14241F;">From parcel to report</h3>
+      <p style="font-size: 15px; line-height: 1.6; color: #2E3A2F; max-width: 66ch; margin: 8px 0 20px;">
+        What the <a href="https://github.com/iamnabid/khet-mapper/tree/main/cli">open-source CLI</a> actually does, step by step,
+        including the part that isn't validated yet.
+      </p>
+      <div class="diagram-container">
+<svg viewBox="0 56 960 528" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="km-pipeline-title km-pipeline-desc">
+<title id="km-pipeline-title">How the Khet Mapper pipeline works</title>
+<desc id="km-pipeline-desc">A parcel boundary and date range pull cloud-masked Sentinel-2 optical and speckle-filtered Sentinel-1 radar imagery into three CLI commands that produce a 10 m GeoTIFF, a metrics file and a 2-page PDF, with water area and flood days taken from both optical and radar.</desc>
+<defs>
+<marker id="km-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#3C4A3D"/></marker>
+<marker id="km-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#94561A"/></marker>
+<marker id="km-arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#1F5258"/></marker>
+</defs>
+<rect width="960" height="584" fill="#F1E9D2"/>
+<text x="96" y="88" fill="#5B5440" font-size="9" font-weight="500" font-family="ui-monospace, Menlo, Consolas, monospace" text-anchor="middle" letter-spacing="0.16em">01 · INPUT</text>
+<text x="340" y="88" fill="#5B5440" font-size="9" font-weight="500" font-family="ui-monospace, Menlo, Consolas, monospace" text-anchor="middle" letter-spacing="0.16em">02 · SATELLITES</text>
+<text x="620" y="88" fill="#5B5440" font-size="9" font-weight="500" font-family="ui-monospace, Menlo, Consolas, monospace" text-anchor="middle" letter-spacing="0.16em">03 · CLI COMMAND</text>
+<text x="858" y="88" fill="#5B5440" font-size="9" font-weight="500" font-family="ui-monospace, Menlo, Consolas, monospace" text-anchor="middle" letter-spacing="0.16em">04 · OUTPUT</text>
+<line x1="24" y1="100" x2="936" y2="100" stroke="rgba(20,36,31,0.12)" stroke-width="0.8"/>
+<path d="M168,256 H196 Q204,256 204,248 V152 Q204,144 212,144 H240" fill="none" stroke="#3C4A3D" stroke-width="1.2" marker-end="url(#km-arrow)"/>
+<path d="M168,280 H196 Q204,280 204,288 V380 Q204,388 212,388 H240" fill="none" stroke="#3C4A3D" stroke-width="1.2" marker-end="url(#km-arrow)"/>
+<path d="M440,132 H532" fill="none" stroke="#3C4A3D" stroke-width="1.2" marker-end="url(#km-arrow)"/>
+<path d="M440,156 H468 Q476,156 476,164 V276 Q476,284 484,284 H532" fill="none" stroke="#3C4A3D" stroke-width="1.2" marker-end="url(#km-arrow)"/>
+<path d="M440,376 H500 Q508,376 508,368 V292 a8,8 0 0,1 0,-16 V164 Q508,156 516,156 H532" fill="none" stroke="#3C4A3D" stroke-width="1.2" marker-end="url(#km-arrow)"/>
+<path d="M440,400 H516 Q524,400 524,392 V316 Q524,308 532,308" fill="none" stroke="#3C4A3D" stroke-width="1.2" marker-end="url(#km-arrow)"/>
+<path d="M708,144 H780" fill="none" stroke="#3C4A3D" stroke-width="1.2" marker-end="url(#km-arrow)"/>
+<path d="M708,296 H780" fill="none" stroke="#3C4A3D" stroke-width="1.2" marker-end="url(#km-arrow)"/>
+<path d="M858,328 V372 Q858,380 850,380 H628 Q620,380 620,388 V432" fill="none" stroke="#3C4A3D" stroke-width="1.2" marker-end="url(#km-arrow)"/>
+<path d="M708,464 H780" fill="none" stroke="#3C4A3D" stroke-width="1.2" marker-end="url(#km-arrow)"/>
+<rect x="24" y="232" width="144" height="72" rx="6" fill="#F1E9D2"/>
+<rect x="24" y="232" width="144" height="72" rx="6" fill="rgba(60,74,61,0.10)" stroke="#5B5440" stroke-width="1"/>
+<rect x="32" y="238" width="28" height="12" rx="2" fill="none" stroke="#5B5440" stroke-opacity="0.5" stroke-width="0.8"/>
+<text x="46" y="247" fill="#5B5440" font-size="7" font-family="ui-monospace, Menlo, Consolas, monospace" font-weight="500" text-anchor="middle" letter-spacing="0.08em">IN</text>
+<text x="96" y="268" fill="#14241F" font-size="13" font-weight="600" font-family="'Archivo', system-ui, sans-serif" text-anchor="middle">Parcel + dates</text>
+<text x="96" y="285" fill="#5B5440" font-size="10" font-family="ui-monospace, Menlo, Consolas, monospace" text-anchor="middle">aoi.geojson</text>
+<text x="96" y="300" fill="#5B5440" font-size="10" font-family="ui-monospace, Menlo, Consolas, monospace" text-anchor="middle">start · end</text>
+<rect x="240" y="108" width="200" height="72" rx="6" fill="#F1E9D2"/>
+<rect x="240" y="108" width="200" height="72" rx="6" fill="rgba(20,36,31,0.03)" stroke="rgba(20,36,31,0.30)" stroke-width="1"/>
+<rect x="248" y="114" width="28" height="12" rx="2" fill="none" stroke="rgba(20,36,31,0.30)" stroke-opacity="0.5" stroke-width="0.8"/>
+<text x="262" y="123" fill="#5B5440" font-size="7" font-family="ui-monospace, Menlo, Consolas, monospace" font-weight="500" text-anchor="middle" letter-spacing="0.08em">S2</text>
+<text x="340" y="144" fill="#14241F" font-size="13" font-weight="600" font-family="'Archivo', system-ui, sans-serif" text-anchor="middle">Sentinel-2 · optical</text>
+<text x="340" y="161" fill="#5B5440" font-size="10" font-family="ui-monospace, Menlo, Consolas, monospace" text-anchor="middle">drop cloud ≥40% · QA60</text>
+<text x="340" y="176" fill="#5B5440" font-size="10" font-family="ui-monospace, Menlo, Consolas, monospace" text-anchor="middle">median over dates</text>
+<rect x="240" y="352" width="200" height="72" rx="6" fill="#F1E9D2"/>
+<rect x="240" y="352" width="200" height="72" rx="6" fill="rgba(20,36,31,0.03)" stroke="rgba(20,36,31,0.30)" stroke-width="1"/>
+<rect x="248" y="358" width="28" height="12" rx="2" fill="none" stroke="rgba(20,36,31,0.30)" stroke-opacity="0.5" stroke-width="0.8"/>
+<text x="262" y="367" fill="#5B5440" font-size="7" font-family="ui-monospace, Menlo, Consolas, monospace" font-weight="500" text-anchor="middle" letter-spacing="0.08em">S1</text>
+<text x="340" y="388" fill="#14241F" font-size="13" font-weight="600" font-family="'Archivo', system-ui, sans-serif" text-anchor="middle">Sentinel-1 · radar</text>
+<text x="340" y="405" fill="#5B5440" font-size="10" font-family="ui-monospace, Menlo, Consolas, monospace" text-anchor="middle">VV + VH · 30 m speckle</text>
+<text x="340" y="420" fill="#5B5440" font-size="10" font-family="ui-monospace, Menlo, Consolas, monospace" text-anchor="middle">median over dates</text>
+<rect x="532" y="112" width="176" height="64" rx="6" fill="#F1E9D2"/>
+<rect x="532" y="112" width="176" height="64" rx="6" fill="#FFFFFF" stroke="#14241F" stroke-width="1"/>
+<rect x="540" y="118" width="28" height="12" rx="2" fill="none" stroke="#14241F" stroke-opacity="0.5" stroke-width="0.8"/>
+<text x="554" y="127" fill="#14241F" font-size="7" font-family="ui-monospace, Menlo, Consolas, monospace" font-weight="500" text-anchor="middle" letter-spacing="0.08em">CMD</text>
+<text x="620" y="148" fill="#14241F" font-size="13" font-weight="600" font-family="'Archivo', system-ui, sans-serif" text-anchor="middle">Build composite</text>
+<text x="620" y="165" fill="#5B5440" font-size="10" font-family="ui-monospace, Menlo, Consolas, monospace" text-anchor="middle">cli.py composite</text>
+<rect x="532" y="264" width="176" height="64" rx="6" fill="#F1E9D2"/>
+<rect x="532" y="264" width="176" height="64" rx="6" fill="rgba(148,86,26,0.08)" stroke="#94561A" stroke-width="1.2"/>
+<rect x="540" y="270" width="28" height="12" rx="2" fill="none" stroke="#94561A" stroke-opacity="0.5" stroke-width="0.8"/>
+<text x="554" y="279" fill="#94561A" font-size="7" font-family="ui-monospace, Menlo, Consolas, monospace" font-weight="500" text-anchor="middle" letter-spacing="0.08em">CMD</text>
+<text x="620" y="300" fill="#14241F" font-size="13" font-weight="600" font-family="'Archivo', system-ui, sans-serif" text-anchor="middle">Measure</text>
+<text x="620" y="317" fill="#5B5440" font-size="10" font-family="ui-monospace, Menlo, Consolas, monospace" text-anchor="middle">cli.py analyze</text>
+<rect x="532" y="432" width="176" height="64" rx="6" fill="#F1E9D2"/>
+<rect x="532" y="432" width="176" height="64" rx="6" fill="#FFFFFF" stroke="#14241F" stroke-width="1"/>
+<rect x="540" y="438" width="28" height="12" rx="2" fill="none" stroke="#14241F" stroke-opacity="0.5" stroke-width="0.8"/>
+<text x="554" y="447" fill="#14241F" font-size="7" font-family="ui-monospace, Menlo, Consolas, monospace" font-weight="500" text-anchor="middle" letter-spacing="0.08em">CMD</text>
+<text x="620" y="468" fill="#14241F" font-size="13" font-weight="600" font-family="'Archivo', system-ui, sans-serif" text-anchor="middle">Write report</text>
+<text x="620" y="485" fill="#5B5440" font-size="10" font-family="ui-monospace, Menlo, Consolas, monospace" text-anchor="middle">cli.py report</text>
+<rect x="780" y="112" width="156" height="64" rx="6" fill="#F1E9D2"/>
+<rect x="780" y="112" width="156" height="64" rx="6" fill="rgba(20,36,31,0.05)" stroke="#3C4A3D" stroke-width="1"/>
+<rect x="788" y="118" width="28" height="12" rx="2" fill="none" stroke="#3C4A3D" stroke-opacity="0.5" stroke-width="0.8"/>
+<text x="802" y="127" fill="#3C4A3D" font-size="7" font-family="ui-monospace, Menlo, Consolas, monospace" font-weight="500" text-anchor="middle" letter-spacing="0.08em">OUT</text>
+<text x="858" y="148" fill="#14241F" font-size="13" font-weight="600" font-family="'Archivo', system-ui, sans-serif" text-anchor="middle">10 m GeoTIFF</text>
+<text x="858" y="165" fill="#5B5440" font-size="10" font-family="ui-monospace, Menlo, Consolas, monospace" text-anchor="middle">9 bands → Drive</text>
+<rect x="780" y="264" width="156" height="64" rx="6" fill="#F1E9D2"/>
+<rect x="780" y="264" width="156" height="64" rx="6" fill="rgba(20,36,31,0.05)" stroke="#3C4A3D" stroke-width="1"/>
+<rect x="788" y="270" width="28" height="12" rx="2" fill="none" stroke="#3C4A3D" stroke-opacity="0.5" stroke-width="0.8"/>
+<text x="802" y="279" fill="#3C4A3D" font-size="7" font-family="ui-monospace, Menlo, Consolas, monospace" font-weight="500" text-anchor="middle" letter-spacing="0.08em">OUT</text>
+<text x="858" y="300" fill="#14241F" font-size="13" font-weight="600" font-family="'Archivo', system-ui, sans-serif" text-anchor="middle">Metrics</text>
+<text x="858" y="317" fill="#5B5440" font-size="10" font-family="ui-monospace, Menlo, Consolas, monospace" text-anchor="middle">metrics.json</text>
+<rect x="780" y="432" width="156" height="64" rx="6" fill="#F1E9D2"/>
+<rect x="780" y="432" width="156" height="64" rx="6" fill="rgba(20,36,31,0.05)" stroke="#3C4A3D" stroke-width="1"/>
+<rect x="788" y="438" width="28" height="12" rx="2" fill="none" stroke="#3C4A3D" stroke-opacity="0.5" stroke-width="0.8"/>
+<text x="802" y="447" fill="#3C4A3D" font-size="7" font-family="ui-monospace, Menlo, Consolas, monospace" font-weight="500" text-anchor="middle" letter-spacing="0.08em">OUT</text>
+<text x="858" y="468" fill="#14241F" font-size="13" font-weight="600" font-family="'Archivo', system-ui, sans-serif" text-anchor="middle">2-page PDF</text>
+<text x="858" y="485" fill="#5B5440" font-size="10" font-family="ui-monospace, Menlo, Consolas, monospace" text-anchor="middle">area · trend · flag</text>
+<text x="240" y="456" fill="#14241F" font-size="15" font-style="italic" font-family="'Instrument Serif', Georgia, serif">radar finds water through cloud (VV &lt; −14 dB) —</text>
+<text x="240" y="474" fill="#14241F" font-size="15" font-style="italic" font-family="'Instrument Serif', Georgia, serif">flood flag failed a 10-flood test — being rebuilt</text>
+<path d="M 400,444 Q 452,436 468,404" fill="none" stroke="rgba(20,36,31,0.40)" stroke-width="1" stroke-dasharray="4,3"/>
+<circle cx="468" cy="400" r="2.5" fill="#14241F"/>
+<line x1="24" y1="524" x2="936" y2="524" stroke="rgba(20,36,31,0.12)" stroke-width="0.8"/>
+<text x="24" y="552" fill="#5B5440" font-size="8" font-weight="500" font-family="ui-monospace, Menlo, Consolas, monospace" letter-spacing="0.14em">LEGEND</text>
+<line x1="112" y1="549" x2="144" y2="549" stroke="#3C4A3D" stroke-width="1.2"/>
+<text x="152" y="553" fill="#14241F" font-size="11" font-family="'Archivo', system-ui, sans-serif">data flow</text>
+<rect x="264" y="542" width="24" height="14" rx="3" fill="rgba(148,86,26,0.08)" stroke="#94561A" stroke-width="1.2"/>
+<text x="296" y="553" fill="#14241F" font-size="11" font-family="'Archivo', system-ui, sans-serif">where measurement happens</text>
+</svg>
+      </div>
+    </div>
+
     <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: 48px;">
       <div style="position: relative; background: #FFFFFF; padding: 24px;">
         <div style="position: absolute; top: 10px; left: 10px; width: 16px; height: 16px; border-top: 2px solid #14241F; border-left: 2px solid #14241F;"></div>
@@ -196,6 +300,14 @@
         recovered hidden data better than plain interpolation and a more complex
         published 2025 alternative. It's a bounded, three-location study, not a
         peer-reviewed paper, and it says so plainly in the full writeup.
+      </p>
+      <p style="font-size: 16px; line-height: 1.6; color: #2E3A2F; max-width: 68ch; margin-top: 16px;">
+        <strong>Flood detection, tested the same way.</strong> Run against 10 documented
+        floods in Satkhira and Khulna (2024–2026), the original flood flag caught none
+        of them, so it's being replaced. A seasonal comparison, which checks radar water
+        against the same weeks in the previous five years, caught 4 of 10, including
+        the largest, and rarely fired when there was no flood. Breaches and urban
+        waterlogging are still out of reach. <a href="research.html#floods">See the flood test</a>.
       </p>
 
       <div style="display: flex; flex-wrap: wrap; gap: 14px; padding-top: 20px;">

@@ -1,6 +1,7 @@
 import ee
 
 import config
+from core.mosaic import daily_mosaic
 
 
 def get_s1_collection(aoi, start, end, orbit="DESCENDING"):
@@ -27,5 +28,5 @@ def _speckle_filter(image, radius_m=config.SPECKLE_FILTER_RADIUS_M):
 
 def get_s1_composite(aoi, start, end, orbit="DESCENDING"):
     collection = get_s1_collection(aoi, start, end, orbit)
-    filtered = collection.map(_speckle_filter)
+    filtered = daily_mosaic(collection.map(_speckle_filter))
     return filtered, filtered.median().clip(aoi)

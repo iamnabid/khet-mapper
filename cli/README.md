@@ -91,6 +91,75 @@ Google Drive (`khetmapper_exports/` folder) once it completes server-side —
 check task status with `ee.data.getTaskList()` if you need to confirm
 completion from Python.
 
+## How `analyze` finds water
+
+Two independent water signals, one per sensor:
+
+- **Optical** — Sentinel-2 MNDWI > 0 on cloud-masked pixels. Accurate on
+  clear days, blind under monsoon cloud. Scenes where less than half the AOI
+  survives the cloud mask (`OPTICAL_MIN_CLEAR_FRACTION`) are skipped: their
+  few remaining pixels are mostly cloud edges and shadow.
+- **Radar** — Sentinel-1 VV backscatter below `SAR_WATER_VV_DB_MAX`
+  (−14 dB, in `config.py`) after speckle filtering. Calm water
+  reflects the radar pulse away from the satellite, so it reads dark, cloud
+  or no cloud.
+
+Each gives a water area (pixels wet in ≥ 30% of that sensor's scenes) and a
+per-pass "fraction of the parcel that's water" series. For flood runs the
+two series are merged by date (the wetter reading wins on a shared date),
+and a run ends at the first dry pass or a gap longer than
+`FLOOD_RUN_MAX_GAP_DAYS`. Each trigger tier uses its own area fraction
+(40% / 50%). `metrics.json` keeps the per-sensor results, so you can see how
+much each sensor contributed.
+
+### Calibrating the radar threshold
+
+```
+python cli.py calibrate data/aois/your_aoi.geojson 2024
+```
+
+pairs every Sentinel-1 pass with a ≥ 80%-clear Sentinel-2 scene taken within
+3 days, treats optical water as the reference, and reports for each candidate
+threshold the radar water fraction and pixel overlap (IoU) with optical water.
+
+On the Satkhira smoke-test AOI for 2024 it found 9 pairs (3 dry-season, 6
+Sep–Dec). −14 dB scored best (mean IoU 0.47); −16 dB, a common published
+value, scored 0.36 and found only a quarter to half of the water optical saw
+in Sep–Oct. Agreement is moderate, not tight: wind-roughened water reads too
+bright (missed), smooth bare soil too dark (false water), and flooded rice
+with plants above the water can brighten through double-bounce. There were
+no clear optical scenes in Jun–Aug to calibrate the peak monsoon against.
+Re-run `calibrate` for any other site or year.
+
+### Satkhira 2024 result
+
+With these settings the smoke-test AOI reads 4–8% water in the dry season,
+rising to 22–30% on radar passes in Jun–Sep (when optical has no usable scene
+from Jun 2 to Sep 7), then falling back by November. Water area: 47.6 ha
+optical, 54.9 ha radar, of 310 ha. No flood-run flag: water never covered
+40% of the AOI. None of this has been checked against ground records yet.
+
+### Validation against documented floods
+
+`scripts/validate_events.py` checks detection against 10 dated, sourced
+flood and waterlogging events in Satkhira and Khulna, 2024–2026. Results and
+method: [`data/validation/README.md`](data/validation/README.md). In short:
+**the ≥ 40% / 14-day flood flag caught none of them** and fires in
+pond-dominated areas with no flood, so it is not a flood detector. Radar
+"new water against a pre-event baseline" carries a real but weak signal (4 of
+10 detected under the pre-set rule), and urban waterlogging is mostly
+invisible to it.
+
+## Tests
+
+The flood-run logic and PDF generation have offline tests (no Earth Engine
+account needed):
+
+```
+pip install pytest
+python -m pytest tests
+```
+
 ## Deliberately not implemented here
 
 The original plan's PDF called "collateral verification," exact settlement
