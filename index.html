@@ -138,12 +138,12 @@
       <h3 style="font-size: 22px; font-weight: 700; color: #14241F;">From parcel to report</h3>
       <p style="font-size: 15px; line-height: 1.6; color: #2E3A2F; max-width: 66ch; margin: 8px 0 20px;">
         What the <a href="https://github.com/iamnabid/khet-mapper/tree/main/cli">open-source CLI</a> actually does, step by step,
-        including the part that isn't built yet.
+        including the part that isn't validated yet.
       </p>
       <div class="diagram-container">
 <svg viewBox="0 56 960 528" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="km-pipeline-title km-pipeline-desc">
 <title id="km-pipeline-title">How the Khet Mapper pipeline works</title>
-<desc id="km-pipeline-desc">A parcel boundary and date range pull cloud-masked Sentinel-2 optical and speckle-filtered Sentinel-1 radar imagery into three CLI commands that produce a 10 m GeoTIFF, a metrics file and a 2-page PDF, with water area and flood days currently derived from Sentinel-2 alone.</desc>
+<desc id="km-pipeline-desc">A parcel boundary and date range pull cloud-masked Sentinel-2 optical and speckle-filtered Sentinel-1 radar imagery into three CLI commands that produce a 10 m GeoTIFF, a metrics file and a 2-page PDF, with water area and flood days taken from both optical and radar.</desc>
 <defs>
 <marker id="km-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#3C4A3D"/></marker>
 <marker id="km-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#94561A"/></marker>
@@ -158,9 +158,9 @@
 <path d="M168,256 H196 Q204,256 204,248 V152 Q204,144 212,144 H240" fill="none" stroke="#3C4A3D" stroke-width="1.2" marker-end="url(#km-arrow)"/>
 <path d="M168,280 H196 Q204,280 204,288 V380 Q204,388 212,388 H240" fill="none" stroke="#3C4A3D" stroke-width="1.2" marker-end="url(#km-arrow)"/>
 <path d="M440,132 H532" fill="none" stroke="#3C4A3D" stroke-width="1.2" marker-end="url(#km-arrow)"/>
-<path d="M440,156 H468 Q476,156 476,164 V276 Q476,284 484,284 H532" fill="none" stroke="#94561A" stroke-width="1.6" marker-end="url(#km-arrow-accent)"/>
+<path d="M440,156 H468 Q476,156 476,164 V276 Q476,284 484,284 H532" fill="none" stroke="#3C4A3D" stroke-width="1.2" marker-end="url(#km-arrow)"/>
 <path d="M440,376 H500 Q508,376 508,368 V292 a8,8 0 0,1 0,-16 V164 Q508,156 516,156 H532" fill="none" stroke="#3C4A3D" stroke-width="1.2" marker-end="url(#km-arrow)"/>
-<path d="M440,400 H516 Q524,400 524,392 V316 Q524,308 532,308" fill="none" stroke="#3C4A3D" stroke-width="1" stroke-dasharray="5,4" marker-end="url(#km-arrow)"/>
+<path d="M440,400 H516 Q524,400 524,392 V316 Q524,308 532,308" fill="none" stroke="#3C4A3D" stroke-width="1.2" marker-end="url(#km-arrow)"/>
 <path d="M708,144 H780" fill="none" stroke="#3C4A3D" stroke-width="1.2" marker-end="url(#km-arrow)"/>
 <path d="M708,296 H780" fill="none" stroke="#3C4A3D" stroke-width="1.2" marker-end="url(#km-arrow)"/>
 <path d="M858,328 V372 Q858,380 850,380 H628 Q620,380 620,388 V432" fill="none" stroke="#3C4A3D" stroke-width="1.2" marker-end="url(#km-arrow)"/>
@@ -222,20 +222,16 @@
 <text x="802" y="447" fill="#3C4A3D" font-size="7" font-family="ui-monospace, Menlo, Consolas, monospace" font-weight="500" text-anchor="middle" letter-spacing="0.08em">OUT</text>
 <text x="858" y="468" fill="#14241F" font-size="13" font-weight="600" font-family="'Archivo', system-ui, sans-serif" text-anchor="middle">2-page PDF</text>
 <text x="858" y="485" fill="#5B5440" font-size="10" font-family="ui-monospace, Menlo, Consolas, monospace" text-anchor="middle">area · trend · flag</text>
-<text x="240" y="456" fill="#14241F" font-size="15" font-style="italic" font-family="'Instrument Serif', Georgia, serif">water area &amp; flood days use Sentinel-2 only —</text>
-<text x="240" y="474" fill="#14241F" font-size="15" font-style="italic" font-family="'Instrument Serif', Georgia, serif">radar is charted, not yet used to find water</text>
+<text x="240" y="456" fill="#14241F" font-size="15" font-style="italic" font-family="'Instrument Serif', Georgia, serif">radar now finds water through cloud (VV &lt; −16 dB) —</text>
+<text x="240" y="474" fill="#14241F" font-size="15" font-style="italic" font-family="'Instrument Serif', Georgia, serif">threshold not yet checked against real floods</text>
 <path d="M 400,444 Q 452,436 468,404" fill="none" stroke="rgba(20,36,31,0.40)" stroke-width="1" stroke-dasharray="4,3"/>
 <circle cx="468" cy="400" r="2.5" fill="#14241F"/>
 <line x1="24" y1="524" x2="936" y2="524" stroke="rgba(20,36,31,0.12)" stroke-width="0.8"/>
 <text x="24" y="552" fill="#5B5440" font-size="8" font-weight="500" font-family="ui-monospace, Menlo, Consolas, monospace" letter-spacing="0.14em">LEGEND</text>
-<line x1="112" y1="549" x2="144" y2="549" stroke="#94561A" stroke-width="1.6"/>
-<text x="152" y="553" fill="#14241F" font-size="11" font-family="'Archivo', system-ui, sans-serif">sets water area + flood flag</text>
-<line x1="344" y1="549" x2="376" y2="549" stroke="#3C4A3D" stroke-width="1" stroke-dasharray="5,4"/>
-<text x="384" y="553" fill="#14241F" font-size="11" font-family="'Archivo', system-ui, sans-serif">charted only (VV trend)</text>
-<line x1="556" y1="549" x2="588" y2="549" stroke="#3C4A3D" stroke-width="1.2"/>
-<text x="596" y="553" fill="#14241F" font-size="11" font-family="'Archivo', system-ui, sans-serif">data flow</text>
-<rect x="704" y="542" width="24" height="14" rx="3" fill="rgba(148,86,26,0.08)" stroke="#94561A" stroke-width="1.2"/>
-<text x="736" y="553" fill="#14241F" font-size="11" font-family="'Archivo', system-ui, sans-serif">where measurement happens</text>
+<line x1="112" y1="549" x2="144" y2="549" stroke="#3C4A3D" stroke-width="1.2"/>
+<text x="152" y="553" fill="#14241F" font-size="11" font-family="'Archivo', system-ui, sans-serif">data flow</text>
+<rect x="264" y="542" width="24" height="14" rx="3" fill="rgba(148,86,26,0.08)" stroke="#94561A" stroke-width="1.2"/>
+<text x="296" y="553" fill="#14241F" font-size="11" font-family="'Archivo', system-ui, sans-serif">where measurement happens</text>
 </svg>
       </div>
     </div>

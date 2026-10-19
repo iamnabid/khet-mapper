@@ -396,7 +396,7 @@
 
             <!-- SCENE 5 — PRODUCT -->
             <figure class="scene" data-start="45" data-end="58">
-              <svg viewBox="0 0 1200 675" role="img" aria-label="Two report pages. Page 1: area, perimeter and water surface, with a parcel whose water pixels are shaded. Page 2: NDVI and radar VV lines over the year, and an exploratory flood flag.">
+              <svg viewBox="0 0 1200 675" role="img" aria-label="Two report pages. Page 1: area, perimeter and water surface from optical and radar, with a parcel whose water pixels are shaded. Page 2: NDVI and radar VV lines over the year, and an exploratory flood flag.">
                 <!-- page 1 -->
                 <rect class="draw" data-draw-start="45.3" data-draw-dur="0.8" pathLength="1" stroke-dasharray="1"
                   x="130" y="40" width="430" height="500" rx="10" fill="var(--board)" stroke="var(--ink)" stroke-width="6"/>
@@ -407,7 +407,7 @@
                   <text class="fadein" data-fade-start="46.3" data-fade-dur="0.3" x="530" y="140" text-anchor="end" fill="var(--ink-soft)">ha · bigha</text>
                   <text class="fadein" data-fade-start="46.7" data-fade-dur="0.3" x="160" y="180" fill="var(--ink)">Perimeter</text>
                   <text class="fadein" data-fade-start="46.7" data-fade-dur="0.3" x="530" y="180" text-anchor="end" fill="var(--ink-soft)">m</text>
-                  <text class="fadein" data-fade-start="47.1" data-fade-dur="0.3" x="160" y="220" fill="var(--ink)">Water surface</text>
+                  <text class="fadein" data-fade-start="47.1" data-fade-dur="0.3" x="160" y="220" fill="var(--ink)">Water · optical, radar</text>
                   <text class="fadein" data-fade-start="47.1" data-fade-dur="0.3" x="530" y="220" text-anchor="end" fill="var(--ink-soft)">ha</text>
                 </g>
                 <path class="draw" data-draw-start="47.5" data-draw-dur="0.8" pathLength="1" stroke-dasharray="1"
@@ -420,9 +420,9 @@
                   <rect x="390" y="380" width="30" height="30"/>
                 </g>
                 <text class="fadein" data-fade-start="48.8" data-fade-dur="0.4" x="345" y="485" text-anchor="middle"
-                  font-family="IBM Plex Sans" font-size="16" fill="var(--ink-soft)">water = MNDWI &gt; 0 in ≥ 30% of clear scenes</text>
+                  font-family="IBM Plex Sans" font-size="16" fill="var(--ink-soft)">water = MNDWI &gt; 0 on clear days, or radar</text>
                 <text class="fadein" data-fade-start="48.9" data-fade-dur="0.4" x="345" y="510" text-anchor="middle"
-                  font-family="IBM Plex Sans" font-size="16" fill="var(--ink-soft)">(catches seasonal ghers, not just permanent ponds)</text>
+                  font-family="IBM Plex Sans" font-size="16" fill="var(--ink-soft)">VV &lt; −16 dB through cloud, in ≥ 30% of passes</text>
 
                 <!-- page 2 -->
                 <rect class="draw" data-draw-start="49.4" data-draw-dur="0.8" pathLength="1" stroke-dasharray="1"
@@ -450,11 +450,11 @@
                 <text class="fadein" data-fade-start="53.1" data-fade-dur="0.4" x="690" y="437"
                   font-family="IBM Plex Sans" font-size="17" fill="var(--ink)">≥ 40% of parcel reads as water</text>
                 <text class="fadein" data-fade-start="53.3" data-fade-dur="0.4" x="690" y="464"
-                  font-family="IBM Plex Sans" font-size="17" fill="var(--ink)">for ≥ 14 days of clear revisits?</text>
+                  font-family="IBM Plex Sans" font-size="17" fill="var(--ink)">for ≥ 14 days of optical + radar passes?</text>
                 <text class="fadein" data-fade-start="53.5" data-fade-dur="0.4" x="690" y="493"
                   font-family="IBM Plex Sans" font-style="italic" font-size="16" fill="var(--ink-soft)">research flag — not a payout call</text>
               </svg>
-              <figcaption class="sr-only">Page one lists area, perimeter and water surface, with water defined as MNDWI above zero in at least 30 percent of clear scenes. Page two charts NDVI and radar VV backscatter across the year, and shows an exploratory flood flag: at least 40 percent of the parcel reading as water for 14 or more days of clear revisits. It is a research flag, not a payout call.</figcaption>
+              <figcaption class="sr-only">Page one lists area, perimeter and water surface, with water found by MNDWI on clear days or by radar backscatter below minus 16 decibels through cloud, in at least 30 percent of passes. Page two charts NDVI and radar VV backscatter across the year, and shows an exploratory flood flag: at least 40 percent of the parcel reading as water for 14 or more days of optical and radar passes. It is a research flag, not a payout call.</figcaption>
             </figure>
 
             <!-- SCENE 6 — MARKET -->
@@ -499,7 +499,7 @@
 
             <!-- SCENE 7 — HONEST TAKE -->
             <figure class="scene" data-start="70" data-end="82">
-              <svg viewBox="0 0 1200 675" role="img" aria-label="A checklist with four completed items — pipeline, CLI, demo site, smoke test — and two open items: radar-based water detection and ground-truthing, not yet done.">
+              <svg viewBox="0 0 1200 675" role="img" aria-label="A checklist with four completed items — pipeline, CLI, demo site, smoke test — and two open items: validating the radar water threshold, and ground-truthing, not yet done.">
                 <defs>
                   <g id="tick7"><polyline points="-9,0 -2,9 11,-10" fill="none" stroke="var(--accent-teal)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></g>
                 </defs>
@@ -523,13 +523,11 @@
                 <text class="fadein" data-fade-start="72.8" data-fade-dur="0.3" x="380" y="334" font-family="IBM Plex Sans" font-size="24" fill="var(--ink)">Smoke test — Satkhira AOI (~310 ha)</text>
 
                 <rect class="draw" data-draw-start="73.6" data-draw-dur="0.5" pathLength="1" stroke-dasharray="1" x="320" y="378" width="36" height="36" rx="7" fill="none" stroke="var(--ink-soft)" stroke-width="4"/>
-                <path class="draw" data-draw-start="74.1" data-draw-dur="0.5" pathLength="1" stroke-dasharray="1"
-                  d="M880,432 l14,-14 l16,16 l-14,14 Z M860,460 l20,-8 l8,8 l-8,20 Z" fill="none" stroke="var(--accent-orange)" stroke-width="5" stroke-linejoin="round"/>
-                <text class="fadein" data-fade-start="74.6" data-fade-dur="0.4" x="380" y="404" font-family="IBM Plex Sans" font-style="italic" font-size="24" fill="var(--ink-soft)">Radar-based water detection — not yet</text>
+                <text class="fadein" data-fade-start="74.6" data-fade-dur="0.4" x="380" y="404" font-family="IBM Plex Sans" font-style="italic" font-size="24" fill="var(--ink-soft)">Radar water built — threshold not yet validated</text>
                 <rect class="draw" data-draw-start="74.9" data-draw-dur="0.5" pathLength="1" stroke-dasharray="1" x="320" y="438" width="36" height="36" rx="7" fill="none" stroke="var(--ink-soft)" stroke-width="4"/>
                 <text class="fadein" data-fade-start="75.3" data-fade-dur="0.4" x="380" y="464" font-family="IBM Plex Sans" font-style="italic" font-size="24" fill="var(--ink-soft)">Ground-truthing vs. flood records — not yet</text>
               </svg>
-              <figcaption class="sr-only">Checklist: pipeline, CLI, demo site and a Satkhira smoke test are checked; radar-based water detection and ground-truthing against flood records are open, not yet done.</figcaption>
+              <figcaption class="sr-only">Checklist: pipeline, CLI, demo site and a Satkhira smoke test are checked; validating the radar water threshold and ground-truthing against flood records are open, not yet done.</figcaption>
             </figure>
 
             <!-- SCENE 8 — ASK -->
@@ -566,10 +564,10 @@
             <p class="caption-line" data-start="35" data-end="40.5">It runs as three commands on Google Earth Engine: composite, analyze, report.</p>
             <p class="caption-line" data-start="40.5" data-end="45">Smoke-tested end to end on a ~310 ha test area cut from Satkhira district — not a specific farm.</p>
             <p class="caption-line" data-start="45" data-end="51.5">The report: area, perimeter, water surface, a year of NDVI and radar, and an exploratory flood flag.</p>
-            <p class="caption-line" data-start="51.5" data-end="58">Today, water and flood days come from clear optical passes only — radar is charted, not yet used to detect water. Not a payout call.</p>
+            <p class="caption-line" data-start="51.5" data-end="58">Water is found two ways: MNDWI on clear days, radar through cloud. The radar threshold isn't validated yet. Not a payout call.</p>
             <p class="caption-line" data-start="58" data-end="70">Insurers, MFIs, and agro-input firms already run this B2B pattern here — we license the pipeline to them, not farmers.</p>
             <p class="caption-line" data-start="70" data-end="76">What's done: a working pipeline, a live demo, and an end-to-end smoke test.</p>
-            <p class="caption-line" data-start="76" data-end="82">What's not: radar-based water detection, or ground-truthing against flood records. This is a pre-pilot demo.</p>
+            <p class="caption-line" data-start="76" data-end="82">What's not: checking the radar water threshold and flood flags against real flood records. This is a pre-pilot demo.</p>
             <p class="caption-line" data-start="82" data-end="90">We're looking for test cases and a retrospective pilot partner — khetmapper.tech.</p>
           </div>
         </div>
