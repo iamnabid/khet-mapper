@@ -82,10 +82,54 @@ For each event and each Sentinel-1 orbit direction:
 - Not compared with any mapped flood extent — only with reports that a flood
   happened somewhere in the box.
 
+## Second method: seasonal anomaly
+
+`python scripts/validate_anomaly.py` (results in
+[`anomaly_results.json`](anomaly_results.json)). Rule fixed before running:
+
+- **Climatology:** for each pixel, how often it was water (VV < −14 dB) in
+  same-orbit passes from the same calendar weeks of the previous 5 years.
+  The event window is padded to ≥ 24 days so each year has ≥ 2 passes.
+- **Anomalous water:** water now where the pixel was water in < 20% of those
+  past passes — permanent ghers and normal monsoon wetting drop out.
+- **Detected:** peak anomaly ≥ max(2%, mean + 3 SD of the past years' own
+  anomaly fractions, each scored leave-one-year-out).
+- **Control:** the same rule one year earlier, against that year's own
+  previous 5 years.
+
+| Event | Anomaly peak (desc / asc) | Needed | Detected | Control year peak / detected |
+|---|---|---|---|---|
+| Satkhira Sadar/Tala, Sep 2024 | 8.3% / 6.9% | 6.0 / 5.4 | **yes / yes** | 0.8% / 1.4% — no / no |
+| Khulna City, Sep 2024 | 1.8% / 1.5% | 2.9 / 3.3 | no / no | no / no |
+| Remal, Satkhira, May 2024 | 5.5% / 4.0% | 5.1 / 5.5 | **yes** / no | 4.1% / 2.9% — no / no |
+| Remal, Khulna, May 2024 | 3.5% / 2.5% | 3.7 / 6.1 | no / no | no / no |
+| Bichhat breach, Mar 2025 | 1.5% / 0.8% | 3.6 / 4.7 | no / no | no / no |
+| Dargahpur, May 2025 | 1.1% / 1.2% | 4.8 / 4.5 | no / no | 4.3% / 2.4% — **yes** ¹ / no |
+| Satkhira town, Jul 2025 | 5.7% / 8.1% | 9.9 / 7.5 | no / **yes** | – / 1.5% — no data / no |
+| Ashashuni, Jul 2025 | 2.1% / 4.4% | 6.3 / 4.1 | no / **yes** | – / 4.9% — no data / **yes** |
+| Satkhira town, Jul 2026 | 2.2% / 1.9% | 9.1 / 10.4 | no / no | no / no |
+| Khulna City, Jul 2026 | 2.0% / 2.6% | 4.2 / 5.7 | no / no | no / no |
+
+¹ Control window (May–Jun 2024) contains Cyclone Remal.
+
+**Reading:** also 4 of 10 events detected in at least one orbit, but a better
+detector than the first method. The largest flood (Satkhira Sep 2024) is
+caught in both orbits with a quiet control year; none of the hits rests on a
+single-pass baseline; and the control fires in 2 of 18 orbit runs with data,
+one of which is the real Remal flood. Ashashuni's hit is not specific (its
+control year fires too). Small breaches inside large boxes, 1–3-day urban
+floods in Khulna, and Satkhira town 2026 are missed. The last shows a known
+weakness: the July 2025 flood sits inside the 2026 climatology, inflating
+the noise estimate to 9–10%.
+
 ## What to change next
 
-Replace the absolute flag with an anomaly: new water relative to the same
-season in earlier years (several years of same-orbit passes from the same
-weeks), so normal monsoon wetting and permanent ponds both drop out. Use
-event-sized boxes where a breach location is known, and report urban
-waterlogging as out of scope for radar alone.
+- **In the product:** replace the absolute ≥ 40% / 14-day flag with the
+  seasonal anomaly, reported as a measured share of the parcel plus how it
+  compares with past years — not a yes/no payout-style trigger. On these
+  tests it detects the large rural floods and rarely fires without one; it
+  does not detect small breaches or urban waterlogging.
+- **Validation:** event-sized boxes where breach locations are known, and a
+  mapped flood extent (e.g. a published Sentinel-1 flood map) for a
+  pixel-level check instead of "a flood happened somewhere in this box".
+- **Method:** exclude known past flood dates from the climatology.
