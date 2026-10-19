@@ -37,7 +37,11 @@ def detection(pre_new, during_new, min_floor=MIN_NEW_WATER, factor=NOISE_FACTOR)
 
 def _shift(d, days=0, years=0):
     x = date.fromisoformat(d)
-    return (x.replace(year=x.year + years) + timedelta(days=days)).isoformat()
+    try:
+        x = x.replace(year=x.year + years)
+    except ValueError:  # 29 Feb in a non-leap year
+        x = x.replace(year=x.year + years, day=28)
+    return (x + timedelta(days=days)).isoformat()
 
 
 def with_baseline(event):
