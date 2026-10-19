@@ -18,6 +18,7 @@ from core.s2_compositor import get_s2_composite, mostly_clear
 from core.series import series_getinfo, water_fraction_series
 
 MIN_BASELINE_DAYS = 36  # ~3 passes per orbit at a 12-day revisit
+MIN_PASS_COVERAGE = 0.9  # skip radar passes that see less than this share of the AOI
 MIN_NEW_WATER = 0.02  # never call less than 2% of the AOI newly wet a detection
 NOISE_FACTOR = 3
 
@@ -75,20 +76,23 @@ def sar_passes(event, aoi, orbit, scale):
     def per_pass(img):
         water = indices.sar_water(img)
         new = water.And(baseline_water.Not()).rename("new")
+        covered = img.select("VV").mask().gt(0).unmask(0).rename("covered")
         r = ee.Image.cat(water, new).reduceRegion(
             ee.Reducer.mean(), aoi, scale, maxPixels=1e10, tileScale=4
         )
+        c = covered.reduceRegion(ee.Reducer.mean(), aoi, scale, maxPixels=1e10, tileScale=4)
         return ee.Feature(None, {
             "date": img.date().format("YYYY-MM-dd"),
             "water": r.get("is_water"),
             "new": r.get("new"),
+            "coverage": c.get("covered"),
         })
 
     feats = ee.FeatureCollection(s1.map(per_pass)).getInfo()["features"]
     rows = []
     for f in feats:
         p = f["properties"]
-        if p.get("water") is None:
+        if p.get("water") is None or (p.get("coverage") or 0) < MIN_PASS_COVERAGE:
             continue
         p["phase"] = _phase(p["date"], event)
         rows.append(p)

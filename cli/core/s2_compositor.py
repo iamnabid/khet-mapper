@@ -1,6 +1,7 @@
 import ee
 
 import config
+from core.mosaic import daily_mosaic
 
 
 def _mask_clouds(image, cloud_prob_max):
@@ -36,7 +37,7 @@ def get_s2_composite(aoi, start, end, cloud_prob_max=config.CLOUD_PROB_MAX):
         secondary=cloud_prob,
         condition=ee.Filter.equals(leftField="system:index", rightField="system:index"),
     )
-    masked = ee.ImageCollection(joined).map(lambda img: _mask_clouds(img, cloud_prob_max))
+    masked = daily_mosaic(ee.ImageCollection(joined).map(lambda img: _mask_clouds(img, cloud_prob_max)))
     return masked, masked.median().clip(aoi)
 
 
