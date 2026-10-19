@@ -1,0 +1,710 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Khet Mapper — watch the 90-second pitch</title>
+<meta name="description" content="A silent, caption-driven whiteboard walkthrough of the Khet Mapper pitch, built from the incubator deck — honest about what's tested and what isn't yet.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Big+Shoulders+Display:wght@600;700;800&family=Kalam:wght@400;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+<style>
+  body { margin: 0; font-family: 'Archivo', sans-serif; background: #F1E9D2; color: #14241F; }
+  h1, h2, h3 { font-family: 'Big Shoulders Display', sans-serif; margin: 0; letter-spacing: 0.01em; }
+  a { color: #1F5258; text-decoration: none; }
+  a:hover { color: #14241F; }
+  .btn { transition: background 0.15s ease, color 0.15s ease; }
+
+  /* --- pitch player --- */
+  :root{
+    --ink:#1D2430;
+    --ink-soft:#4A5568;
+    --board:#FBFAF5;
+    --board-line:rgba(29,36,48,0.10);
+    --accent-orange:#D98B3A;
+    --accent-teal:#2F6F6D;
+    --chrome-bg:#12202A;
+    --chrome-bg-2:#1C323B;
+    --chrome-text:#F3F1EA;
+    --chrome-text-soft:#9FB6B4;
+    --card-bg:#FFFFFF;
+    --card-border:#E3E0D6;
+  }
+  .wrap{font-family:'IBM Plex Sans',Arial,sans-serif;color:var(--ink);display:flex;flex-direction:column;gap:28px}
+
+  .player{
+    background:linear-gradient(165deg,var(--chrome-bg) 0%,var(--chrome-bg-2) 100%);
+    border-radius:20px;
+    padding:18px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    box-shadow:0 20px 48px rgba(18,32,42,0.35);
+  }
+  .player-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    padding:0 6px;
+    color:var(--chrome-text);
+  }
+  .player-head .mark{font-family:'Kalam',cursive;font-weight:700;font-size:18px}
+  .player-head .sub{font-size:12px;color:var(--chrome-text-soft);letter-spacing:.5px}
+  .time{font-variant-numeric:tabular-nums;font-size:13px;color:var(--chrome-text-soft)}
+
+  .stage{
+    position:relative;
+    width:100%;
+    aspect-ratio:16/9;
+    background:var(--board);
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:inset 0 0 0 1px var(--board-line);
+  }
+  .stage-tag{
+    position:absolute;top:14px;left:18px;
+    font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;
+    color:var(--ink-soft);opacity:.55;z-index:5;
+  }
+  .scenes{position:absolute;inset:0}
+  .scene{
+    position:absolute;inset:0;
+    display:flex;align-items:center;justify-content:center;
+    opacity:0;
+    transition:opacity .08s linear;
+  }
+  .scene svg{width:92%;height:92%}
+  .draw,.fadein{transition:opacity .06s linear}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+  .caption-overlay{
+    position:absolute;left:0;right:0;bottom:0;
+    min-height:19%;
+    display:flex;align-items:center;justify-content:center;
+    padding:10px 24px 16px;
+    background:linear-gradient(to top, rgba(251,250,245,0.96) 55%, rgba(251,250,245,0));
+    z-index:4;
+  }
+  .caption-line{
+    position:absolute;left:24px;right:24px;bottom:14px;
+    text-align:center;
+    font-size:clamp(14px,2.3vw,21px);
+    font-weight:500;
+    line-height:1.4;
+    color:var(--ink);
+    opacity:0;
+    transition:opacity .15s ease;
+  }
+  .caption-line.active{opacity:1}
+
+  .cursor-blink{animation:blink 1s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+
+  .controls{display:flex;align-items:center;gap:10px;padding:0 4px}
+  .icon-btn{
+    width:40px;height:40px;border-radius:999px;border:none;
+    background:rgba(243,241,234,0.12);color:var(--chrome-text);
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;flex:none;
+  }
+  .icon-btn:hover{background:rgba(243,241,234,0.2)}
+  .icon-btn:focus-visible{outline:2px solid var(--accent-orange);outline-offset:2px}
+  .icon-btn svg{width:18px;height:18px}
+  #pauseIcon{display:none}
+
+  input[type=range]{
+    flex:1;accent-color:var(--accent-orange);height:4px;cursor:pointer;
+  }
+  .readout{font-variant-numeric:tabular-nums;font-size:13px;color:var(--chrome-text-soft);min-width:94px;text-align:right}
+
+  .chapters{display:flex;flex-wrap:wrap;gap:8px;padding:0 4px}
+  .chip{
+    border:1px solid rgba(243,241,234,0.22);background:rgba(243,241,234,0.06);
+    color:var(--chrome-text-soft);font-size:12px;font-weight:500;
+    padding:7px 13px;border-radius:999px;cursor:pointer;
+  }
+  .chip.active{background:var(--accent-orange);border-color:var(--accent-orange);color:#1D2430;font-weight:600}
+  .chip:focus-visible{outline:2px solid var(--accent-orange);outline-offset:2px}
+
+  .note{
+    background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;
+    padding:18px 22px;font-size:14.5px;line-height:1.6;color:var(--ink-soft);
+  }
+  .note b{color:var(--ink)}
+
+  .transcript h2{font-family:'Kalam',cursive;font-size:24px;margin:0 0 14px;color:var(--ink)}
+  .t-list{display:flex;flex-direction:column;gap:10px}
+  .t-item{
+    background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;
+    padding:16px 20px;display:flex;flex-direction:column;gap:4px;
+  }
+  .t-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+  .t-time{font-variant-numeric:tabular-nums;font-size:12.5px;font-weight:600;color:var(--accent-teal);letter-spacing:.3px}
+  .t-title{font-size:15.5px;font-weight:600;color:var(--ink)}
+  .t-sketch{font-size:13.5px;color:var(--ink-soft);font-style:italic}
+  .t-caption{font-size:14.5px;color:var(--ink)}
+
+  @media (max-width:600px){
+    .controls{flex-wrap:wrap}
+    .readout{min-width:unset}
+  }
+</style>
+</head>
+<body>
+
+<div style="width: 100%; box-sizing: border-box;">
+
+  <!-- Nav -->
+  <div style="max-width: 900px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 16px; padding: 28px 24px 0;">
+    <a href="index.html" style="display: flex; align-items: baseline; gap: 12px;">
+      <span style="font-family: 'Big Shoulders Display', sans-serif; font-weight: 800; font-size: 22px; color: #14241F;">Khet Mapper</span>
+      <span style="font-size: 13px; color: #5B5440;">— back to the site</span>
+    </a>
+  </div>
+
+  <!-- Hero -->
+  <div style="max-width: 900px; margin: 0 auto; padding: 40px 24px 8px;">
+    <h1 style="font-size: 40px; line-height: 1.08; font-weight: 700; color: #14241F;">
+      Watch the 90-second pitch
+    </h1>
+    <p style="font-size: 17px; line-height: 1.6; color: #2E3A2F; max-width: 66ch; margin-top: 18px;">
+      A silent, caption-driven whiteboard walkthrough — press play below. It runs on the same rule as
+      <a href="research.html">the methodology page</a>: nothing here claims more than what's actually built and tested.
+    </p>
+  </div>
+
+  <!-- Player -->
+  <div style="max-width: 900px; margin: 0 auto; padding: 16px 24px 64px;">
+    <div class="wrap">
+
+      <div class="player" id="player">
+        <div class="player-head">
+          <span class="mark">Khet Mapper</span>
+          <span class="sub">90-SECOND WALKTHROUGH</span>
+          <span class="time" id="timeReadout">00:00 / 01:30</span>
+        </div>
+
+        <div class="stage" id="stage">
+          <span class="stage-tag">Khet Mapper · 90-second pitch</span>
+          <div class="scenes">
+
+            <!-- SCENE 1 — HOOK -->
+            <figure class="scene" data-start="0" data-end="10">
+              <svg viewBox="0 0 1200 675" role="img" aria-label="A coastline with rice parcels; a sun is drawn, then a cloud rolls in to block it, and rain falls, while the stat near-zero percent appears.">
+                <g fill="none" stroke="var(--ink)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+                  <path class="draw" data-draw-start="0.2" data-draw-dur="0.7" pathLength="1" stroke-dasharray="1"
+                    d="M950,150 m-50,0 a50,50 0 1,0 100,0 a50,50 0 1,0 -100,0"/>
+                </g>
+                <g class="fadein" data-fade-start="0.9" data-fade-dur="0.4" stroke="var(--ink)" stroke-width="6" stroke-linecap="round">
+                  <line x1="950" y1="70" x2="950" y2="40"/>
+                  <line x1="1020" y1="100" x2="1045" y2="78"/>
+                  <line x1="1040" y1="170" x2="1070" y2="175"/>
+                  <line x1="880" y1="100" x2="855" y2="78"/>
+                </g>
+                <g fill="var(--board)" stroke="var(--ink)" stroke-width="7" stroke-linejoin="round">
+                  <path class="draw" data-draw-start="2.2" data-draw-dur="1.0" pathLength="1" stroke-dasharray="1"
+                    d="M840,175 a46,46 0 0,1 36,-70 a58,58 0 0,1 112,-6 a44,44 0 0,1 22,84 a40,40 0 0,1 -14,-166 Z
+                       M840,175 a50,46 0 0,0 230,0 Z"/>
+                </g>
+                <g class="draw" data-draw-start="3.2" data-draw-dur="0.9" pathLength="1" stroke-dasharray="1"
+                   stroke="var(--accent-teal)" stroke-width="6" stroke-linecap="round" fill="none">
+                  <line x1="860" y1="210" x2="840" y2="250"/>
+                  <line x1="905" y1="215" x2="885" y2="258"/>
+                  <line x1="950" y1="210" x2="930" y2="250"/>
+                  <line x1="995" y1="215" x2="975" y2="258"/>
+                  <line x1="1040" y1="210" x2="1020" y2="250"/>
+                </g>
+                <g fill="none" stroke="var(--ink)" stroke-width="7" stroke-linecap="round">
+                  <path class="draw" data-draw-start="0.3" data-draw-dur="1.3" pathLength="1" stroke-dasharray="1"
+                    d="M110,420 Q290,388 470,420 T830,420 T1090,420"/>
+                </g>
+                <g class="fadein" data-fade-start="1.7" data-fade-dur="0.45" fill="none" stroke="var(--ink)" stroke-width="5">
+                  <rect x="150" y="445" width="150" height="72" rx="10"/>
+                  <rect x="340" y="455" width="150" height="72" rx="10"/>
+                  <rect x="640" y="455" width="150" height="72" rx="10"/>
+                  <rect x="840" y="445" width="150" height="72" rx="10"/>
+                </g>
+                <text class="fadein" data-fade-start="1.9" data-fade-dur="0.45" x="600" y="612" text-anchor="middle"
+                  font-family="Kalam, cursive" font-size="26" font-style="italic" fill="var(--ink-soft)">coastal Bangladesh — rice &amp; aquaculture parcels</text>
+                <text class="fadein" data-fade-start="4.0" data-fade-dur="0.6" x="600" y="320" text-anchor="middle"
+                  font-family="IBM Plex Sans" font-weight="700" font-size="140" fill="var(--accent-orange)">~0%</text>
+                <text class="fadein" data-fade-start="4.5" data-fade-dur="0.5" x="600" y="365" text-anchor="middle"
+                  font-family="IBM Plex Sans" font-size="27" fill="var(--ink-soft)">cloud-free Sentinel-2 passes, Jun – Sep</text>
+              </svg>
+              <figcaption class="sr-only">Sun blocked by cloud over a rice-growing coastline; the stat reads near zero percent cloud-free satellite passes.</figcaption>
+            </figure>
+
+            <!-- SCENE 2 — STAKES -->
+            <figure class="scene" data-start="10" data-end="20">
+              <svg viewBox="0 0 1200 675" role="img" aria-label="A calendar highlights the monsoon window; a bank, a shield, and a stack of coins each sit under a question mark.">
+                <g fill="none" stroke="var(--ink)" stroke-width="7" stroke-linejoin="round">
+                  <rect class="draw" data-draw-start="10.3" data-draw-dur="0.9" pathLength="1" stroke-dasharray="1"
+                    x="430" y="90" width="340" height="250" rx="18"/>
+                  <line class="draw" data-draw-start="11.2" data-draw-dur="0.3" pathLength="1" stroke-dasharray="1"
+                    x1="430" y1="160" x2="770" y2="160" stroke-width="6"/>
+                </g>
+                <g class="fadein" data-fade-start="11.5" data-fade-dur="0.5" fill="none" stroke="var(--ink)" stroke-width="4">
+                  <rect x="458" y="190" width="34" height="34" rx="6"/>
+                  <rect x="516" y="190" width="34" height="34" rx="6"/>
+                  <rect x="574" y="190" width="34" height="34" rx="6"/>
+                  <rect x="632" y="190" width="34" height="34" rx="6"/>
+                  <rect x="458" y="250" width="34" height="34" rx="6"/>
+                  <rect x="516" y="250" width="34" height="34" rx="6"/>
+                  <rect x="574" y="250" width="34" height="34" rx="6"/>
+                </g>
+                <rect class="fadein" data-fade-start="12.0" data-fade-dur="0.4"
+                  x="632" y="250" width="34" height="34" rx="6" fill="var(--accent-orange)"/>
+                <text class="fadein" data-fade-start="12.0" data-fade-dur="0.4" x="649" y="350" text-anchor="middle"
+                  font-family="Kalam, cursive" font-size="22" fill="var(--ink-soft)">peak season</text>
+
+                <g fill="none" stroke="var(--ink)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline class="draw" data-draw-start="13.0" data-draw-dur="0.9" pathLength="1" stroke-dasharray="1"
+                    points="230,500 230,410 350,410 350,500"/>
+                  <line class="draw" data-draw-start="13.0" data-draw-dur="0.4" pathLength="1" stroke-dasharray="1" x1="200" y1="500" x2="380" y2="500" stroke-width="8"/>
+                  <line class="draw" data-draw-start="13.3" data-draw-dur="0.3" pathLength="1" stroke-dasharray="1" x1="255" y1="430" x2="255" y2="490"/>
+                  <line class="draw" data-draw-start="13.3" data-draw-dur="0.3" pathLength="1" stroke-dasharray="1" x1="290" y1="430" x2="290" y2="490"/>
+                  <line class="draw" data-draw-start="13.3" data-draw-dur="0.3" pathLength="1" stroke-dasharray="1" x1="325" y1="430" x2="325" y2="490"/>
+                </g>
+                <text x="290" y="545" text-anchor="middle" class="fadein" data-fade-start="13.8" data-fade-dur="0.4"
+                  font-family="IBM Plex Sans" font-size="20" fill="var(--ink-soft)">bank</text>
+
+                <path class="draw" data-draw-start="13.6" data-draw-dur="0.9" pathLength="1" stroke-dasharray="1"
+                  d="M600,405 q60,-20 110,0 v70 q0,65 -55,95 q-55,-30 -55,-95 Z"
+                  fill="none" stroke="var(--ink)" stroke-width="7" stroke-linejoin="round"/>
+                <text x="655" y="545" text-anchor="middle" class="fadein" data-fade-start="14.4" data-fade-dur="0.4"
+                  font-family="IBM Plex Sans" font-size="20" fill="var(--ink-soft)">insurer</text>
+
+                <g fill="none" stroke="var(--ink)" stroke-width="6">
+                  <ellipse class="draw" data-draw-start="14.2" data-draw-dur="0.5" pathLength="1" stroke-dasharray="1" cx="960" cy="470" rx="55" ry="18"/>
+                  <ellipse class="draw" data-draw-start="14.5" data-draw-dur="0.5" pathLength="1" stroke-dasharray="1" cx="960" cy="445" rx="55" ry="18"/>
+                  <ellipse class="draw" data-draw-start="14.8" data-draw-dur="0.5" pathLength="1" stroke-dasharray="1" cx="960" cy="420" rx="55" ry="18"/>
+                </g>
+                <text x="960" y="545" text-anchor="middle" class="fadein" data-fade-start="15.3" data-fade-dur="0.4"
+                  font-family="IBM Plex Sans" font-size="20" fill="var(--ink-soft)">MFI loans</text>
+
+                <g font-family="Kalam, cursive" font-weight="700" font-size="54" fill="var(--accent-orange)" text-anchor="middle">
+                  <text class="fadein" data-fade-start="15.2" data-fade-dur="0.4" x="290" y="395">?</text>
+                  <text class="fadein" data-fade-start="15.4" data-fade-dur="0.4" x="655" y="390">?</text>
+                  <text class="fadein" data-fade-start="15.6" data-fade-dur="0.4" x="960" y="400">?</text>
+                </g>
+              </svg>
+              <figcaption class="sr-only">A calendar highlights the monsoon window, next to a bank, an insurer, and MFI loans, each marked with a question mark.</figcaption>
+            </figure>
+
+            <!-- SCENE 3 — FUSION -->
+            <figure class="scene" data-start="20" data-end="35">
+              <svg viewBox="0 0 1200 675" role="img" aria-label="An optical satellite node and a radar satellite node send arrows into a center box labeled fused composite.">
+                <defs>
+                  <marker id="arrow3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                    <path d="M0,0 L10,5 L0,10 Z" fill="var(--ink)"/>
+                  </marker>
+                </defs>
+                <circle class="draw" data-draw-start="20.3" data-draw-dur="0.8" pathLength="1" stroke-dasharray="1"
+                  cx="300" cy="230" r="95" fill="none" stroke="var(--ink)" stroke-width="7"/>
+                <g class="fadein" data-fade-start="21.1" data-fade-dur="0.5" stroke="var(--accent-orange)" stroke-width="5" stroke-linecap="round">
+                  <line x1="300" y1="155" x2="300" y2="130"/>
+                  <line x1="360" y1="175" x2="382" y2="155"/>
+                  <line x1="240" y1="175" x2="218" y2="155"/>
+                </g>
+                <text class="fadein" data-fade-start="21.4" data-fade-dur="0.4" x="300" y="240" text-anchor="middle"
+                  font-family="IBM Plex Sans" font-weight="600" font-size="24" fill="var(--ink)">optical</text>
+                <text class="fadein" data-fade-start="22.6" data-fade-dur="0.45" x="300" y="360" text-anchor="middle"
+                  font-family="IBM Plex Sans" font-size="24" fill="var(--ink-soft)">Sentinel-2 — clear days</text>
+
+                <circle class="draw" data-draw-start="20.4" data-draw-dur="0.8" pathLength="1" stroke-dasharray="1"
+                  cx="900" cy="230" r="95" fill="none" stroke="var(--ink)" stroke-width="7"/>
+                <g fill="none" stroke="var(--accent-teal)" stroke-width="5">
+                  <path class="draw" data-draw-start="21.3" data-draw-dur="0.5" pathLength="1" stroke-dasharray="1" d="M855,230 a45,45 0 0,1 90,0"/>
+                  <path class="draw" data-draw-start="21.6" data-draw-dur="0.5" pathLength="1" stroke-dasharray="1" d="M870,230 a30,30 0 0,1 60,0"/>
+                  <path class="draw" data-draw-start="21.9" data-draw-dur="0.5" pathLength="1" stroke-dasharray="1" d="M885,230 a15,15 0 0,1 30,0"/>
+                </g>
+                <text class="fadein" data-fade-start="22.2" data-fade-dur="0.4" x="900" y="275" text-anchor="middle"
+                  font-family="IBM Plex Sans" font-weight="600" font-size="24" fill="var(--ink)">radar</text>
+                <text class="fadein" data-fade-start="22.8" data-fade-dur="0.45" x="900" y="360" text-anchor="middle"
+                  font-family="IBM Plex Sans" font-size="24" fill="var(--ink-soft)">Sentinel-1 — sees through cloud</text>
+
+                <path class="draw" data-draw-start="24.0" data-draw-dur="0.8" pathLength="1" stroke-dasharray="1"
+                  d="M340,300 Q470,420 540,478" fill="none" stroke="var(--ink)" stroke-width="6" marker-end="url(#arrow3)"/>
+                <path class="draw" data-draw-start="24.3" data-draw-dur="0.8" pathLength="1" stroke-dasharray="1"
+                  d="M860,300 Q730,420 660,478" fill="none" stroke="var(--ink)" stroke-width="6" marker-end="url(#arrow3)"/>
+
+                <rect class="draw" data-draw-start="25.4" data-draw-dur="0.8" pathLength="1" stroke-dasharray="1"
+                  x="505" y="488" width="190" height="120" rx="14" fill="none" stroke="var(--ink)" stroke-width="7"/>
+                <g class="fadein" data-fade-start="26.3" data-fade-dur="0.4" stroke="var(--accent-orange)" stroke-width="4">
+                  <line x1="525" y1="608" x2="565" y2="508"/>
+                  <line x1="565" y1="608" x2="605" y2="508"/>
+                  <line x1="605" y1="608" x2="645" y2="508"/>
+                  <line x1="645" y1="608" x2="675" y2="518"/>
+                </g>
+                <text class="fadein" data-fade-start="26.6" data-fade-dur="0.45" x="600" y="645" text-anchor="middle"
+                  font-family="IBM Plex Sans" font-weight="600" font-size="22" fill="var(--ink)">fused, cloud-proof composite</text>
+              </svg>
+              <figcaption class="sr-only">Optical and radar satellite nodes each send an arrow into a center box labeled fused, cloud-proof composite.</figcaption>
+            </figure>
+
+            <!-- SCENE 4 — PIPELINE -->
+            <figure class="scene" data-start="35" data-end="45">
+              <svg viewBox="0 0 1200 675" role="img" aria-label="A terminal window with a checklist of commands, a gear, a checkmark, and a pin marking Satkhira, Bangladesh.">
+                <rect class="draw" data-draw-start="35.3" data-draw-dur="1.0" pathLength="1" stroke-dasharray="1"
+                  x="230" y="110" width="700" height="360" rx="16" fill="none" stroke="var(--ink)" stroke-width="7"/>
+                <line class="draw" data-draw-start="36.3" data-draw-dur="0.3" pathLength="1" stroke-dasharray="1"
+                  x1="230" y1="180" x2="930" y2="180" stroke="var(--ink)" stroke-width="5"/>
+                <g class="fadein" data-fade-start="36.4" data-fade-dur="0.4" fill="var(--ink-soft)">
+                  <circle cx="265" cy="145" r="9"/><circle cx="300" cy="145" r="9"/><circle cx="335" cy="145" r="9"/>
+                </g>
+                <g fill="none" stroke="var(--accent-teal)" stroke-width="6" stroke-linecap="round">
+                  <line class="draw" data-draw-start="36.6" data-draw-dur="0.4" pathLength="1" stroke-dasharray="1" x1="270" y1="235" x2="560" y2="235"/>
+                  <line class="draw" data-draw-start="36.9" data-draw-dur="0.4" pathLength="1" stroke-dasharray="1" x1="270" y1="285" x2="480" y2="285"/>
+                  <line class="draw" data-draw-start="37.2" data-draw-dur="0.4" pathLength="1" stroke-dasharray="1" x1="270" y1="335" x2="620" y2="335"/>
+                </g>
+                <rect x="630" y="320" width="18" height="26" fill="var(--ink)" class="cursor-blink"/>
+                <text class="fadein" data-fade-start="37.6" data-fade-dur="0.4" x="270" y="400" font-family="IBM Plex Sans" font-size="19" fill="var(--ink-soft)">composite · analyze · report</text>
+
+                <circle class="draw" data-draw-start="37.6" data-draw-dur="0.7" pathLength="1" stroke-dasharray="1"
+                  cx="1010" cy="210" r="55" fill="none" stroke="var(--ink)" stroke-width="6"/>
+                <g class="fadein" data-fade-start="38.2" data-fade-dur="0.4" stroke="var(--ink)" stroke-width="6" stroke-linecap="round">
+                  <line x1="1010" y1="140" x2="1010" y2="160"/>
+                  <line x1="1010" y1="260" x2="1010" y2="280"/>
+                  <line x1="940" y1="210" x2="960" y2="210"/>
+                  <line x1="1060" y1="210" x2="1080" y2="210"/>
+                  <line x1="965" y1="165" x2="978" y2="178"/>
+                  <line x1="1055" y1="255" x2="1042" y2="242"/>
+                  <line x1="1055" y1="165" x2="1042" y2="178"/>
+                  <line x1="965" y1="255" x2="978" y2="242"/>
+                </g>
+
+                <circle class="draw" data-draw-start="38.5" data-draw-dur="0.6" pathLength="1" stroke-dasharray="1"
+                  cx="1010" cy="360" r="50" fill="none" stroke="var(--accent-teal)" stroke-width="6"/>
+                <polyline class="draw" data-draw-start="39.0" data-draw-dur="0.4" pathLength="1" stroke-dasharray="1"
+                  points="985,362 1002,382 1038,335" fill="none" stroke="var(--accent-teal)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+
+                <g fill="none" stroke="var(--ink)" stroke-width="7" stroke-linejoin="round">
+                  <path class="draw" data-draw-start="39.4" data-draw-dur="0.6" pathLength="1" stroke-dasharray="1"
+                    d="M580,520 a42,42 0 1,1 -1,0 Z M560,558 L580,610 L600,558 Z"/>
+                </g>
+                <circle cx="580" cy="518" r="12" fill="var(--accent-orange)" class="fadein" data-fade-start="40.0" data-fade-dur="0.3"/>
+                <text class="fadein" data-fade-start="40.1" data-fade-dur="0.4" x="580" y="640" text-anchor="middle"
+                  font-family="IBM Plex Sans" font-weight="600" font-size="22" fill="var(--ink)">Satkhira, Bangladesh — real test run</text>
+              </svg>
+              <figcaption class="sr-only">A terminal with the composite, analyze, and report commands; a gear and a checkmark; a pin on Satkhira, Bangladesh.</figcaption>
+            </figure>
+
+            <!-- SCENE 5 — PRODUCT -->
+            <figure class="scene" data-start="45" data-end="58">
+              <svg viewBox="0 0 1200 675" role="img" aria-label="Two overlapping pages: one with an area ruler, one with NDVI and radar trend lines, plus a caution mark reading not a payout call.">
+                <rect class="draw" data-draw-start="45.3" data-draw-dur="0.8" pathLength="1" stroke-dasharray="1"
+                  x="280" y="100" width="260" height="360" rx="10" fill="var(--board)" stroke="var(--ink)" stroke-width="6"/>
+                <rect class="draw" data-draw-start="45.9" data-draw-dur="0.8" pathLength="1" stroke-dasharray="1"
+                  x="430" y="150" width="330" height="390" rx="10" fill="var(--board)" stroke="var(--ink)" stroke-width="7"/>
+                <path class="fadein" data-fade-start="46.8" data-fade-dur="0.35" d="M700,150 L760,150 L760,210 Z" fill="none" stroke="var(--ink)" stroke-width="3"/>
+
+                <g class="draw" data-draw-start="47.3" data-draw-dur="0.6" pathLength="1" stroke-dasharray="1"
+                   stroke="var(--ink)" stroke-width="5" stroke-linecap="round">
+                  <line x1="320" y1="300" x2="500" y2="300"/>
+                  <line x1="340" y1="290" x2="340" y2="310"/>
+                  <line x1="380" y1="290" x2="380" y2="310"/>
+                  <line x1="420" y1="290" x2="420" y2="310"/>
+                  <line x1="460" y1="290" x2="460" y2="310"/>
+                </g>
+                <text class="fadein" data-fade-start="47.9" data-fade-dur="0.4" x="410" y="350" text-anchor="middle"
+                  font-family="IBM Plex Sans" font-size="19" fill="var(--ink-soft)">area · water surface</text>
+                <text class="fadein" data-fade-start="46.3" data-fade-dur="0.4" x="410" y="150" text-anchor="middle"
+                  font-family="IBM Plex Sans" font-weight="600" font-size="20" fill="var(--ink)">Page 1</text>
+
+                <polyline class="draw" data-draw-start="48.4" data-draw-dur="0.9" pathLength="1" stroke-dasharray="1"
+                  points="470,460 520,420 570,470 620,400 670,440 710,380"
+                  fill="none" stroke="var(--accent-teal)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline class="draw" data-draw-start="48.6" data-draw-dur="0.9" pathLength="1" stroke-dasharray="1"
+                  points="470,500 520,510 570,480 620,520 670,490 710,505"
+                  fill="none" stroke="var(--accent-orange)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                <text class="fadein" data-fade-start="49.6" data-fade-dur="0.4" x="595" y="195" text-anchor="middle"
+                  font-family="IBM Plex Sans" font-weight="600" font-size="20" fill="var(--ink)">Page 2</text>
+                <text class="fadein" data-fade-start="49.7" data-fade-dur="0.4" x="595" y="560" text-anchor="middle"
+                  font-family="IBM Plex Sans" font-size="19" fill="var(--ink-soft)">NDVI / radar — 12 month trend</text>
+
+                <circle class="draw" data-draw-start="50.3" data-draw-dur="0.5" pathLength="1" stroke-dasharray="1"
+                  cx="900" cy="470" r="42" fill="none" stroke="var(--accent-orange)" stroke-width="6"/>
+                <text class="fadein" data-fade-start="50.7" data-fade-dur="0.3" x="900" y="483" text-anchor="middle"
+                  font-family="Kalam, cursive" font-weight="700" font-size="42" fill="var(--accent-orange)">!</text>
+                <text class="fadein" data-fade-start="50.9" data-fade-dur="0.45" x="900" y="545" text-anchor="middle"
+                  font-family="IBM Plex Sans" font-size="19" fill="var(--ink-soft)">direct measurement —</text>
+                <text class="fadein" data-fade-start="51.1" data-fade-dur="0.45" x="900" y="568" text-anchor="middle"
+                  font-family="IBM Plex Sans" font-size="19" fill="var(--ink-soft)">not a payout call</text>
+              </svg>
+              <figcaption class="sr-only">Page one shows area and water surface; page two shows NDVI and radar trend lines; a caution mark reads direct measurement, not a payout call.</figcaption>
+            </figure>
+
+            <!-- SCENE 6 — MARKET -->
+            <figure class="scene" data-start="58" data-end="70">
+              <svg viewBox="0 0 1200 675" role="img" aria-label="A center node labeled Khet Mapper connects to four outer nodes: a distribution app, a microfinance bank, an insurer, and an agro-input company.">
+                <circle class="draw" data-draw-start="58.3" data-draw-dur="0.8" pathLength="1" stroke-dasharray="1"
+                  cx="600" cy="320" r="85" fill="none" stroke="var(--ink)" stroke-width="7"/>
+                <text class="fadein" data-fade-start="59.1" data-fade-dur="0.4" x="600" y="330" text-anchor="middle"
+                  font-family="IBM Plex Sans" font-weight="700" font-size="22" fill="var(--ink)">Khet</text>
+                <text class="fadein" data-fade-start="59.1" data-fade-dur="0.4" x="600" y="356" text-anchor="middle"
+                  font-family="IBM Plex Sans" font-weight="700" font-size="22" fill="var(--ink)">Mapper</text>
+
+                <g fill="none" stroke="var(--ink)" stroke-width="5">
+                  <line class="draw" data-draw-start="59.3" data-draw-dur="0.5" pathLength="1" stroke-dasharray="1" x1="545" y1="260" x2="330" y2="160"/>
+                  <line class="draw" data-draw-start="59.45" data-draw-dur="0.5" pathLength="1" stroke-dasharray="1" x1="655" y1="260" x2="870" y2="160"/>
+                  <line class="draw" data-draw-start="59.6" data-draw-dur="0.5" pathLength="1" stroke-dasharray="1" x1="545" y1="380" x2="330" y2="480"/>
+                  <line class="draw" data-draw-start="59.75" data-draw-dur="0.5" pathLength="1" stroke-dasharray="1" x1="655" y1="380" x2="870" y2="480"/>
+                </g>
+
+                <circle class="draw" data-draw-start="60.0" data-draw-dur="0.6" pathLength="1" stroke-dasharray="1" cx="300" cy="140" r="58" fill="none" stroke="var(--ink)" stroke-width="6"/>
+                <rect class="fadein" data-fade-start="60.6" data-fade-dur="0.35" x="280" y="112" width="40" height="56" rx="8" fill="none" stroke="var(--ink)" stroke-width="4"/>
+                <text class="fadein" data-fade-start="61.0" data-fade-dur="0.4" x="300" y="222" text-anchor="middle" font-family="IBM Plex Sans" font-size="18" fill="var(--ink-soft)">distribution app</text>
+
+                <circle class="draw" data-draw-start="60.2" data-draw-dur="0.6" pathLength="1" stroke-dasharray="1" cx="900" cy="140" r="58" fill="none" stroke="var(--ink)" stroke-width="6"/>
+                <g class="fadein" data-fade-start="60.8" data-fade-dur="0.35" fill="none" stroke="var(--ink)" stroke-width="4">
+                  <line x1="872" y1="160" x2="872" y2="120"/><line x1="890" y1="160" x2="890" y2="120"/>
+                  <line x1="910" y1="160" x2="910" y2="120"/><line x1="928" y1="160" x2="928" y2="120"/>
+                  <line x1="864" y1="160" x2="936" y2="160"/>
+                </g>
+                <text class="fadein" data-fade-start="61.2" data-fade-dur="0.4" x="900" y="222" text-anchor="middle" font-family="IBM Plex Sans" font-size="18" fill="var(--ink-soft)">MFI / bank</text>
+
+                <path class="draw" data-draw-start="60.4" data-draw-dur="0.6" pathLength="1" stroke-dasharray="1"
+                  d="M300,422 q46,-16 84,0 v52 q0,50 -42,72 q-42,-22 -42,-72 Z" fill="none" stroke="var(--ink)" stroke-width="6"/>
+                <text class="fadein" data-fade-start="61.4" data-fade-dur="0.4" x="300" y="562" text-anchor="middle" font-family="IBM Plex Sans" font-size="18" fill="var(--ink-soft)">insurer</text>
+
+                <circle class="draw" data-draw-start="60.6" data-draw-dur="0.6" pathLength="1" stroke-dasharray="1" cx="900" cy="450" r="58" fill="none" stroke="var(--ink)" stroke-width="6"/>
+                <path class="fadein" data-fade-start="61.2" data-fade-dur="0.35" d="M900,480 Q900,420 940,410 Q930,450 900,480Z" fill="var(--accent-teal)" stroke="none"/>
+                <text class="fadein" data-fade-start="61.6" data-fade-dur="0.4" x="900" y="532" text-anchor="middle" font-family="IBM Plex Sans" font-size="18" fill="var(--ink-soft)">agro-input</text>
+              </svg>
+              <figcaption class="sr-only">A center Khet Mapper node connects to four outer nodes: a distribution app, an MFI or bank, an insurer, and an agro-input company.</figcaption>
+            </figure>
+
+            <!-- SCENE 7 — HONEST TAKE -->
+            <figure class="scene" data-start="70" data-end="82">
+              <svg viewBox="0 0 1200 675" role="img" aria-label="A checklist with four completed items — pipeline, CLI, demo site, test run — and one open item: ground-truthing, not yet done.">
+                <defs>
+                  <g id="tick7"><polyline points="-9,0 -2,9 11,-10" fill="none" stroke="var(--accent-teal)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></g>
+                </defs>
+                <rect class="draw" data-draw-start="70.3" data-draw-dur="0.9" pathLength="1" stroke-dasharray="1"
+                  x="280" y="80" width="640" height="420" rx="16" fill="none" stroke="var(--ink)" stroke-width="7"/>
+
+                <rect class="draw" data-draw-start="71.2" data-draw-dur="0.4" pathLength="1" stroke-dasharray="1" x="320" y="128" width="36" height="36" rx="7" fill="none" stroke="var(--ink)" stroke-width="4"/>
+                <use href="#tick7" x="338" y="146" class="fadein" data-fade-start="71.6" data-fade-dur="0.3"/>
+                <text class="fadein" data-fade-start="71.6" data-fade-dur="0.3" x="380" y="154" font-family="IBM Plex Sans" font-size="24" fill="var(--ink)">Pipeline locked &amp; smoke-tested</text>
+
+                <rect class="draw" data-draw-start="71.6" data-draw-dur="0.4" pathLength="1" stroke-dasharray="1" x="320" y="188" width="36" height="36" rx="7" fill="none" stroke="var(--ink)" stroke-width="4"/>
+                <use href="#tick7" x="338" y="206" class="fadein" data-fade-start="72.0" data-fade-dur="0.3"/>
+                <text class="fadein" data-fade-start="72.0" data-fade-dur="0.3" x="380" y="214" font-family="IBM Plex Sans" font-size="24" fill="var(--ink)">CLI — composite · analyze · report</text>
+
+                <rect class="draw" data-draw-start="72.0" data-draw-dur="0.4" pathLength="1" stroke-dasharray="1" x="320" y="248" width="36" height="36" rx="7" fill="none" stroke="var(--ink)" stroke-width="4"/>
+                <use href="#tick7" x="338" y="266" class="fadein" data-fade-start="72.4" data-fade-dur="0.3"/>
+                <text class="fadein" data-fade-start="72.4" data-fade-dur="0.3" x="380" y="274" font-family="IBM Plex Sans" font-size="24" fill="var(--ink)">Live demo at khetmapper.tech</text>
+
+                <rect class="draw" data-draw-start="72.4" data-draw-dur="0.4" pathLength="1" stroke-dasharray="1" x="320" y="308" width="36" height="36" rx="7" fill="none" stroke="var(--ink)" stroke-width="4"/>
+                <use href="#tick7" x="338" y="326" class="fadein" data-fade-start="72.8" data-fade-dur="0.3"/>
+                <text class="fadein" data-fade-start="72.8" data-fade-dur="0.3" x="380" y="334" font-family="IBM Plex Sans" font-size="24" fill="var(--ink)">Real test run — Satkhira AOI</text>
+
+                <rect class="draw" data-draw-start="73.6" data-draw-dur="0.5" pathLength="1" stroke-dasharray="1" x="320" y="378" width="36" height="36" rx="7" fill="none" stroke="var(--ink-soft)" stroke-width="4"/>
+                <path class="draw" data-draw-start="74.1" data-draw-dur="0.5" pathLength="1" stroke-dasharray="1"
+                  d="M890,392 l14,-14 l16,16 l-14,14 Z M870,420 l20,-8 l8,8 l-8,20 Z" fill="none" stroke="var(--accent-orange)" stroke-width="5" stroke-linejoin="round"/>
+                <text class="fadein" data-fade-start="74.6" data-fade-dur="0.4" x="380" y="402" font-family="IBM Plex Sans" font-style="italic" font-size="24" fill="var(--ink-soft)">Ground-truthing vs. flood records —</text>
+                <text class="fadein" data-fade-start="74.8" data-fade-dur="0.4" x="380" y="432" font-family="IBM Plex Sans" font-style="italic" font-size="24" fill="var(--ink-soft)">not yet done</text>
+              </svg>
+              <figcaption class="sr-only">Checklist: pipeline, CLI, demo site and a real test run are checked; ground-truthing against flood records is open, not yet done.</figcaption>
+            </figure>
+
+            <!-- SCENE 8 — ASK -->
+            <figure class="scene" data-start="82" data-end="90">
+              <svg viewBox="0 0 1200 675" role="img" aria-label="Two overlapping circles representing a partnership, an arrow pointing forward, and the text khetmapper dot tech with a call for test cases and a pilot partner.">
+                <defs>
+                  <marker id="arrow8" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+                    <path d="M0,0 L10,5 L0,10 Z" fill="var(--ink)"/>
+                  </marker>
+                </defs>
+                <circle class="draw" data-draw-start="82.3" data-draw-dur="0.6" pathLength="1" stroke-dasharray="1"
+                  cx="470" cy="260" r="70" fill="none" stroke="var(--accent-teal)" stroke-width="6"/>
+                <circle class="draw" data-draw-start="82.5" data-draw-dur="0.6" pathLength="1" stroke-dasharray="1"
+                  cx="560" cy="260" r="70" fill="none" stroke="var(--accent-orange)" stroke-width="6"/>
+                <path class="draw" data-draw-start="83.4" data-draw-dur="0.7" pathLength="1" stroke-dasharray="1"
+                  d="M700,260 L990,260" fill="none" stroke="var(--ink)" stroke-width="7" marker-end="url(#arrow8)"/>
+                <text class="fadein" data-fade-start="84.5" data-fade-dur="0.5" x="600" y="440" text-anchor="middle"
+                  font-family="IBM Plex Sans" font-weight="700" font-size="54" fill="var(--accent-orange)">khetmapper.tech</text>
+                <text class="fadein" data-fade-start="85.1" data-fade-dur="0.5" x="600" y="490" text-anchor="middle"
+                  font-family="IBM Plex Sans" font-size="26" fill="var(--ink-soft)">Looking for test cases &amp; a pilot partner</text>
+              </svg>
+              <figcaption class="sr-only">Two overlapping circles and an arrow point to khetmapper.tech; text reads looking for test cases and a pilot partner.</figcaption>
+            </figure>
+
+          </div>
+
+          <div class="caption-overlay">
+            <p class="caption-line" data-start="0" data-end="4.3">From June to September, cloud-free satellite images of coastal Bangladesh are basically zero.</p>
+            <p class="caption-line" data-start="4.3" data-end="10">That's a real measured gap in the Sentinel-2 record — not a guess.</p>
+            <p class="caption-line" data-start="10" data-end="15.5">That's exactly when flood, loan, and insurance decisions get made.</p>
+            <p class="caption-line" data-start="15.5" data-end="20">Banks, insurers, and MFIs are flying blind in their highest-stakes season.</p>
+            <p class="caption-line" data-start="20" data-end="27">Khet Mapper fuses two Sentinel satellites — optical for clear days, radar that sees straight through cloud and rain.</p>
+            <p class="caption-line" data-start="27" data-end="35">One cloud-proof composite, every revisit, all year.</p>
+            <p class="caption-line" data-start="35" data-end="40.5">Built on the real Copernicus pipeline — composite, analyze, report.</p>
+            <p class="caption-line" data-start="40.5" data-end="45">Tested end-to-end on a live parcel in Satkhira, Bangladesh.</p>
+            <p class="caption-line" data-start="45" data-end="51.5">The output: a 2-page audit — parcel area, water surface, NDVI and radar trend.</p>
+            <p class="caption-line" data-start="51.5" data-end="58">Direct satellite measurements — not a loss finding or a payout call.</p>
+            <p class="caption-line" data-start="58" data-end="70">Insurers, MFIs, and agro-input firms already run this B2B pattern here — we license the pipeline to them, not farmers.</p>
+            <p class="caption-line" data-start="70" data-end="76">What's done: a working pipeline, a live demo, and a real test run.</p>
+            <p class="caption-line" data-start="76" data-end="82">What's not: ground-truthing against flood records. This is a pre-pilot demo.</p>
+            <p class="caption-line" data-start="82" data-end="90">We're looking for test cases and a retrospective pilot partner — khetmapper.tech.</p>
+          </div>
+        </div>
+
+        <div class="controls">
+          <button class="icon-btn" id="playBtn" aria-label="Play">
+            <svg id="playIcon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            <svg id="pauseIcon" viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+          </button>
+          <button class="icon-btn" id="restartBtn" aria-label="Restart">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 5V1L7 6l5 5V7c3.3 0 6 2.7 6 6s-2.7 6-6 6-6-2.7-6-6H4c0 4.4 3.6 8 8 8s8-3.6 8-8-3.6-8-8-8z"/></svg>
+          </button>
+          <input type="range" id="scrub" min="0" max="90" step="0.1" value="0" aria-label="Scrub timeline">
+          <span class="readout" id="readout2">0:00 / 1:30</span>
+        </div>
+
+        <div class="chapters" id="chapters">
+          <button class="chip" data-jump="0">0:00 Hook</button>
+          <button class="chip" data-jump="10">0:10 Stakes</button>
+          <button class="chip" data-jump="20">0:20 Fusion</button>
+          <button class="chip" data-jump="35">0:35 Pipeline</button>
+          <button class="chip" data-jump="45">0:45 Product</button>
+          <button class="chip" data-jump="58">0:58 Market</button>
+          <button class="chip" data-jump="70">1:10 Honest take</button>
+          <button class="chip" data-jump="82">1:22 Ask</button>
+        </div>
+      </div>
+
+      <div class="note">
+        <p style="margin:0 0 10px"><b>How to use this.</b> It's silent by design — the captions carry the narration, so there's no voiceover to record or sync. To turn it into a video file: play it full-screen (or just at this size) and screen-record with OBS, QuickTime, or your OS's built-in recorder, then trim to the 90-second mark. Because everything is vector, it stays crisp at any recording resolution.</p>
+        <p style="margin:0">Every line and number here is pulled straight from the incubator deck — nothing here claims more than what's built and tested today.</p>
+      </div>
+
+      <div class="transcript">
+        <h2>Full transcript</h2>
+        <div class="t-list">
+          <div class="t-item"><div class="t-head"><span class="t-time">0:00–0:10</span><span class="t-title">Hook — the blind spot</span></div><p class="t-sketch">Sketch: sun drawn, then a cloud rolls in to cover it; rain falls over rice-parcel outlines; "~0%" lands center stage.</p><p class="t-caption">"From June to September, cloud-free satellite images of coastal Bangladesh are basically zero. That's a real measured gap in the Sentinel-2 record — not a guess."</p></div>
+          <div class="t-item"><div class="t-head"><span class="t-time">0:10–0:20</span><span class="t-title">Stakes</span></div><p class="t-sketch">Sketch: a calendar highlights the peak window; a bank, an insurer, and an MFI coin-stack each get a question mark.</p><p class="t-caption">"That's exactly when flood, loan, and insurance decisions get made. Banks, insurers, and MFIs are flying blind in their highest-stakes season."</p></div>
+          <div class="t-item"><div class="t-head"><span class="t-time">0:20–0:35</span><span class="t-title">Fusion</span></div><p class="t-sketch">Sketch: an optical node and a radar node each send an arrow into a center box that fills in as "fused composite."</p><p class="t-caption">"Khet Mapper fuses two Sentinel satellites — optical for clear days, radar that sees straight through cloud and rain. One cloud-proof composite, every revisit, all year."</p></div>
+          <div class="t-item"><div class="t-head"><span class="t-time">0:35–0:45</span><span class="t-title">Pipeline, built &amp; tested</span></div><p class="t-sketch">Sketch: a terminal window lists composite / analyze / report; a gear turns; a checkmark lands; a pin drops on Satkhira.</p><p class="t-caption">"Built on the real Copernicus pipeline — composite, analyze, report. Tested end-to-end on a live parcel in Satkhira, Bangladesh."</p></div>
+          <div class="t-item"><div class="t-head"><span class="t-time">0:45–0:58</span><span class="t-title">Product</span></div><p class="t-sketch">Sketch: two overlapping pages — one with a ruler for area, one with NDVI and radar trend lines — plus a caution mark.</p><p class="t-caption">"The output: a 2-page audit — parcel area, water surface, NDVI and radar trend. Direct satellite measurements — not a loss finding or a payout call."</p></div>
+          <div class="t-item"><div class="t-head"><span class="t-time">0:58–1:10</span><span class="t-title">Market</span></div><p class="t-sketch">Sketch: a center "Khet Mapper" node connects to a distribution app, an MFI/bank, an insurer, and an agro-input company.</p><p class="t-caption">"Insurers, MFIs, and agro-input firms already run this B2B pattern here — we license the pipeline to them, not farmers."</p></div>
+          <div class="t-item"><div class="t-head"><span class="t-time">1:10–1:22</span><span class="t-title">Honest take</span></div><p class="t-sketch">Sketch: a checklist — four items check off, one stays open with a pencil next to it.</p><p class="t-caption">"What's done: a working pipeline, a live demo, and a real test run. What's not: ground-truthing against flood records. This is a pre-pilot demo."</p></div>
+          <div class="t-item"><div class="t-head"><span class="t-time">1:22–1:30</span><span class="t-title">The ask</span></div><p class="t-sketch">Sketch: two overlapping circles and an arrow point toward the URL.</p><p class="t-caption">"We're looking for test cases and a retrospective pilot partner — khetmapper.tech."</p></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  var DURATION = 90;
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var t = reduced ? 10 : 0;
+  var playing = false;
+  var lastTs = 0;
+  var raf = null;
+
+  var scenes = Array.prototype.slice.call(document.querySelectorAll('.scene'));
+  var draws = Array.prototype.slice.call(document.querySelectorAll('.draw'));
+  var fades = Array.prototype.slice.call(document.querySelectorAll('.fadein'));
+  var captions = Array.prototype.slice.call(document.querySelectorAll('.caption-line'));
+  var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  var scrub = document.getElementById('scrub');
+  var readout = document.getElementById('timeReadout');
+  var readout2 = document.getElementById('readout2');
+  var playBtn = document.getElementById('playBtn');
+  var playIcon = document.getElementById('playIcon');
+  var pauseIcon = document.getElementById('pauseIcon');
+
+  function clamp(v,a,b){ return Math.max(a, Math.min(b, v)); }
+  function fmt(s){
+    s = Math.max(0, s);
+    var m = Math.floor(s/60), r = Math.floor(s%60);
+    return m + ':' + (r<10?'0':'') + r;
+  }
+
+  function render(){
+    scenes.forEach(function(s){
+      var start = +s.dataset.start, end = +s.dataset.end, fd = 0.45;
+      var op;
+      if (t < start - fd || t > end + fd) op = 0;
+      else if (t < start) op = clamp((t-(start-fd))/fd, 0, 1);
+      else if (t > end) op = clamp(1-(t-end)/fd, 0, 1);
+      else op = 1;
+      s.style.opacity = op;
+    });
+    draws.forEach(function(el){
+      var start = +el.dataset.drawStart, dur = +(el.dataset.drawDur || 0.8);
+      var p = clamp((t-start)/dur, 0, 1);
+      el.style.strokeDashoffset = (1-p);
+      el.style.opacity = p;
+    });
+    fades.forEach(function(el){
+      var start = +el.dataset.fadeStart, dur = +(el.dataset.fadeDur || 0.45);
+      el.style.opacity = clamp((t-start)/dur, 0, 1);
+    });
+    captions.forEach(function(c){
+      var start = +c.dataset.start, end = +c.dataset.end;
+      c.classList.toggle('active', t >= start && t < end);
+    });
+    chips.forEach(function(c){
+      var jump = +c.dataset.jump;
+      var idx = chips.indexOf(c);
+      var next = idx+1 < chips.length ? +chips[idx+1].dataset.jump : DURATION;
+      c.classList.toggle('active', t >= jump && t < next);
+    });
+    readout.textContent = fmt(t) + ' / ' + fmt(DURATION);
+    readout2.textContent = fmt(t) + ' / ' + fmt(DURATION);
+    if (document.activeElement !== scrub) scrub.value = t;
+  }
+
+  function setPlaying(p){
+    playing = p;
+    playIcon.style.display = p ? 'none' : 'block';
+    pauseIcon.style.display = p ? 'block' : 'none';
+    playBtn.setAttribute('aria-label', p ? 'Pause' : 'Play');
+  }
+
+  function tick(ts){
+    if (!playing) return;
+    if (lastTs) t = Math.min(DURATION, t + (ts-lastTs)/1000);
+    lastTs = ts;
+    render();
+    if (t >= DURATION) { setPlaying(false); return; }
+    raf = requestAnimationFrame(tick);
+  }
+
+  function play(){
+    if (t >= DURATION) t = 0;
+    setPlaying(true);
+    lastTs = 0;
+    raf = requestAnimationFrame(tick);
+  }
+  function pause(){ setPlaying(false); }
+
+  playBtn.addEventListener('click', function(){ playing ? pause() : play(); });
+  document.getElementById('restartBtn').addEventListener('click', function(){
+    t = 0; render();
+    if (!playing) play(); else lastTs = 0;
+  });
+  scrub.addEventListener('input', function(){ t = +scrub.value; render(); });
+  chips.forEach(function(c){
+    c.addEventListener('click', function(){
+      t = +c.dataset.jump + 0.6; render();
+      if (!playing) play();
+    });
+  });
+  document.getElementById('player').addEventListener('keydown', function(e){
+    if (e.code === 'Space' && e.target === document.activeElement && e.target.tagName !== 'INPUT') {
+      e.preventDefault(); playing ? pause() : play();
+    }
+  });
+
+  render();
+  if (!reduced) play(); else setPlaying(false);
+})();
+</script>
+</body>
+</html>
