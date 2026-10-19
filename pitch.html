@@ -692,7 +692,7 @@
   scrub.addEventListener('input', function(){ t = +scrub.value; render(); });
   chips.forEach(function(c){
     c.addEventListener('click', function(){
-      t = +c.dataset.jump + 0.05; render();
+      t = +c.dataset.jump + 0.6; render();
       if (!playing) play();
     });
   });
