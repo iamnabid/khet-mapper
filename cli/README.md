@@ -91,6 +91,42 @@ Google Drive (`khetmapper_exports/` folder) once it completes server-side —
 check task status with `ee.data.getTaskList()` if you need to confirm
 completion from Python.
 
+## How `analyze` finds water
+
+Two independent water signals, one per sensor:
+
+- **Optical** — Sentinel-2 MNDWI > 0 on cloud-masked pixels. Accurate on
+  clear days, blind under monsoon cloud.
+- **Radar** — Sentinel-1 VV backscatter below `SAR_WATER_VV_DB_MAX`
+  (default −16 dB, in `config.py`) after speckle filtering. Calm water
+  reflects the radar pulse away from the satellite, so it reads dark, cloud
+  or no cloud.
+
+Each gives a water area (pixels wet in ≥ 30% of that sensor's scenes) and a
+per-pass "fraction of the parcel that's water" series. For flood runs the
+two series are merged by date (the wetter reading wins on a shared date),
+and a run ends at the first dry pass or a gap longer than
+`FLOOD_RUN_MAX_GAP_DAYS`. Each trigger tier uses its own area fraction
+(40% / 50%). `metrics.json` keeps the per-sensor results, so you can see how
+much each sensor contributed.
+
+The −16 dB threshold is a typical published value for open water, **not one
+calibrated for Khulna/Satkhira**. Wind-roughened water can read too bright
+(missed), and smooth bare soil or tarmac too dark (false water). Flooded rice
+with plants above the water can also brighten through double-bounce and be
+missed. Check the radar series against known flood dates before trusting it,
+and tune the threshold per site.
+
+## Tests
+
+The flood-run logic and PDF generation have offline tests (no Earth Engine
+account needed):
+
+```
+pip install pytest
+python -m pytest tests
+```
+
 ## Deliberately not implemented here
 
 The original plan's PDF called "collateral verification," exact settlement

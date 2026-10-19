@@ -19,6 +19,15 @@ def mndwi(image):
     return image.normalizedDifference(["B3", "B11"]).rename("MNDWI")
 
 
+def optical_water(image):
+    return mndwi(image).gt(0).rename("is_water")
+
+
+def sar_water(image, vv_db_max=config.SAR_WATER_VV_DB_MAX):
+    # S1_GRD is already in dB (see s1_sar_fusion.py), so threshold directly.
+    return image.select("VV").lt(vv_db_max).rename("is_water")
+
+
 def awei_nsh(image):
     # Feyisa et al. 2014, no-shadow variant: 4*(green-SWIR1) - (0.25*NIR + 2.75*SWIR2)
     green, swir1, nir, swir2 = (
@@ -43,11 +52,12 @@ def lai_proxy(ndvi_image):
     return ratio.log().multiply(-1 / 0.91).rename("LAI_proxy")
 
 
-def water_occurrence_mask(s2_collection, min_fraction=config.WATER_OCCURRENCE_MIN_FRACTION):
-    """Fraction of cloud-free scenes where MNDWI > 0; thresholding this
-    (rather than AND-ing every scene, which only keeps permanent water)
-    captures both permanent and seasonal gher/pond extent."""
-    water_flags = s2_collection.map(lambda img: mndwi(img).gt(0).rename("is_water"))
+def water_occurrence_mask(collection, classify=optical_water, min_fraction=config.WATER_OCCURRENCE_MIN_FRACTION):
+    """Fraction of scenes classified as water (MNDWI > 0 on cloud-free S2 by
+    default, or sar_water on S1); thresholding this (rather than AND-ing every
+    scene, which only keeps permanent water) captures both permanent and
+    seasonal gher/pond extent."""
+    water_flags = collection.map(classify)
     occurrence = water_flags.mean()
     mask = occurrence.gte(min_fraction)
     return mask.selfMask().focal_max(
