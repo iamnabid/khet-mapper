@@ -38,3 +38,22 @@ def get_s2_composite(aoi, start, end, cloud_prob_max=config.CLOUD_PROB_MAX):
     )
     masked = ee.ImageCollection(joined).map(lambda img: _mask_clouds(img, cloud_prob_max))
     return masked, masked.median().clip(aoi)
+
+
+def with_clear_fraction(collection, aoi):
+    """Set each image's `clear_fraction`: the share of the AOI's area left
+    unmasked after cloud masking."""
+    total = ee.Number(ee.Image.pixelArea().reduceRegion(ee.Reducer.sum(), aoi, 10).get("area"))
+
+    def tag(img):
+        clear = (
+            img.select("B3").mask().gt(0).multiply(ee.Image.pixelArea())
+            .reduceRegion(ee.Reducer.sum(), aoi, 10).get("B3")
+        )
+        return img.set("clear_fraction", ee.Number(clear).divide(total))
+
+    return collection.map(tag)
+
+
+def mostly_clear(collection, aoi, min_fraction=config.OPTICAL_MIN_CLEAR_FRACTION):
+    return with_clear_fraction(collection, aoi).filter(ee.Filter.gte("clear_fraction", min_fraction))

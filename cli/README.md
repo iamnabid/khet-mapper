@@ -96,9 +96,11 @@ completion from Python.
 Two independent water signals, one per sensor:
 
 - **Optical** — Sentinel-2 MNDWI > 0 on cloud-masked pixels. Accurate on
-  clear days, blind under monsoon cloud.
+  clear days, blind under monsoon cloud. Scenes where less than half the AOI
+  survives the cloud mask (`OPTICAL_MIN_CLEAR_FRACTION`) are skipped: their
+  few remaining pixels are mostly cloud edges and shadow.
 - **Radar** — Sentinel-1 VV backscatter below `SAR_WATER_VV_DB_MAX`
-  (default −16 dB, in `config.py`) after speckle filtering. Calm water
+  (−14 dB, in `config.py`) after speckle filtering. Calm water
   reflects the radar pulse away from the satellite, so it reads dark, cloud
   or no cloud.
 
@@ -110,12 +112,32 @@ and a run ends at the first dry pass or a gap longer than
 (40% / 50%). `metrics.json` keeps the per-sensor results, so you can see how
 much each sensor contributed.
 
-The −16 dB threshold is a typical published value for open water, **not one
-calibrated for Khulna/Satkhira**. Wind-roughened water can read too bright
-(missed), and smooth bare soil or tarmac too dark (false water). Flooded rice
-with plants above the water can also brighten through double-bounce and be
-missed. Check the radar series against known flood dates before trusting it,
-and tune the threshold per site.
+### Calibrating the radar threshold
+
+```
+python cli.py calibrate data/aois/your_aoi.geojson 2024
+```
+
+pairs every Sentinel-1 pass with a ≥ 80%-clear Sentinel-2 scene taken within
+3 days, treats optical water as the reference, and reports for each candidate
+threshold the radar water fraction and pixel overlap (IoU) with optical water.
+
+On the Satkhira smoke-test AOI for 2024 it found 9 pairs (3 dry-season, 6
+Sep–Dec). −14 dB scored best (mean IoU 0.47); −16 dB, a common published
+value, scored 0.36 and found only a quarter to half of the water optical saw
+in Sep–Oct. Agreement is moderate, not tight: wind-roughened water reads too
+bright (missed), smooth bare soil too dark (false water), and flooded rice
+with plants above the water can brighten through double-bounce. There were
+no clear optical scenes in Jun–Aug to calibrate the peak monsoon against.
+Re-run `calibrate` for any other site or year.
+
+### Satkhira 2024 result
+
+With these settings the smoke-test AOI reads 4–8% water in the dry season,
+rising to 22–30% on radar passes in Jun–Sep (when optical has no usable scene
+from Jun 2 to Sep 7), then falling back by November. Water area: 47.6 ha
+optical, 54.9 ha radar, of 310 ha. No flood-run flag: water never covered
+40% of the AOI. None of this has been checked against ground records yet.
 
 ## Tests
 

@@ -88,7 +88,7 @@ def build_audit_pdf(metrics: dict, client: str, out_path: str):
         ("Delineated perimeter", f"{metrics['perimeter_m']:.0f} m"),
         ("Water surface, optical (S2 MNDWI > 0 in >= 30% of clear scenes)", f"{metrics['water_area_ha']:.2f} ha"),
     ] + ([(
-        f"Water surface, radar (S1 VV < {metrics.get('sar_water_vv_db_max', -16)} dB in >= 30% of passes)",
+        f"Water surface, radar (S1 VV < {metrics.get('sar_water_vv_db_max', -14)} dB in >= 30% of passes)",
         f"{metrics['water_area_ha_sar']:.2f} ha",
     )] if "water_area_ha_sar" in metrics else []):
         c.drawString(2.2 * cm, y, f"{label}: {value}")

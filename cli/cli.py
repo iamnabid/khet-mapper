@@ -10,7 +10,8 @@ from core import indices
 from core.flood_runs import longest_flagged_run, merge_observations
 from core.pdf_generator import build_audit_pdf
 from core.s1_sar_fusion import get_s1_composite
-from core.s2_compositor import get_s2_composite
+from core.s2_compositor import get_s2_composite, mostly_clear
+from core.sar_calibration import compare_pairs, summarize
 
 app = typer.Typer()
 
@@ -71,7 +72,8 @@ def analyze(aoi: str, year: int, trigger_days: int = config.TRIGGER_CONSECUTIVE_
     aoi_geom = _load_aoi(aoi)
     start, end = f"{year}-01-01", f"{year}-12-31"
 
-    s2_collection, _ = get_s2_composite(aoi_geom, start, end)
+    s2_all, _ = get_s2_composite(aoi_geom, start, end)
+    s2_collection = mostly_clear(s2_all, aoi_geom)
     s1_collection, _ = get_s1_composite(aoi_geom, start, end)
 
     ndvi_series = _series_getinfo(s2_collection.map(lambda img: indices.ndvi(img).copyProperties(img, ["system:time_start"])), "NDVI", aoi_geom)
@@ -114,6 +116,7 @@ def analyze(aoi: str, year: int, trigger_days: int = config.TRIGGER_CONSECUTIVE_
         "water_area_ha": water_area_ha(s2_collection, indices.optical_water),
         "water_area_ha_sar": water_area_ha(s1_collection, indices.sar_water),
         "sar_water_vv_db_max": config.SAR_WATER_VV_DB_MAX,
+        "optical_min_clear_fraction": config.OPTICAL_MIN_CLEAR_FRACTION,
         "ndvi_series": ndvi_series,
         "sar_series": sar_series,
         "water_fraction_series_optical": optical_water,
@@ -133,6 +136,38 @@ def analyze(aoi: str, year: int, trigger_days: int = config.TRIGGER_CONSECUTIVE_
     with open(out, "w") as f:
         json.dump(metrics, f, indent=2)
     rprint(f"[green]Wrote metrics to {out}[/green]")
+
+
+@app.command()
+def calibrate(
+    aoi: str,
+    year: int,
+    thresholds: str = "-12,-13,-14,-15,-16,-17,-18",
+    max_days: int = 3,
+    min_clear: float = 0.8,
+):
+    """Compare Sentinel-1 water thresholds against near-simultaneous clear
+    Sentinel-2 scenes and suggest the best one for SAR_WATER_VV_DB_MAX."""
+    _init_ee()
+    aoi_geom = _load_aoi(aoi)
+    ts = [int(t) for t in thresholds.split(",")]
+    rows = compare_pairs(aoi_geom, f"{year}-01-01", f"{year}-12-31", ts, max_days, min_clear)
+    if not rows:
+        rprint(f"[yellow]No S1 pass had an S2 scene within {max_days} days with >= {min_clear:.0%} clear sky.[/yellow]")
+        raise typer.Exit(1)
+
+    rprint(f"S1 date     S2 date     clear  optical | SAR water fraction at {ts} dB")
+    for r in rows:
+        sar = " ".join(f"{r[f'sar_{t}']:.2f}" for t in ts)
+        rprint(f"{r['s1_date']}  {r['s2_date']}  {r['clear_fraction']:.2f}   {r['optical']:.2f}   | {sar}")
+    summary, best = summarize(rows, ts)
+    rprint("\nthreshold  mean IoU  mean |SAR - optical|")
+    for t in ts:
+        rprint(f"{t:>6} dB   {summary[t]['mean_iou']:.3f}     {summary[t]['mean_abs_error']:.3f}")
+    rprint(
+        f"\n[green]Best mean IoU: {best} dB[/green] (current SAR_WATER_VV_DB_MAX: {config.SAR_WATER_VV_DB_MAX} dB)"
+        f" — based on {len(rows)} date pairs; few or only dry-season pairs make this a weak estimate."
+    )
 
 
 @app.command()
