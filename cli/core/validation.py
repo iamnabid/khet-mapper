@@ -100,7 +100,7 @@ def product_flag(start, end, aoi, scale):
     >= 40% of the AOI wet, from optical + descending radar combined."""
     s2_all, _ = get_s2_composite(aoi, start, end)
     s1, _ = get_s1_composite(aoi, start, end)
-    optical = water_fraction_series(mostly_clear(s2_all, aoi), indices.optical_water, aoi, scale)
+    optical = water_fraction_series(mostly_clear(s2_all, aoi, scale=scale), indices.optical_water, aoi, scale)
     sar = water_fraction_series(s1, indices.sar_water, aoi, scale)
     fraction = min(config.TRIGGER_AREA_FRACTIONS.values())
     days = longest_flagged_run(merge_observations(optical, sar), fraction, config.FLOOD_RUN_MAX_GAP_DAYS)
