@@ -17,6 +17,8 @@
   th { font-weight: 600; color: #14241F; }
   td { color: #3C4A3D; }
   tr.win td { font-weight: 700; color: #14241F; }
+  .kmc-narrow { display: none; }
+  @media (max-width: 640px) { .kmc-wide { display: none; } .kmc-narrow { display: block; } }
 </style>
 </head>
 <body>
@@ -174,16 +176,160 @@
   </div>
 
   <div style="max-width: 900px; margin: 0 auto; padding: 32px 24px 48px;">
-    <h2 style="font-size: 24px; font-weight: 700;">The result: the original flood flag failed</h2>
+    <h2 style="font-size: 24px; font-weight: 700;">The result: a seasonal radar check sees large floods; a fixed threshold doesn't</h2>
     <p style="font-size: 15px; line-height: 1.6; color: #2E3A2F; max-width: 66ch; margin-top: 10px;">
-      Three ways of flagging a flood were compared. The original flag (40% of the area
-      wet for 14 days) caught none of the 10 floods and fired just as often in years
-      with no flood, wherever shrimp ponds already cover half the land. Comparing
-      against water before the event, and against the same weeks in the five
-      previous years, both caught 4 of 10. The seasonal comparison is the more
-      trustworthy of the two: it catches the largest flood in the set with a quiet
-      control year, and it rarely fires when there was no flood.
+      Three ways of flagging a flood were compared. The one that holds up compares radar
+      water with the same weeks in the five previous years, so permanent shrimp ponds and
+      normal monsoon wetting drop out. It flagged the largest flood in the set in both radar
+      orbit directions with a quiet control year, rarely fired when there was no flood, and
+      caught 4 of the 10 events overall. Comparing only against water just before the event
+      also caught 4, on weaker evidence. The original fixed flag (40% of the area wet for
+      14 days) caught none and fired just as often in years with no flood, wherever ponds
+      already cover half the land, so it is being replaced by the seasonal check.
     </p>
+
+    <div style="position: relative; background: #FFFFFF; padding: 28px 24px 20px; margin-top: 24px;">
+      <div style="position: absolute; top: 10px; left: 10px; width: 16px; height: 16px; border-top: 2px solid #14241F; border-left: 2px solid #14241F;"></div>
+      <div style="position: absolute; top: 10px; right: 10px; width: 16px; height: 16px; border-top: 2px solid #14241F; border-right: 2px solid #14241F;"></div>
+      <div style="position: absolute; bottom: 10px; left: 10px; width: 16px; height: 16px; border-bottom: 2px solid #14241F; border-left: 2px solid #14241F;"></div>
+      <div style="position: absolute; bottom: 10px; right: 10px; width: 16px; height: 16px; border-bottom: 2px solid #14241F; border-right: 2px solid #14241F;"></div>
+      <div style="font-size: 16px; font-weight: 600; color: #14241F;">The clearest result: Satkhira Sadar and Tala, September 2024</div>
+      <div style="font-size: 14px; color: #5B5440; margin: 4px 0 14px;">Each dot is one radar pass. Every flood pass sits above every pass from the same weeks in the five years before, in both orbit directions.</div>
+      <div class="kmc-wide" style="overflow-x: auto;">
+<svg viewBox="0 0 760 318" role="img" aria-labelledby="km-flood-r-t km-flood-r-d" style="width:100%;min-width:640px;display:block;font-family:'Archivo',sans-serif">
+<title id="km-flood-r-t">Satkhira flood, September 2024: unusually wet area by radar pass</title>
+<desc id="km-flood-r-d">In both Sentinel-1 orbit directions, every radar pass during the September 2024 Satkhira flood showed more unusually wet area than any pass from the same weeks in 2019 to 2023, and crossed the detection threshold.</desc>
+<rect width="760" height="318" fill="#FFFFFF"/>
+<circle cx="12" cy="14" r="5" fill="#007F9E"/><text x="24" y="18" font-size="13" fill="#14241F">Same weeks, 2019–2023</text>
+<circle cx="200" cy="14" r="5" fill="#94561A"/><text x="212" y="18" font-size="13" fill="#14241F">September 2024 flood</text>
+<line x1="378" y1="14" x2="398" y2="14" stroke="#14241F" stroke-width="1.5"/><text x="404" y="18" font-size="13" fill="#14241F">detection threshold</text>
+<text x="0" y="60" font-size="12" font-weight="600" letter-spacing="0.08em" fill="#5B5440">DESCENDING ORBIT</text>
+<line x1="236.0" y1="68" x2="236.0" y2="144" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="334.4" y1="68" x2="334.4" y2="144" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="432.8" y1="68" x2="432.8" y2="144" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="531.2" y1="68" x2="531.2" y2="144" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="629.6" y1="68" x2="629.6" y2="144" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="728.0" y1="68" x2="728.0" y2="144" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="531.4" y1="66" x2="531.4" y2="146" stroke="#14241F" stroke-width="1.5"/>
+<text x="537.4" y="76" font-size="12" fill="#14241F">6.0%</text>
+<text x="0" y="90" font-size="13" fill="#14241F">Same weeks, 2019–23</text>
+<text x="0" y="130" font-size="13" fill="#14241F">Sep 2024 flood</text>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: a pass from the same weeks in 2019–23, 0.9% unusually wet" cx="278.5" cy="86" r="5" fill="#007F9E" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: a pass from the same weeks in 2019–23, 0.9% unusually wet" cx="279.6" cy="77" r="5" fill="#007F9E" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: a pass from the same weeks in 2019–23, 1.0% unusually wet" cx="283.8" cy="95" r="5" fill="#007F9E" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: a pass from the same weeks in 2019–23, 1.0% unusually wet" cx="287.4" cy="86" r="5" fill="#007F9E" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: a pass from the same weeks in 2019–23, 1.8% unusually wet" cx="322.6" cy="86" r="5" fill="#007F9E" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: a pass from the same weeks in 2019–23, 2.0% unusually wet" cx="332.1" cy="77" r="5" fill="#007F9E" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: a pass from the same weeks in 2019–23, 2.0% unusually wet" cx="333.0" cy="95" r="5" fill="#007F9E" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: a pass from the same weeks in 2019–23, 2.8% unusually wet" cx="373.0" cy="86" r="5" fill="#007F9E" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: a pass from the same weeks in 2019–23, 2.9% unusually wet" cx="376.2" cy="77" r="5" fill="#007F9E" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: a pass from the same weeks in 2019–23, 4.1% unusually wet" cx="438.6" cy="86" r="5" fill="#007F9E" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: a pass from the same weeks in 2019–23, 4.5% unusually wet" cx="458.3" cy="86" r="5" fill="#007F9E" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: 16 Sep 2024 pass, 8.3% unusually wet" cx="646.4" cy="126" r="6" fill="#94561A" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: 28 Sep 2024 pass, 6.4% unusually wet" cx="551.0" cy="126" r="6" fill="#94561A" stroke="#FFFFFF" stroke-width="2"/>
+<text x="657.4" y="130" font-size="13" font-weight="600" fill="#14241F">8.3%</text>
+<text x="0" y="170" font-size="12" font-weight="600" letter-spacing="0.08em" fill="#5B5440">ASCENDING ORBIT</text>
+<line x1="236.0" y1="178" x2="236.0" y2="254" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="334.4" y1="178" x2="334.4" y2="254" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="432.8" y1="178" x2="432.8" y2="254" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="531.2" y1="178" x2="531.2" y2="254" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="629.6" y1="178" x2="629.6" y2="254" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="728.0" y1="178" x2="728.0" y2="254" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="501.7" y1="176" x2="501.7" y2="256" stroke="#14241F" stroke-width="1.5"/>
+<text x="507.7" y="186" font-size="12" fill="#14241F">5.4%</text>
+<text x="0" y="200" font-size="13" fill="#14241F">Same weeks, 2019–23</text>
+<text x="0" y="240" font-size="13" fill="#14241F">Sep 2024 flood</text>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: a pass from the same weeks in 2019–23, 0.8% unusually wet" cx="277.1" cy="196" r="5" fill="#007F9E" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: a pass from the same weeks in 2019–23, 1.0% unusually wet" cx="286.0" cy="187" r="5" fill="#007F9E" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: a pass from the same weeks in 2019–23, 1.1% unusually wet" cx="289.9" cy="205" r="5" fill="#007F9E" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: a pass from the same weeks in 2019–23, 1.1% unusually wet" cx="292.3" cy="196" r="5" fill="#007F9E" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: a pass from the same weeks in 2019–23, 1.7% unusually wet" cx="320.8" cy="196" r="5" fill="#007F9E" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: a pass from the same weeks in 2019–23, 2.0% unusually wet" cx="335.6" cy="196" r="5" fill="#007F9E" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: a pass from the same weeks in 2019–23, 2.4% unusually wet" cx="355.9" cy="196" r="5" fill="#007F9E" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: a pass from the same weeks in 2019–23, 2.6% unusually wet" cx="362.9" cy="187" r="5" fill="#007F9E" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: a pass from the same weeks in 2019–23, 2.7% unusually wet" cx="370.2" cy="205" r="5" fill="#007F9E" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: a pass from the same weeks in 2019–23, 3.2% unusually wet" cx="393.9" cy="196" r="5" fill="#007F9E" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: a pass from the same weeks in 2019–23, 4.4% unusually wet" cx="451.9" cy="196" r="5" fill="#007F9E" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: 19 Sep 2024 pass, 6.9% unusually wet" cx="573.2" cy="236" r="6" fill="#94561A" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: 1 Oct 2024 pass, 5.5% unusually wet" cx="504.4" cy="236" r="6" fill="#94561A" stroke="#FFFFFF" stroke-width="2"/>
+<text x="584.2" y="240" font-size="13" font-weight="600" fill="#14241F">6.9%</text>
+<text x="236.0" y="276" font-size="12" text-anchor="middle" fill="#5B5440">0%</text>
+<text x="334.4" y="276" font-size="12" text-anchor="middle" fill="#5B5440">2%</text>
+<text x="432.8" y="276" font-size="12" text-anchor="middle" fill="#5B5440">4%</text>
+<text x="531.2" y="276" font-size="12" text-anchor="middle" fill="#5B5440">6%</text>
+<text x="629.6" y="276" font-size="12" text-anchor="middle" fill="#5B5440">8%</text>
+<text x="728.0" y="276" font-size="12" text-anchor="middle" fill="#5B5440">10%</text>
+<text x="482" y="300" font-size="13" text-anchor="middle" fill="#5B5440">Share of the area unusually wet for the time of year (Sentinel-1 radar)</text>
+</svg>
+      </div>
+      <div class="kmc-narrow">
+<svg viewBox="0 0 400 520" role="img" aria-labelledby="km-flood-rn-t km-flood-rn-d" style="width:100%;display:block;font-family:'Archivo',sans-serif">
+<title id="km-flood-rn-t">Satkhira flood, September 2024: unusually wet area by radar pass</title>
+<desc id="km-flood-rn-d">In both Sentinel-1 orbit directions, every radar pass during the September 2024 Satkhira flood showed more unusually wet area than any pass from the same weeks in 2019 to 2023, and crossed the detection threshold.</desc>
+<rect width="400" height="520" fill="#FFFFFF"/>
+<circle cx="10" cy="16" r="7" fill="#007F9E"/><text x="24" y="22" font-size="17" fill="#14241F">Same weeks, 2019–23</text>
+<circle cx="10" cy="44" r="7" fill="#94561A"/><text x="24" y="50" font-size="17" fill="#14241F">September 2024 flood</text>
+<line x1="230" y1="44" x2="252" y2="44" stroke="#14241F" stroke-width="2"/><text x="258" y="50" font-size="17" fill="#14241F">threshold</text>
+<text x="14" y="92" font-size="15" font-weight="600" letter-spacing="0.08em" fill="#5B5440">DESCENDING ORBIT</text>
+<line x1="14.0" y1="106" x2="14.0" y2="238" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="85.2" y1="106" x2="85.2" y2="238" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="156.4" y1="106" x2="156.4" y2="238" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="227.6" y1="106" x2="227.6" y2="238" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="298.8" y1="106" x2="298.8" y2="238" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="370.0" y1="106" x2="370.0" y2="238" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="227.8" y1="104" x2="227.8" y2="240" stroke="#14241F" stroke-width="2"/>
+<text x="14" y="124" font-size="16" fill="#14241F">Same weeks, 2019–23</text>
+<text x="14" y="200" font-size="16" fill="#14241F">Sep 2024 flood</text>
+<text x="233.8" y="124" font-size="15" fill="#14241F">6.0%</text>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: a pass from the same weeks in 2019–23, 0.9% unusually wet" cx="44.7" cy="144" r="6" fill="#007F9E" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: a pass from the same weeks in 2019–23, 0.9% unusually wet" cx="45.6" cy="133" r="6" fill="#007F9E" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: a pass from the same weeks in 2019–23, 1.0% unusually wet" cx="48.6" cy="155" r="6" fill="#007F9E" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: a pass from the same weeks in 2019–23, 1.0% unusually wet" cx="51.2" cy="144" r="6" fill="#007F9E" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: a pass from the same weeks in 2019–23, 1.8% unusually wet" cx="76.6" cy="144" r="6" fill="#007F9E" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: a pass from the same weeks in 2019–23, 2.0% unusually wet" cx="83.5" cy="133" r="6" fill="#007F9E" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: a pass from the same weeks in 2019–23, 2.0% unusually wet" cx="84.2" cy="155" r="6" fill="#007F9E" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: a pass from the same weeks in 2019–23, 2.8% unusually wet" cx="113.1" cy="144" r="6" fill="#007F9E" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: a pass from the same weeks in 2019–23, 2.9% unusually wet" cx="115.5" cy="133" r="6" fill="#007F9E" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: a pass from the same weeks in 2019–23, 4.1% unusually wet" cx="160.6" cy="144" r="6" fill="#007F9E" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: a pass from the same weeks in 2019–23, 4.5% unusually wet" cx="174.8" cy="144" r="6" fill="#007F9E" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: 16 Sep 2024 pass, 8.3% unusually wet" cx="311.0" cy="220" r="8" fill="#94561A" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Descending orbit: 28 Sep 2024 pass, 6.4% unusually wet" cx="242.0" cy="220" r="8" fill="#94561A" stroke="#FFFFFF" stroke-width="2"/>
+<text x="311.0" y="250" font-size="16" font-weight="600" text-anchor="middle" fill="#14241F">8.3%</text>
+<text x="14" y="270" font-size="15" font-weight="600" letter-spacing="0.08em" fill="#5B5440">ASCENDING ORBIT</text>
+<line x1="14.0" y1="284" x2="14.0" y2="416" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="85.2" y1="284" x2="85.2" y2="416" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="156.4" y1="284" x2="156.4" y2="416" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="227.6" y1="284" x2="227.6" y2="416" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="298.8" y1="284" x2="298.8" y2="416" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="370.0" y1="284" x2="370.0" y2="416" stroke="#D8CFAE" stroke-width="1"/>
+<line x1="206.2" y1="282" x2="206.2" y2="418" stroke="#14241F" stroke-width="2"/>
+<text x="14" y="302" font-size="16" fill="#14241F">Same weeks, 2019–23</text>
+<text x="14" y="378" font-size="16" fill="#14241F">Sep 2024 flood</text>
+<text x="212.2" y="302" font-size="15" fill="#14241F">5.4%</text>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: a pass from the same weeks in 2019–23, 0.8% unusually wet" cx="43.7" cy="322" r="6" fill="#007F9E" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: a pass from the same weeks in 2019–23, 1.0% unusually wet" cx="50.2" cy="311" r="6" fill="#007F9E" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: a pass from the same weeks in 2019–23, 1.1% unusually wet" cx="53.0" cy="333" r="6" fill="#007F9E" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: a pass from the same weeks in 2019–23, 1.1% unusually wet" cx="54.8" cy="322" r="6" fill="#007F9E" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: a pass from the same weeks in 2019–23, 1.7% unusually wet" cx="75.4" cy="322" r="6" fill="#007F9E" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: a pass from the same weeks in 2019–23, 2.0% unusually wet" cx="86.1" cy="311" r="6" fill="#007F9E" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: a pass from the same weeks in 2019–23, 2.4% unusually wet" cx="100.7" cy="322" r="6" fill="#007F9E" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: a pass from the same weeks in 2019–23, 2.6% unusually wet" cx="105.8" cy="311" r="6" fill="#007F9E" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: a pass from the same weeks in 2019–23, 2.7% unusually wet" cx="111.1" cy="333" r="6" fill="#007F9E" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: a pass from the same weeks in 2019–23, 3.2% unusually wet" cx="128.3" cy="322" r="6" fill="#007F9E" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: a pass from the same weeks in 2019–23, 4.4% unusually wet" cx="170.2" cy="322" r="6" fill="#007F9E" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: 19 Sep 2024 pass, 6.9% unusually wet" cx="258.0" cy="398" r="8" fill="#94561A" stroke="#FFFFFF" stroke-width="2"/>
+<circle class="kmc-dot" tabindex="0" data-tip="Ascending orbit: 1 Oct 2024 pass, 5.5% unusually wet" cx="208.2" cy="398" r="8" fill="#94561A" stroke="#FFFFFF" stroke-width="2"/>
+<text x="258.0" y="428" font-size="16" font-weight="600" text-anchor="middle" fill="#14241F">6.9%</text>
+<text x="14.0" y="470" font-size="15" text-anchor="middle" fill="#5B5440">0%</text>
+<text x="85.2" y="470" font-size="15" text-anchor="middle" fill="#5B5440">2%</text>
+<text x="156.4" y="470" font-size="15" text-anchor="middle" fill="#5B5440">4%</text>
+<text x="227.6" y="470" font-size="15" text-anchor="middle" fill="#5B5440">6%</text>
+<text x="298.8" y="470" font-size="15" text-anchor="middle" fill="#5B5440">8%</text>
+<text x="370.0" y="470" font-size="15" text-anchor="middle" fill="#5B5440">10%</text>
+<text x="192" y="500" font-size="15" text-anchor="middle" fill="#5B5440">Share of area unusually wet (radar)</text>
+</svg>
+      </div>
+    </div>
 
     <div style="position: relative; background: #FFFFFF; padding: 24px; margin-top: 24px;">
       <div style="position: absolute; top: 10px; left: 10px; width: 16px; height: 16px; border-top: 2px solid #14241F; border-left: 2px solid #14241F;"></div>
@@ -242,5 +388,21 @@
   </div>
 
 </div>
+<script>
+(function(){
+  var tip = document.createElement('div');
+  tip.setAttribute('role','status');
+  tip.style.cssText = 'position:fixed;pointer-events:none;background:#14241F;color:#F1E9D2;font:13px Archivo,sans-serif;padding:6px 9px;border-radius:4px;max-width:260px;display:none;z-index:10';
+  document.body.appendChild(tip);
+  function show(e){ var d=e.currentTarget, r=d.getBoundingClientRect(); tip.textContent=d.getAttribute('data-tip'); tip.style.display='block';
+    tip.style.left=Math.min(window.innerWidth-270, r.left+r.width/2-20)+'px'; tip.style.top=(r.top-40)+'px'; d.setAttribute('r', +d.getAttribute('r')+2); }
+  function hide(e){ tip.style.display='none'; var d=e.currentTarget; d.setAttribute('r', +d.getAttribute('r')-2); }
+  document.querySelectorAll('.kmc-dot').forEach(function(d){
+    d.style.cursor='pointer'; d.style.outline='none';
+    d.addEventListener('mouseenter',show); d.addEventListener('mouseleave',hide);
+    d.addEventListener('focus',show); d.addEventListener('blur',hide);
+  });
+})();
+</script>
 </body>
 </html>
