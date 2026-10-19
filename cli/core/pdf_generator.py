@@ -17,6 +17,10 @@ DISCLAIMER = (
     "observed estimates on available cloud-free revisit dates, not continuous "
     "monitoring or ground-truthed measurements."
 )
+FLAG_VALIDATION_WARNING = (
+    "Validation (Oct 2026): against 10 documented 2024-26 floods in Satkhira/Khulna this flag "
+    "caught none, and it fires in pond-dominated areas with no flood. Treat it as uninformative."
+)
 SAR_CAVEAT = (
     "Radar water uses a fixed VV backscatter threshold not yet calibrated for this region: "
     "wind-roughened water can be missed, smooth bare soil can read as water."
@@ -105,8 +109,13 @@ def build_audit_pdf(metrics: dict, client: str, out_path: str):
 
     c.setFont("Helvetica-Bold", 12)
     c.drawString(2 * cm, height - 10 * cm, "Exploratory flood-exposure flags (parcel-level, not GDIC's index)")
+    c.setFont("Helvetica-Bold", 9)
+    c.setFillColorRGB(0.6, 0.2, 0.1)
+    for i, line in enumerate(simpleSplit(FLAG_VALIDATION_WARNING, "Helvetica-Bold", 9, width - 4 * cm)):
+        c.drawString(2 * cm, height - 10.6 * cm - i * 0.4 * cm, line)
+    c.setFillColorRGB(0, 0, 0)
     c.setFont("Helvetica", 10)
-    y = height - 10.7 * cm
+    y = height - 12.0 * cm
     fraction = metrics.get("inundation_fraction", 0.4)
     c.drawString(
         2.2 * cm, y,

@@ -139,6 +139,17 @@ from Jun 2 to Sep 7), then falling back by November. Water area: 47.6 ha
 optical, 54.9 ha radar, of 310 ha. No flood-run flag: water never covered
 40% of the AOI. None of this has been checked against ground records yet.
 
+### Validation against documented floods
+
+`scripts/validate_events.py` checks detection against 10 dated, sourced
+flood and waterlogging events in Satkhira and Khulna, 2024–2026. Results and
+method: [`data/validation/README.md`](data/validation/README.md). In short:
+**the ≥ 40% / 14-day flood flag caught none of them** and fires in
+pond-dominated areas with no flood, so it is not a flood detector. Radar
+"new water against a pre-event baseline" carries a real but weak signal (4 of
+10 detected under the pre-set rule), and urban waterlogging is mostly
+invisible to it.
+
 ## Tests
 
 The flood-run logic and PDF generation have offline tests (no Earth Engine
